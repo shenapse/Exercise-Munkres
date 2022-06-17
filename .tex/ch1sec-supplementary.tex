@@ -1,0 +1,666 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{mystyle}
+\usepackage{commands}
+\mathtoolsset{showonlyrefs=true}
+
+\begin{document}
+\section*{Supplementary Exercises:\;Well-Ordering}
+\setcounter{exe}{0}
+\begin{exe}[General principle of recursive definition]
+	Let \( J \) be a well-ordered set;
+	let \( C \) be a set.
+	Let \( \mathcal{F} \) be the set of all functions mapping sections of \( J \) into \( C \).
+	Given a function \( \rho : \mathcal{F} \to C\),
+	there exists a unique function \( h:J \to C \)
+	such that
+	\( h(\alpha) = \rho(h | S_{\alpha}) \)
+	for each \( \alpha \in J \).
+\end{exe}
+\begin{sol}
+	Copy the argument for \S10 Exercise 10.
+	\qed\end{sol}
+
+\begin{rem}[Uniqueness of an order-preserving function]\label{note:unique_order_preserving}
+	We establish here an useful result,
+	which is a consequence of general principle of recursive definition (Exercise 1) and 
+	Exercise 2(a), as follows:\leavevmode \par
+	\textit{There exists at most one order-preserving function from a well-ordered set to another, whose image is the range of the function or a section of it.}
+	
+	For, if we suppose that there are two such functions, then Exercise 2(a) tells us that they both satisfy the formula indicated in Exercise 2(a)(ii),
+	recursive formulas for themselves.
+	Hence, general principle of recursive definition implies that 
+	these two function equal to one another.
+\end{rem}
+
+\begin{exe}\leavevmode \par
+	\begin{enumerate}
+		\item
+		      Let \( J \) and \( E \) be well-ordered sets;
+		      let \( h: J \to E \).
+		      Show the following two statements are equivalent:
+		      \begin{enumerate}
+			      \item
+			            \( h \) is order preserving and its image is \( E \) or a section of \( E \).
+			            
+			      \item
+			            \( h(\alpha) = \min{\left[ E \setminus h(S_{\alpha}) \right]} \)
+			            for all \( \alpha \).
+		      \end{enumerate}
+		\item
+		      If \( E \) is a well-ordered set,
+		      show that no section of \( E \) has the order type of \( E \),
+		      nor do two different sections of \( E \) have the same order type.
+	\end{enumerate}
+\end{exe}
+\begin{sol}\leavevmode \par
+	\fbox{(a)}
+	We first show that (i) implies (ii).
+	So, suppose (i) holds.
+	Without loss of generality, we may assume that \( h:J\to E \) is an order isomorphism.
+	Then it follows that
+	\( h(S_{\alpha}) = S'_{h(\alpha)} \) for all \( \alpha \in J \),
+	where \( S'_{y} \) denotes the section of \( E \) by \( y \),
+	and that
+	\begin{equation*}
+		\min{\left[ E \setminus h(S_{\alpha}) \right]}
+		=
+		\min{\left[ E \setminus S'_{h(\alpha)} \right]}
+		=
+		\sup{S'_{h(\alpha)}}
+	\end{equation*}
+	for all \( \alpha \in J \),
+	where we note that \( E \setminus h(S_{\alpha}) \)
+	is nonempty by the assumption of (i).
+	Now the conclusion follows from the obvious fact 
+	\begin{equation*}
+		h(\alpha) = \sup{S'_{h(\alpha)}}
+	\end{equation*}
+	for all \( \alpha \in J \).
+	
+	To prove the converse,
+	suppose (ii) holds.
+	It follows from (ii) that
+	\( E \setminus h(S_{\alpha}) \)
+	is the set of all upper bounds for \( h(\alpha) \)
+	for every \( \alpha \in J \),
+	from which we deduce that
+	\begin{equation}\label{eq:preserve_section}
+		S'_{h(\alpha)} = h(S_{\alpha})
+	\end{equation}
+	for every \( \alpha \in J \).
+	Moreover, \refeq{eq:preserve_section} lets us see \( h \) preserve order.
+	Indeed, if \( \alpha < \beta \), or equivalently, if \( \alpha \in S_{\beta} \),
+	then \( h(\alpha) \in h(S_{\beta}) = S'_{h(\beta)}\),
+	that is,
+	\( h(\alpha) < h(\beta) \).
+	
+	Assume \( h(J) \subsetneq E \).
+	We explicitly construct a section of \( E \) that equals \( h(J) \).
+	
+	If \( J \) has a largest element, denoted by \( m \),
+	then we have
+	\begin{equation*}
+		h(J)
+		=
+		h(S_m) \cup \left\{ h(m) \right\}
+		=
+		S'_{h(m)}\cup \left\{ h(m) \right\}
+		\subsetneq
+		E.
+	\end{equation*}
+	This means \( h(m) \) is not a largest element of \( E \),
+	and hence, \( h(m) \) admits an immediate successor \( n \) in \( E \)
+	by \S10 Exercise 2.
+	Then, \( h(J)=S'_n \).
+	
+	If not, neither does \( h(J) \).
+	Note that we can write \( J=\bigcup_{\alpha \in J}S_{\alpha} \),
+	and
+	it follows from the fact
+	\begin{equation*}
+		h(J)
+		=
+		\bigcup_{\alpha \in J}h(S_{\alpha})
+		=
+		\bigcup_{\alpha \in J}S'_{h(\alpha)}
+		\subsetneq
+		E
+	\end{equation*}
+	that \( h(J) \) is bounded above.
+	Then \S10 Exercise 1 tells us that \( h(J) \) has a supremum \( s \) in \( E \), more precisely, in \( E \setminus h(J) \).
+	It is straightforward to deduce from the property of supremum that
+	\( h(J) = S'_s\).
+	
+	\fbox{(b)}
+	Let \( \alpha \in E \).
+	It is obvious that the inclusion function
+	\begin{equation*}
+		i:S_{\alpha} \ni x \mapsto x \in E
+	\end{equation*}
+	preserves order, and its image \( i(S_{\alpha}) \) equals \( S_{\alpha} \),
+	a section of \( E \),
+	and that \( i \) is not surjective. 
+	We deduce from \refer{Note}{note:unique_order_preserving} that no order preserving function from
+	\( S_{\alpha} \) to \( E \) could be surjective, nor could be an order isomorphism.
+	Thus, no section of \( E \) has the order type of \( E \).
+	
+	The second implication is a direct consequence of the first;
+	Replace \( E \) with a section of \( E \) and use the innocent fact that
+	\textit{a section of a section of \( E \) is a section of \( E \).}
+	\qed\end{sol}
+
+\begin{exe}
+	Let \( J \) and \( E \) be well-ordered sets;
+	suppose there is an order preserving map
+	\( K: J\to E \).
+	Using Exercises 1 and 2,
+	show that \( J \) has the order type of \( E \) or a section of \( E \).
+\end{exe}
+\begin{sol}
+	Choose \( e_0:=\min{E} \).
+	Define a function \( h:J\to E\) by the recursive formula
+	\begin{equation*}
+		h(\alpha):=\begin{cases}
+			\min{\left[ E \setminus h(S_{\alpha}) \right]}
+			    & \;\mathrm{:}\;h(S_{\alpha}) \neq E \\
+			e_0 & \;\mathrm{:}\;h(S_{\alpha}) = E.
+		\end{cases}
+	\end{equation*}
+	We show by transfinite induction that for every \( \alpha \in J \)
+	\begin{equation*}
+		h(\alpha) \le k(\alpha)
+	\end{equation*}
+	holds.
+	Let \( X \) be a subset of \( J \) consisting of all \( \alpha \) for which the above inequality holds.
+	Let \( \alpha \in J \) and suppose \( S_{\alpha} \subset X \).
+	We may assume \( h(S_{\alpha}) \neq E \)
+	thanks to the choice of \( e_0 \),
+	and so \( h(\alpha) = \min{\left[ E \setminus h(S_{\alpha}) \right]} \).
+	On the other hand, it follows that \( k(\alpha) \) is greater than every element of
+	\( k(S_{\alpha}) \) and \( h(S_{\alpha}) \) by assumption,
+	which leads to \( k({\alpha}) \in E \setminus h(S_{\alpha}) \).
+	Hence, \( h(\alpha) \le k(\alpha) \),
+	completing the induction.
+	
+	It follows from the just proved inequality that
+	\( h(S_{\alpha}) \subset S'_{k(\alpha)} \),
+	and hence
+	\( h(S_{\alpha}) \neq E \)
+	for all \( \alpha \in J \),
+	where
+	\( S'_{k(\alpha)} \) denotes the section of \( E \) by \( k(\alpha) \).
+	So, \( h \) satisfies 
+	\begin{equation*}
+		h(\alpha) = \min{\left[ E \setminus h(S_{\alpha}) \right]}
+	\end{equation*}
+	for all \( \alpha \in J \).
+	Then Exercise 2(a) tells us that \( h \) is order preserving and its image is \( E \)
+	or a section of \( E \),
+	from which we conclude the result.
+	\qed\end{sol}
+
+\begin{exe}
+	Use Exercise 1-3 to prove the following: 
+	\begin{enumerate}
+		\item
+		      If \( A \) and \( B \) are well-ordered sets, then exactly one of the following three conditions holds:
+		      \( A \) and \( B \) have the same order type, or \( A \) has the order type of a section of \( B \),
+		      or \( B \) has the order type of a section of \( A \).
+		      
+		\item
+		      Suppose that \( A \) and \( B \) are well-ordered sets that are uncountable,
+		      such that every section of \( A \) and of \( B \) is countable.
+		      Show \( A \) and \( B \) have the same order type.
+	\end{enumerate}
+\end{exe}
+\begin{sol}\leavevmode \par
+	\fbox{(a)}
+	We first show that at least one of the three conditions is the case.
+	Let \( (A,<_{A}) \) and \( (B,<_{B}) \) be well-ordered sets,
+	and let \( (A\cup B,<) \) be the well-ordered set constructed in the way
+	indicated in \S10 Exercise 8.
+	Let \( S_{x}(A), S_{x}(B)\), and \(S_{x} \)
+	denote the section of \( A, B\), and \( A\cup B \) by \( x \), respectively.
+	We may assume \( A \neq \emptyset \) and \( B \neq \emptyset \).
+	Consider an inclusion function \( \iota \) given by
+	\begin{equation*}
+		\iota : A \ni x \mapsto x \in A\cup B.
+	\end{equation*}
+	It is obvious that \( \iota \) preserves order and its image is \( A \),
+	a section of \( A\cup B \) by a smallest element
+	\( b_0 \) of \( B \) in \( (A\cup B,<) \).
+	Hence, Exercise 3 tells us that we have either \( A\simeq A \cup B \) or
+	\begin{equation}\label{secsupE4eq1}
+		\unique{ y_A \in A\cup B}
+		\left[ A \simeq S_{y_A} \right].
+	\end{equation}
+	But there cannot hold \( A\simeq A \cup B \) since \( \iota \) is not a surjection, neither is an order isomorphism. 
+	%(Note \( y_A \notin A \) by Exercise 2.) 
+	Using Exercise 3, we similarly deduce that
+	\begin{equation}\label{secsupE4eq2}
+		B \simeq A \cup B
+		\vee
+		\unique{ y_B \in A \cup B }
+		\left[ B \simeq S_{y_B} \right]
+	\end{equation}
+	but not both.
+	Note that we cannot reject \( B \simeq A \cup B \) this time,
+	from which we deduce that
+	\begin{equation}\label{secsupE4eq3}
+		S_{f^{-1}(b_0)}(B) \simeq A,
+	\end{equation}
+	where \( f \) is an order isomorphism from \( B \) to \( A\cup B \).
+	
+	Suppose \( y_A \neq y_B \) and \( y_B \in B \).
+	If \( y_B = b_0 \),
+	then we deduce from \refeq{secsupE4eq2} that
+	\begin{equation}\label{secsupE4eq4}
+		B \simeq A.
+	\end{equation}
+	If not, we have
+	\begin{equation}\label{secsupE4eq5}
+		S_{g^{-1}(b_0)}(B) \simeq A
+	\end{equation}
+	where \( g \) is an order isomorphism from \( B \) to \( S_{y_B} \).
+	If \( y_A \neq y_B \) and \( y_B \in A \),
+	then we have
+	\begin{equation}\label{secsupE4eq6}
+		B \simeq S_{y_B}(A).
+	\end{equation}
+	At last, if \( y_A = y_B \) happens to be the case,
+	then (\refeq{secsupE4eq1}),(\refeq{secsupE4eq2}) yield
+	\begin{equation}\label{secsupE4eq7}
+		A \simeq B.
+	\end{equation}
+	Thus, at least one of the three does hold.
+	Note that every term in \refeq{secsupE4eq3} - \refeq{secsupE4eq7}
+	is a section of \( (A\cup B,<) \).
+	Hence, Exercise 2(b) applied to \( (A\cup B,<) \) establishes that
+	none of two holds at the same time.
+	Thus, we have proved that exactly one of the three holds.
+	
+	\fbox{(b)}
+	Definition of uncountable set requires the absence of bijective correspondence of  \( A \) and \( B \) with a countable set.
+	Hence, Neither \( A \) nor \( B \) have the order type of a section of the other. 
+	Thus, we conclude from (a) that \( A \simeq B\).
+	\qed\end{sol}
+
+
+\begin{exe}
+	Let \( X \) be a set;
+	let \( \mathcal{A} \) be a collection of all pairs \( (A,<) \),
+	where \( A \) is a subset of \( X \) and \( < \) is a well-ordering of \( A \).
+	Define
+	\begin{equation*}
+		(A,<) \prec (A',<')
+	\end{equation*}
+	if \( (A,<) \) \textit{equals} a section of \( (A',<') \).
+	\begin{enumerate}
+		\item
+		      Show that \( \prec \) is a strict partial order on \( \mathcal{A} \).
+		      
+		\item
+		      Let \( \mathcal{B} \) be a subcollection of \( \mathcal{A} \) that is simply ordered by \( \prec \).
+		      Define \( B' \) to be the union of the sets \( B \),
+		      for all \( (B,<)\in \mathcal{B} \);
+		      and define \( <' \) to be the union of the relations \( < \),
+		      for all \( (B,<)\in \mathcal{B} \).
+		      Show that \( (B',<') \) is a well-ordered set.
+	\end{enumerate}
+\end{exe}
+\begin{sol}\leavevmode \par
+	\fbox{(a)}
+	Nonreflexivity follows from Exercise 2(b).
+	To see transitivity,
+	suppose \( (A,<_{A}) \prec (B,<_{B})\) 
+	and 
+	\( (B,<_{B})  \prec (C,<_{C})\).
+	By definition of \( \prec \),
+	there exist \( b\in B \) and \(  c\in C \) such that
+	\begin{equation*}
+		A \simeq S_{b}(B),\;\;B \simeq S_{c}(C).
+	\end{equation*}
+	It is easy by considering an order isomorphism to see
+	\begin{equation*}
+		S_{b}(B) \simeq S_{c'}(C)
+	\end{equation*}
+	for some \( c' \in C \).
+	Then we have \( A \simeq S_{c'}(C)\),
+	from which we conclude \( (A,<_{A}) \prec (C,<_{C}) \),
+	as desired.
+	
+	\fbox{(b)}
+	We first establish that \( <' \) is a simple order on \( B' \).
+	Nonreflexivity is obviously satisfied.
+	To see \( <' \) satisfy comparability,
+	let \( b_1 \) and \( b_2 \) be two distinct points in \( B' \).
+	There exist \( (B_1,<_1), (B_2,<_2) \in \mathcal{B} \)
+	with \( (B_1,<_1) \prec  (B_2,<_2) \)
+	such that \( b_1 \in B_1 \) and \( b_2 \in B_2 \).
+	Then \( b_1, b_2 \in B_2 \) and these points are comparable under \( <_2 \),
+	and so are under \( <' \).
+	To prove transitivity,
+	suppose that \( b_1 <' b_2 \) and \( b_2 <' b_3 \).
+	We deduce, as we do to see comparability, that
+	there exists \( (B,<) \in \mathcal{B} \) such that
+	\( b_i \in B \)
+	and
+	\( b_{i} < b_{i+1} \)
+	for all \( i \).
+	Then transitivity of \( (B,<) \) gives \( b_1 < b_3 \).
+	Hence, \( b_1 <' b_3 \).
+	Thus, \( <' \) is a simple order on \( B' \).
+	
+	We show that \( (B',<') \) is a well-ordered set.
+	Let \( W \) be a nonempty subset of \( B' \).
+	The fact \( \mathcal{B} \) is simply ordered by \( \prec \)
+	gives \( (B,<) \in \mathcal{B} \) with \( W \subset B \).
+	Then \( W \) has a smallest element \( m \) in \( (B,<) \),
+	for which we have
+	\( m<b \)
+	and hence
+	\( m<'b \)
+	for all \( b\in W \setminus \left\{ m \right\} \).
+	Thus, \( W \) has a smallest element \( m \) in \( (B',<') \).
+	\qed\end{sol}
+
+\begin{exe}
+	Use Exercise 1 and 5 to prove the following:\leavevmode \par
+	\noindent \text{Theorem.}\;\;
+	The maximum principle is equivalent to the well-ordering theorem.
+\end{exe}
+\begin{sol}
+	We have already seen the well-ordering theorem imply the (Hausdorff) maximum principle.
+	Here we establish the converse.
+	
+	Let \( X \) be a set,
+	and let \( \mathcal{A} \) and \( \prec \) be as at Exercise 5,
+	say, let \( \mathcal{A} \) be the collection of all pairs \( (A,<) \),
+	where \( A \) is a subset of \( X \)
+	and \( < \) is a well-ordering of \( A \);
+	let \( (A,<) \prec (A',<') \)
+	if \( (A,<) \) equals a section of \( (A',<') \).
+	Note that \( \mathcal{A} \) is nonempty since \( (\emptyset,\emptyset) \) is vacuously well-ordered,
+	and that if \( (A,<) \in \mathcal{A} \) and \( x\in X \setminus A \),
+	then we can define a new well-ordered set
+	\( (A\cup \left\{ x \right\}, <_{+x})\in \mathcal{A} \),
+	where \( <_{+x} \) is defined to be equal to \( < \) on \( A \)
+	and \( a <_{+x} x \) for all \( a\in A \).
+	Observe that Exercise 5 implies that
+	\( \mathcal{A} \) satisfies the hypothesis of Zorn's lemma,
+	which, as we have seen in \S11, is equivalent to the maximum principle.
+	Hence, \( \mathcal{A} \) has a maximal element.
+	It is easy to verify that \( A^{\ast}= X \).
+	\qed\end{sol}
+
+\begin{exe}
+	Use Exercise 1-5 to prove the following:\leavevmode \par
+	\noindent \text{Theorem.}\;\;
+	The choice axiom is equivalent to the well-ordering theorem.\\
+	\textit{Proof.}\;
+	Let \( X \) be a set;
+	let \( c \) be a fixed choice function for the nonempty subsets of \( X \).
+	If \( T \) is a subset of \( X \) and \( < \) is a relation on \( T \),
+	we say that \( (T,<) \) is a \textbf{\textit{tower}}
+	in \( X \) if \( < \) is a well-ordering of \( T \) and if for each \(  x \in T \),
+	\begin{equation}\label{eq:def_tower}
+		x=c \left( X \setminus S_x(T) \right),
+	\end{equation}
+	where \( S_x(T) \) is the section of \( T \) by \( x \).
+	\begin{enumerate}
+		\item
+		      Let \( (T_1,<_1) \) and \( (T_2,<_2) \) be two towers in \( X \).
+		      Show that either two ordered sets are the same,
+		      or one equals a section of the other.
+		      
+		\item
+		      If \( (T,<) \) is a tower in \( X \) and \( T \neq X \),
+		      show there is a tower in \( X \) of which \( (T,<) \) is a section.
+		      
+		\item
+		      Let \( \left\{ (T_k,<_k) \pipe  k \in K \right\} \)
+		      be the collection of all tower in \( X \).
+		      Let
+		      \begin{equation*}
+			      T:=\bigcup_{k \in K} T_k,\;\;<:=\bigcup_{k \in K}\left( <_k \right).
+		      \end{equation*}
+		      Show that \( (T,<) \) is a tower in \( X \).
+		      Conclude that \( T=X \).
+	\end{enumerate}
+\end{exe}
+\begin{sol}\leavevmode \par
+	\fbox{(a)}
+	By Exercise 5,
+	we may assume that there exists a function \( h:T_1 \to T_2 \)
+	that is order-preserving and \( h(T_1) \) equals
+	either \( T_2 \) or a section of \( T_2 \).
+	Exercise 2 tells us that \( h \) satisfies
+	\begin{equation*}
+		h(x) = \min{\left[ X \setminus h(S_x(T_1)) \right]}
+	\end{equation*}
+	and
+	\begin{equation}\label{eq:secsuppE7}
+		h \left( S_{x}(T_1) \right) = S_{h(x)}(T_2) 
+	\end{equation}
+	for all \(  x \in T_1 \).
+	We show by transfinite induction that \( h \) is an identity function on \( T_1 \),
+	that is,
+	\begin{equation*}
+		h(x) = x
+	\end{equation*}
+	for all \(  x \in T_1 \).
+	Let \( I \) be a subset of \( T_1 \) consisting of all \( x \) for which
+	the above equality holds.
+	Let \(  x \in T_1 \) and suppose \( S_x(T_1) \subset I\).
+	We then deduce from (\refeq{eq:secsuppE7}) that
+	\begin{equation*}
+		h(x)
+		=
+		c(X \setminus S_{h(x)}(T_2))
+		=
+		c(X \setminus h(S_{x}(T_1)))
+		=
+		c(X \setminus S_{x}(T_1))
+		=x,
+	\end{equation*}
+	and hence \(  x \in I \),
+	completing the induction.
+	Thus, \( T_1 \) coincides with its image under \( h \),
+	namely, with either \( T_2 \) or a section of \( T_2 \).
+	
+	\fbox{(b)}
+	Let \( p:=c(X \setminus T) \).
+	As in Exercise 6,
+	we can define a new well-ordered set
+	\( (T \cup \left\{ p \right\},<_{+p}) \).
+	Observe that there holds \( S_p(T \cup \left\{ p \right\})=T \)
+	and so
+	\begin{equation*}
+		p = c(X \setminus T) = c(X \setminus S_p(T \cup \left\{ p \right\})),
+	\end{equation*}
+	from which we conclude that
+	\( (T \cup \left\{ p \right\},<_{+p}) \)
+	is a tower, as required.
+	(Note that \( (\emptyset, \emptyset) \) is a trivial tower,
+	and this procedure yields the existence of a non-trivial tower in \( X \)
+	that contains arbitrary element of \( X \).)
+	
+	\fbox{(c)}
+	Define
+	\begin{equation*}
+		(T_k,<_k) \prec (T_{\ell}, <_{\ell})
+	\end{equation*}
+	if \( (T_k,<_k) \) equals a section of \( (T_{\ell}, <_{\ell}) \).
+	(a) and Exercise 5 imply that \( \prec \) is a simple order on
+	\( \left\{ (T_k,<_k) \right\} \).
+	Hence, Exercise 5 tells us that \( (T,<) \) is a well-ordered set.
+	It remains to show that \( (T,<) \) satisfies (\refeq{eq:def_tower})
+	since (b) then gives \( T=X \).
+	
+	Let \(  x \in T \).
+	There exists \( k_1 \in K \) for which \(  x \in T_{k_1} \).
+	Then there holds
+	\begin{equation*}
+		x\in c(X \setminus S_{x}(T_{k_1})).
+	\end{equation*}
+	We claim
+	\begin{equation*}
+		S_{x}(T_{k_1}) = S_x(T).
+	\end{equation*}
+	To this end, we only have to show that \leavevmode \par
+	\noindent\textit{If \(  x \in T \) and if \(  x \in T_k \) for some \( k\in K \),
+		then \( S_{x}(T_{k}) = S_{x}(T_{k'}) \) for all \( k' \in K \)
+		for which \(  x \in T_{k'} \)},\leavevmode \par\noindent
+	since we then deduce that, under the assumption \(  x \in T_{k_1} \),
+	there holds
+	\begin{equation*}
+		t\in S_{x}(T)
+		\equiv
+		\Exists{ k\in K }\left[ t\in S_{x}(T_{k}) \right]\\
+		\equiv
+		t\in S_{x}(T_{k_1}).
+	\end{equation*}
+	To prove the italic statement, let \(  x \in T \) and \(  x \in T_{k} \cap T_{k'} \).
+	(a) implies that we may assume that there exists
+	\( s \in T_{k'} \setminus T_{k} \)
+	such that \( T_{k}=S_{s}(T_{k'}) \).
+	This leads to
+	\begin{eqnarray*}
+		S_x(T_{k})
+		&=&
+		\left\{ t\in T_k \pipe t<_{k}x \right\}\\
+		&=&
+		\left\{ t\in S_{s}(T_{k'}) \pipe t<_{k'}x \right\}\\
+		&=&
+		\left\{ t\in T_{k'} \pipe t<_{k'}x \right\}\\
+		&=&
+		S_{x}(T_{k'}).
+	\end{eqnarray*}
+	
+	We have shown so far that a choice function for
+	\( \mathcal{P}(X)\setminus \emptyset \)
+	yields the set of non-trivial towers in \( X \),
+	which gives a tower \( (X,<) \).
+	In other words,
+	we have seen the choice axiom induce a well-ordering (even with the tower property ).
+	Thus, the well-ordering theorem follows from the choice axiom.
+	\qed\end{sol}
+
+\begin{exe}
+	Using the Exercise 1-4, construct an uncountable well-ordered set, as follows.
+	Let \( \mathcal{A} \) be the collection of all pairs \( (A,<) \),
+	where \( A \) is a subset of \( \mathbb{Z}_{+} \) and \( < \) is a well-ordering of \( A \).
+	(We allow \( A \) to be empty.)
+	Define \( (A,<) \simeq (A',<') \)
+	if \( (A,<) \) and \( (A',<') \) have the same order type.
+	It is trivial to show this is an equivalence relation.
+	Let \( \left[ (A,<) \right] \) denote the equivalence class of \( (A,<) \);
+	let \( E \) denote the collection of there classes.
+	Define
+	\begin{equation}\label{secsupE8order}
+		\left[ (A,<) \right] \ll \left[ (A',<') \right]
+	\end{equation}
+	if \( (A,<) \) has the order type of a section of \( (A',<') \).
+	\begin{enumerate}
+		\item
+		      Show that the relation \( \ll \) is well defined and is a simple order on \( E \).
+		      Note that the equivalence class \( \left[ (\emptyset,\emptyset) \right] \)
+		      is the smallest element of \( E \).
+		      
+		\item
+		      Show that if \( \alpha = \left[ (A,<) \right] \) is an element of \( E \),
+		      then \( (A,<) \) has the same order type as the section \( S_{\alpha}(E) \)
+		      of \( E \) by \( \alpha \).
+		      
+		\item
+		      Conclude that \( E \) is well-ordered by \( \ll \).
+		      
+		\item
+		      Show that \( E \) is uncountable.
+	\end{enumerate}
+\end{exe}
+\begin{sol}\leavevmode \par
+	\fbox{(a)}
+	It suffices to show that \( \ll \) is well-defined
+	since it then follows from Exercise 2 and 3 that \( \ll \) is a simply ordered.
+	Note that Exercise 4 tells us that no member of \( \left[ (A,<) \right] \)
+	has the order type of a section of a member of \( \left[ (A,<) \right] \).
+	Suppose \( (A,<_A) \) has the order type of a section
+	\( S_b(B) \) of \( (B,<_B) \),
+	which has the same order type as \( (C,<C) \).
+	Then \( (A,<_A) \) has the order type of a section \( (C,<C) \).
+	This means that the relation \refeq{secsupE8order} is determined
+	independent of the choice of \( (A',<_{A'}) \).
+	On the other hand, if \( (D,<_{D}) \) has the same order type as \( (A,<_A) \)
+	which has the order type of \( (B,<_B) \),
+	then it is obvious that
+	we have \( (D,<_{D}) \) also has the order type of a section of \( (B,<_B) \).
+	Hence, the relation \refeq{secsupE8order} is determined
+	independent of the choice of \( (A,<_{A}) \) and \( (A,<_{A'}) \).
+	In other words, the relation \( \ll \) is well-defined.
+	
+	\fbox{(b)}
+	Define a function \( f:A \to E \) via
+	\begin{equation*}
+		f(x):=\left[( S_x(A),<_{S_{x}(A)}) \right],
+	\end{equation*}
+	where \( <_{S_{x}(A)} \) is the restriction of \( < \) onto \( S_{x}(A) \).
+	\( f \) preserves order by Exercise 2 and 4,
+	and so it suffices to show \( f(A)=S_{\alpha}(E) \).
+	Clearly, \( f(A) \subset S_{\alpha}(E) \).
+	Let \( e \in S_{\alpha}(E) \).
+	We have
+	\( e = \left[ (A',<_{A'}) \right] \)
+	for some \( (A',<_{A'}) \)
+	satisfying \( \left[  (A',<_{A'}) \right] \ll \alpha \),
+	or equivalently,
+	for some \( (A',<_{A'}) \) having the order type of a section of \( (A,<_A) \).
+	This means \( e\in f(A) \),
+	and hence \( S_{\alpha}(E) \subset f(A) \).
+	
+	\fbox{(c)}
+	Let \( \mathcal{E} \) be a nonempty subset of \( E \),
+	and let \( \alpha \in \mathcal{E} \).
+	We may assume \( S_{\alpha}(E) \cap \mathcal{E} \neq \emptyset \),
+	and it suffices to show that \( S_{\alpha}(E) \cap \mathcal{E}\)
+	has a smallest element.
+	If \( \alpha = \left[ (A,<_A) \right] \),
+	then (b) gives
+	\begin{equation*}
+		(A,<_A) \simeq S_{\alpha}(E),
+	\end{equation*}
+	from which we deduce that
+	\( S_{\alpha}(E) \cap \mathcal{E}\)
+	has the order type of \( (A,<_A) \) or a section of \( (A,<_A) \).
+	Since every nonempty subset of \( (A,<_A) \) admits a smallest element,
+	so does \( S_{\alpha}(E) \cap \mathcal{E}\).
+	
+	\fbox{(d)}
+	We ignore the advice by Munkres to argue by contradiction,
+	and instead show that no injective function from
+	\( \mathbb{Z}_{+} \) to \( E \) is surjective.
+	Let \( k:\mathbb{Z}_{+} \to E \) be an injection.
+	It is obvious that such injection does exist;
+	consider, for instance, a function
+	\( \mathbb{Z}_{+} \ni n \mapsto \left[ (S_n,<)\right] \in E\),
+	where \( < \) is the restriction of the usual order of \( \mathbb{Z}_{+} \).
+	Define a simple order \( \prec_{k} \) on \( \mathbb{Z}_{+} \) by setting
+	\( x \prec_{k} y \) if \( k(x) \ll k(y) \).
+	It is easy to check that \( \prec_{k} \) is well-defined and \( k \) is an order-preserving function from \( (\mathbb{Z}_{+}, \prec_{k}) \) to \( (E ,\ll) \),
+	from which we deduce that
+	\( \prec_{k} \) is a well-ordering of \( \mathbb{Z}_{+} \).
+	Then it turns out that \( k \) is not surjective.
+	In fact, we deduce from the fact \( (\mathbb{Z}_{+},\prec_{k}) \) has the order type of a section of \( E \) that
+	%exploiting Exercise 2(b),
+	the image of \( k \) does not coincide with \( E \).
+	Hence, \( k \) is not surjective.
+	
+	The fact
+	\( \inj{\mathbb{Z}_{+}}{E}\neq \emptyset \)
+	and none of its member is surjective
+	tells us that \( E \) is infinite but is not in bijective correspondence with \( \mathbb{Z}_{+} \).
+	Thus,
+	\( E \) is uncountable.
+	\qed\end{sol}
+
+\end{document}
