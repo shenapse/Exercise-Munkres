@@ -1,0 +1,145 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{mystyle}
+\usepackage{commands}
+
+\begin{document}
+\section*{Notations}
+\addcontentsline{toc}{section}{Notations}
+We summarize some of the frequently used notation in this document.
+Those already introduced in Mukres \cite{Munkres:Topology} are not included here.
+
+Let \( P \) and \( Q \) be formulas,
+let \( A \) and \( B \) be sets, and let \( f \) be a function.
+\begin{enumerate}
+	\renewcommand{\labelenumi}{\(\diamond\)}
+	\item
+	      \( \neg \)\COLON
+	      negation.
+	      
+	\item
+	      \( \vee \)\COLON
+	      disjunction.
+	      
+	\item
+	      \( \wedge \)\COLON
+	      conjunction.
+	      
+	\item
+	      \( \Rightarrow \)\COLON
+	      implication.
+	      
+	\item
+	      \( \Leftrightarrow \)\COLON
+	      equivalence.
+	      Formally,
+	      \( P \Leftrightarrow Q \) is defined as
+	      \( (P \Rightarrow Q) \wedge (Q \Rightarrow P)\).
+	      
+	\item
+	      \( \equiv \)\COLON
+	      the same meaning as "\( \Leftrightarrow \)."
+	      
+	\item
+	      \( \Forall \)\COLON
+	      universal quantifier.
+	      
+	\item
+	      \( \Exists \)\COLON
+	      existential quantifier.
+	      
+	\item
+	      \( \unique \)\COLON
+	      "\( \unique{ x }\left[ P(x) \right]\)"
+	      means
+	      "\( P(x) \) holds for exactly one \( x \)."
+	      Formally,
+	      \( \unique{ x }\left[ P(x) \right]\)
+	      is defined as
+	      \(\Exists{ x }
+	      \left[ P(x) \wedge \Forall{ y }\left[ P(y) \Rightarrow x=y \right] \right]\).
+	      
+	      
+	\item
+	      \( T \)\COLON
+	      short for "true."
+	      
+	\item
+	      \( F \)\COLON
+	      short for "false."
+	      
+	\item
+	      \( := \)\COLON
+	      "is defined to be."
+	      \( a:=b \) means that \( a\) is defined to be \( b \), while 
+	      \( a=:b \) means that \( b\) is defined to be \( a \).
+	      
+	\item
+	      \( \setminus \)\COLON
+	      the difference of two sets.
+	      
+	\item
+	      \( \subsetneq \)\COLON
+	      proper inclusion.
+	      
+	\item
+	      \( \mapsto \)\COLON
+	      Assignment.
+	      We often write
+	      "\( f:A \ni a \mapsto b \in B\)"
+	      to mean \( f \) is a function from \( A \) to \( B \)
+	      assigning, to each element \( a \) of \( A \), an element \( b \) of \( B \).
+	      
+	\item
+	      \( \func{A}{B} \)\COLON
+	      the set of all functions from \( A \) to \( B \).
+	      
+	\item
+	      \( \inj{A}{B} \)\COLON
+	      the set of all injective functions from \( A \) to \( B \).
+	      
+	\item
+	      \( \surj{A}{B} \)\COLON
+	      the set of all surjective functions from \( A \) to \( B \).
+	      
+	\item
+	      \( \bij{A}{B} \)\COLON
+	      the set of all bijective functions from \( A \) to \( B \).
+	      
+	\item
+	      \( \sim \)\COLON
+	      equivalence relation.
+	      
+	\item
+	      \( \simeq \)\COLON
+	      equivalence relation (often about order type in this document).
+	      
+	\item
+	      \( \hookrightarrow \)\COLON
+	      existence of injection.
+	      We write \( A \hookrightarrow B\) if there exists an injection from \( A \) into \( B \).
+	      
+	\item
+	      \( (A,<) \)\COLON
+	      the set \( A \) equipped with the order relation \( < \).
+	      
+	\item
+	      \( \min{A} \)\COLON
+	      a smallest element of \( A \).
+	      
+	\item
+	      \( \max{A} \)\COLON
+	      a largest element of \( A \).
+	      
+	\item
+	      \( \inf{A} \)\COLON
+	      an infimum of \( A \).
+	      
+	\item
+	      \( \sup{A} \)\COLON
+	      a supremum of \( A \).
+	      
+	      
+	      
+\end{enumerate}
+
+\end{document}

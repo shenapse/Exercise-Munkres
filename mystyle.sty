@@ -1,0 +1,41 @@
+\usepackage{mypackages}
+% ---------- Common Environment
+\newtheorem{thm}{Theorem}[section]
+\newtheorem*{thm*}{Theorem}
+
+\newtheorem{prp}[thm]{Proposition}
+\newtheorem*{prp*}{Proposition}
+
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem*{cor*}{Corollary}
+
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem*{lem*}{Lemma}
+
+\newtheorem{dfn}[thm]{Definition}
+\newtheorem*{dfn*}{Definition}
+
+\theoremstyle{remark}
+\newtheorem*{prf}{Proof}
+
+\theoremstyle{definition}
+\newtheorem*{rem*}{Remark}
+\newtheorem{rem}[thm]{Remark}
+
+\theoremstyle{definition}
+\newtheorem{ex}[thm]{Example}
+\newtheorem*{ex*}{Example}
+
+\theoremstyle{definition}
+\newtheorem{exe}[thm]{Exercise}
+% --------- Common Environment
+
+% --------- Common Settings
+\numberwithin{equation}{section}
+\mathtoolsset{showonlyrefs=true}
+
+% --------- Specific to this doc
+\theoremstyle{remark}
+\newtheorem*{sol}{Solution}
+
+\renewcommand{\theexe}{\arabic{exe}} % independent numbering
