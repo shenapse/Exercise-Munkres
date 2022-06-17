@@ -1,0 +1,343 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{mystyle}
+\usepackage{commands}
+\mathtoolsset{showonlyrefs=true}
+\begin{document}
+\section{Finite Sets}
+\setcounter{exe}{0}
+
+\begin{rem}[Direct proof of Corollary 6.3]
+	Corollary 6.3. is equivalent to the following statements:
+	\begin{eqnarray*}
+		&&
+		\Exists{ n \in \mathbb{Z}_{+} }
+		\left[ \bij{A}{S_{n+1}} \neq \emptyset \right]
+		\Rightarrow
+		\left[
+			B \subsetneq A
+			\Rightarrow
+			\bij{A}{B} = \emptyset
+			\right]\\
+		&\equiv&
+		\left[
+			\Exists{ n \in \mathbb{Z}_{+} }
+			\left[ \bij{A}{S_{n+1}} \neq \emptyset \right]
+			\Rightarrow
+			\left[
+				\bij{A}{B} \neq \emptyset
+				\Rightarrow
+				\neg \left( B \subsetneq A \right)
+				\right]
+			\right]\\
+		&\equiv&
+		\left[
+			\Exists{ n \in \mathbb{Z}_{+} }
+			\left[ \bij{A}{S_{n+1}} \neq \emptyset \right]
+			\Rightarrow
+			\left[
+				\bij{B}{S_{n+1}} \neq \emptyset
+				\Rightarrow
+				\neg \left( B \subsetneq A \right)
+				\right]
+			\right]\\
+		&\equiv&
+		\left[
+			\Exists{ n \in \mathbb{Z}_{+} }
+			\left[ \bij{A}{S_{n+1}} \neq \emptyset \right]
+			\Rightarrow
+			\left[
+				B \subsetneq A
+				\Rightarrow
+				\bij{B}{S_{n+1}} = \emptyset
+				\right]
+			\right].
+	\end{eqnarray*}
+	The last statement is exactly what Theorem 6.2 insists.
+	\qed\end{rem}
+
+\begin{rem}[Direct proof of Corollary 6.5.]
+	It suffices to show that
+	\begin{equation*}
+		\bij{A}{S_n} \neq \emptyset \wedge \bij{A}{S_m}\neq \emptyset
+		\Rightarrow
+		n=m.
+	\end{equation*}
+	Note that we have
+	\begin{equation*}
+		\bij{A}{S_n}\neq \emptyset \wedge \bij{A}{S_m}\neq \emptyset
+		\equiv
+		\bij{A}{S_n} \neq \emptyset \wedge \bij{S_n}{S_m}\neq \emptyset,
+	\end{equation*}
+	and that one of \( S_n \) and \( S_m \) is a subset of the other.
+	But, \( \bij{S_n}{S_m}\neq \emptyset \) and contrapositive of Theorem 6.2 together implies it cannot be a proper subset,
+	which gives
+	\( S_n =S_m \).
+	Thus, \( n=m \).
+	
+	(Strictly speaking, we prove
+	%\begin{center}
+	\centering{\textit{\( S_n =S_m \) implies \( n=m \)}}
+	%\end{center}
+	as follows:
+	\( E \setminus S_n \) and \( E \setminus S_m \)
+	coincide and both sets have smallest element \( n \) and \( m \) respectively.
+	From the uniqueness of a smallest element,
+	we conclude that \( n=m \). )
+	\qed\end{rem}
+
+\begin{rem}[Cardinality of the set of injective maps]\label{note:number_inj}
+	Let
+	\(A:= \left\{ a_1,a_2,\dots,a_m \right\}\)
+	and
+	\(B:= \left\{ b_1,b_2,\dots,b_n \right\}\),
+	and suppose
+	\( 1 \le m \le n \).
+	We claim that cardinality of \( \inj{A}{B} \) is equal to
+	\( m \cdot (m-1) \cdot \cdots \cdot(m-n+1) \).
+	
+	\( \inj{A}{B} \) is nonempty
+	since identity function is injective.
+	Let \( f \in \inj{A}{B} \).
+	There are \( n \) possible choices for the value of \( f(a_1) \)
+	since \( f(a_1) \) can be any of the element of \( \left\{ b_1,b_2,\dots,b_n \right\} \),
+	and
+	\( n-1 \) choices available for \( f(a_2) \)
+	since it can be any of
+	\( \left\{ b_1,b_2,\dots,b_n \right\} \setminus f(a_1) \).
+	So, in general, there are \( n-(i-1) \) choices for \( f(a_i) \)
+	since it could be any of
+	\( \left\{ b_1,b_2,\dots,b_n \right\}
+	\setminus
+	\left\{ f(a_1) \cup f(a_2) \cup \dots \cup f(a_{i-1}) \right\}
+	\).
+	
+	Now it is easy to verify the claim by induction.
+	\qed\end{rem}
+
+\begin{exe}\leavevmode \par
+	\begin{enumerate}
+		\item
+		      Make a list of all injective maps
+		      \begin{equation*}
+			      f:\left\{ 1,2,3 \right\} \to \left\{ 1,2,3,4 \right\}.
+		      \end{equation*}
+		      Show that none is injective.
+		      
+		\item
+		      How many injective maps
+		      \begin{equation*}
+			      f:\left\{ 1,\cdots,8 \right\} \to \left\{ 1,\cdots,10 \right\}
+		      \end{equation*}
+		      are there?
+	\end{enumerate}
+	
+\end{exe}\begin{sol}\leavevmode \par
+	\fbox{(a)}
+	For simplicity,
+	let us ONLY in this Exercise use the nortation
+	\( h:\left\{ a,b \right\} \mapsto \left\{ b,a\right\}\)
+	to mean
+	\( h(a)=b \)
+	and
+	\( h(b)=a \).
+	
+	\refer{Note}{note:number_inj} tells us that there are
+	\( 4 \cdot 3 = 12\) injective functions.
+	The list of them is given by
+	\begin{eqnarray*}
+		f_{1}:\left\{1,2,3 \right\} &\mapsto& \left\{1,2,3  \right\}\\
+		f_{2}:\left\{1,2,3 \right\} &\mapsto& \left\{ 1,2,4 \right\}\\
+		f_{3}:\left\{1,2,3 \right\} &\mapsto& \left\{ 1,3,2 \right\}\\
+		f_{4}:\left\{1,2,3 \right\} &\mapsto& \left\{ 1,3,4 \right\}\\
+		f_{5}:\left\{1,2,3 \right\} &\mapsto& \left\{ 2,1,3 \right\}\\
+		f_{6}:\left\{1,2,3 \right\} &\mapsto& \left\{ 2,1,4 \right\}\\
+		f_{7}:\left\{1,2,3 \right\} &\mapsto& \left\{ 2,3,1 \right\}\\
+		f_{8}:\left\{1,2,3 \right\} &\mapsto& \left\{ 2,3,4 \right\}\\
+		f_{9}:\left\{1,2,3 \right\} &\mapsto& \left\{ 3,1,2 \right\}\\
+		f_{10}:\left\{1,2,3 \right\} &\mapsto& \left\{ 3,1,4 \right\}\\
+		f_{11}:\left\{1,2,3 \right\} &\mapsto& \left\{ 3,2,1 \right\}\\
+		f_{12}:\left\{1,2,3 \right\} &\mapsto& \left\{ 3,2,4 \right\}.
+	\end{eqnarray*}
+	It is obvious that none of them is bijective.
+	
+	\fbox{(b)}
+	\refer{Note}{note:number_inj} shows there are
+	\( 10 \cdot 9 \cdot 8\cdot 7 \cdot 6 \cdot 5 \cdot 4\cdot 3 \)
+	injective functions.
+	\qed\end{sol}
+
+\begin{exe}
+	Show that if \( B \) is not finite and \( B \subset A \),
+	then \( A \) is not finite.
+\end{exe}\begin{sol}
+	The statement is equivalent to the following:
+	\begin{eqnarray*}
+		&&
+		\neg \Exists{ n\in \mathbb{Z}_{+} }
+		\left[ \bij{B}{S_n} \neq \emptyset \right]
+		\wedge
+		B \subset A
+		\Rightarrow
+		\neg \Exists{ m \in \mathbb{Z}_{+} }
+		\left[ \bij{A}{S_m} \neq \emptyset \right]\\
+		&\equiv&
+		B \subset A
+		\Rightarrow
+		\left[
+			\neg \Exists{ n\in \mathbb{Z}_{+} }
+			\left[ \bij{B}{S_n} \neq \emptyset \right]
+			\Rightarrow
+			\neg \Exists{ m \in \mathbb{Z}_{+} }
+			\left[ \bij{A}{S_m} \neq \emptyset \right]
+			\right]\\
+		&\equiv&
+		B \subset A
+		\Rightarrow
+		\left[
+			\Exists{ m \in \mathbb{Z}_{+} }
+			\left[ \bij{A}{S_m} \neq \emptyset \right]
+			\Rightarrow
+			\Exists{ n\in \mathbb{Z}_{+} }
+			\left[ \bij{B}{S_n} \neq \emptyset \right]
+			\right].
+	\end{eqnarray*}
+	The last one is what Corollary 6.6 justifies.
+	\qed\end{sol}
+
+\begin{exe}
+	Let \( X \) be the set two-element set \( \left\{ 0,1 \right\} \).
+	Find a bijective correspondence between \( X^{\omega} \)
+	and a proper subset of itself.
+\end{exe}\begin{sol}
+	A function
+	\begin{equation*}
+		f:X^{\omega} \ni \left( x_{i} \right)_{i\in \mathbb{Z}_{+}}
+		\mapsto
+		(0,x_1,x_2,\cdots) \in \left\{ 0 \right\} \times X \times X \cdots
+	\end{equation*}
+	is bijective since it admits the inverse given by
+	\begin{equation*}
+		g:\left\{ 0 \right\} \times X \times X \cdots \ni (0,x_1,x_2,\cdots)
+		\mapsto
+		(x_1,x_2,\cdots) \in X^{\omega}.
+	\end{equation*}
+	\qed\end{sol}
+
+\begin{exe}\leavevmode \par
+	\begin{enumerate}
+		\item
+		      Show that \( A \) has a largest element.
+		      
+		\item
+		      Show that \( A \) has the order type of a section of the positive integers.
+	\end{enumerate}
+\end{exe}\begin{sol}
+	Let \( A \) be a nonempty finite simply ordered set.
+	
+	\fbox{(a)}
+	Let \( X \) be a subset of \( \mathbb{Z}_{+} \) such that \( A \) has a largest  element if there holds \( \card{A} \in X \).
+	It is clear that \( 1 \in X\).
+	Assuming \( n \in X\), consider the case \( \card{A} = n+1 \).
+	Let \( a \in A \).
+	By assumption, there exists a largest element
+	\( m \)
+	of
+	\( A \setminus \left\{ a \right\} \).
+	Then, we have
+	\( \max{A} = \max \left\{ a,m \right\} \),
+	that is,
+	\( A \)
+	has a largest element,
+	which implies
+	\( n+1 \in X \).
+	Thus, induction establishes our claim.
+	
+	\fbox{(b)}
+	Let \( Y \) be a subset of \( \mathbb{Z}_{+} \)
+	such that if
+	\( \card{A} \in Y \),
+	then there exists an order isomorphism from \( S_{n} \) to \( A \)
+	for some \( n \in \mathbb{Z}_{+} \).
+	Remember \( S_n \) is the section of \( n \).
+	We prove that \( Y \) is inductive.
+	Obviously we have \( 1 \in Y \).
+	Suppose \( n \in Y \)
+	and
+	\( \card{A}=n+1 \).
+	Let \( m \) be a largest element of \( A \),
+	and let \( f:S_{n+1} \to A\setminus \left\{ m \right\}\)
+	be an order isomorphism,
+	whose existence is guaranteed by the assumption here.
+	Then, define a function \( g:S_{n+2} \to A \) by setting
+	\begin{equation*}
+		g(x):=\begin{cases}
+			f(x) & \;\mathrm{:}\; x\in S_{n+1} \\
+			m    & \;\mathrm{:}\; x=n+1.
+		\end{cases}
+	\end{equation*}
+	It turns out that \( g \) is an order isomorphism by construction.
+	Thus, \( n+1 \in Y \).
+	\qed\end{sol}
+
+\begin{exe}
+	If \( A\times B \) is finite,
+	does it follow that \( A \) and \( B \) are finite?
+\end{exe}\begin{sol}
+	No. Observe \( \mathbb{Z}_{+} \times \emptyset =\emptyset \) as a counterexample.
+	\qed\end{sol}
+
+\begin{exe}\leavevmode \par
+	\begin{enumerate}
+		\item
+		      Let \( A=\left\{ 1,\cdots,n \right\} \).
+		      Show there is a bijection of \( \mathcal{P}(A) \)
+		      with the cartesian product \( X^{n} \),
+		      where \( X \) is a two-element set \( \left\{ 0,1 \right\} \).
+		      
+		\item
+		      Show that if \( A \) is finite, then \( \mathcal{P}(A) \) is finite.
+	\end{enumerate}
+\end{exe}\begin{sol}\leavevmode \par
+	\fbox{(a)}
+	Firstly, for \( B \in \mathcal{P}(A) \),
+	define a function \( x^B:A \to \left\{ 0,1 \right\}\),
+	called \textit{a characteristic function of \( B \)}, by setting
+	\begin{equation*}
+		x^B_i:=\begin{cases}
+			1 & \;\mathrm{:}\;i \in B             \\
+			0 & \;\mathrm{:}\;i \in A\setminus B.
+		\end{cases}
+	\end{equation*}
+	Then, each of the function \( f \) and \( g \) given by
+	\begin{eqnarray*}
+		&&f:\mathcal{P}(A) \ni B \mapsto (x^B_i)_{i \in A}\in X^{n},\\
+		&&g:X^{n} \ni (x_i)_{i \in A}
+		\mapsto
+		\left\{ i\in A \pipe x_i=1 \right\} \in \mathcal{P}(A)
+	\end{eqnarray*}
+	is easily checked to be the inverse of the other.
+	Thus, both are bijective.
+	
+	\fbox{(b)}
+	Corollary 6.8 implies that if \( A \) is finite, then so is \( A^n \),
+	which proves, by (a), \( \mathcal{P}(A) \) is also finite.
+	
+	\qed\end{sol}
+
+\begin{exe}
+	If \( A \) and \( B \) are finite, show that the set of all function
+	\( f:A\to B \)
+	is finite.
+\end{exe}\begin{sol}
+	Let \( A \) and \( B \) be finite sets.
+	Note that, in general,
+	\( \func{A}{B} \)
+	and 
+	\(B^{\card{A}} \)
+	are in bijective correspondence.
+	Thus, the claim immediately follows from Corollary 6.8.
+	
+	Or you might prove the result based on the fact
+	\( \func{A}{B} \subset \mathcal{P}(A \times B) \).
+	\qed\end{sol}
+\end{document}

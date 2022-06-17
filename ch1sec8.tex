@@ -1,0 +1,322 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{mystyle}
+\usepackage{commands}
+\mathtoolsset{showonlyrefs=true}
+
+\begin{document}
+\section{The Principle of Recursive Definition}
+\setcounter{exe}{0}
+\begin{exe}
+	Let \( (b_1,b_2,\cdots) \) be an infinite sequence of real numbers.
+	The sum \( \sum_{k=1}^n b_k\) is defined by induction as follows:
+	\begin{eqnarray*}
+		\sum_{k=1}^1 b_k &=& b_1,\\
+		\sum_{k=1}^n b_k &=& \left( \sum_{k=1}^{n-1} b_k \right) + b_n
+	\end{eqnarray*}
+	for \( n >1 \).
+	Let \( A \) be the set of real numbers; choose \( \rho \) so that Theorem 8.4 applies to define the sum rigorously.
+\end{exe}
+\begin{sol}
+	For
+	\( f \in \func{\left\{1, \cdots, m \right\}}{\mathbb{R}} \),
+	define
+	\( \rho(f):=f(m) + b_{m+1} \).
+	Let \( b_1 \) be the initial value for \( h \).
+	\qed\end{sol}
+
+\begin{exe}
+	Let \( (b_1,b_2,\cdots) \) be an infinite sequence of real numbers.
+	We define the product \( \prod_{k=1}^{n} b_k \) by the equations
+	\begin{eqnarray*}
+		\prod_{k=1}^1 b_k &=& b_1,\\
+		\prod_{k=1}^n b_k &=& \left( \prod_{k=1}^{n-1} b_k \right) \cdot b_n
+	\end{eqnarray*}
+	for \( n>1 \).
+	Use Theorem 8.4 to define this product rigorously.
+\end{exe}
+\begin{sol}
+	For
+	\( f \in \func{\left\{1, \cdots, m \right\}}{\mathbb{R}} \),
+	define
+	\( \rho(f):=f(m) \cdot b_{m+1} \).
+	Let \( b_1 \) be the initial value for \( h \).
+	Theorem 8.4 gives
+	\( h\in \func{\mathbb{Z}_{+}}{\mathbb{R}} \)
+	such that
+	\begin{eqnarray*}
+		h(1)&=&b_1,\\
+		h(n)&=&\prod_{k=1}^n b_k
+	\end{eqnarray*}
+	for
+	\( n \ge 2 \).
+	\qed\end{sol}
+
+\begin{exe}
+	Obtain the definitions of \( a^n \) and \( n! \) for \( n \in \mathbb{Z}_{+} \)
+	as special cases of Exercise 2. 
+\end{exe}
+\begin{sol}
+	For
+	\( a^n \),
+	assume \( b_n=a \)
+	for all
+	\( n \in \mathbb{Z}_{+} \).
+	For
+	\( n! \),
+	assume \( b_n=n \)
+	for all
+	\( n \in \mathbb{Z}_{+} \).
+	\qed\end{sol}
+
+\begin{exe}
+	The \textit{Fibonacci numbers} of number theory are defined recursively by the formula
+	\begin{eqnarray*}
+		\lambda_1 &=& \lambda_2 = 1,\\
+		\lambda_{n}&=& \lambda_{n-1} + \lambda_{n-2}
+	\end{eqnarray*}
+	for \( n>2 \).
+	Define them rigorously by use of Theorem 8.4.
+\end{exe}
+\begin{sol}%4
+	For
+	\( f \in \func{\left\{1, \cdots, m \right\}}{\mathbb{R}} \),
+	define
+	\begin{equation*}
+		\rho(f):=	\begin{cases}
+			1           & \;\mathrm{:}\;f\in \func{S_2}{\mathbb{R}}             \\
+			f(m)+f(m-1) & \;\mathrm{:}\;f\in \func{S_m}{\mathbb{R}}\wedge m >2.
+		\end{cases}
+	\end{equation*}
+	Let \( a_0:=1 \) be the initial value for \( h \).
+	\qed\end{sol}
+
+\begin{exe}
+	Show that there is a unique function
+	\( h:\mathbb{Z}_{+} \to \mathbb{R} \)
+	satisfying the formula
+	\begin{eqnarray*}
+		h(1)&=&3,\\
+		h(i)&=& \left[ h(i-1)+1 \right]^{1/2}
+	\end{eqnarray*}
+	for \( i>1 \).
+\end{exe}
+\begin{sol}
+	We only have to construct a good function
+	\( \rho \)
+	since theorem 8.4 then gives the required function
+	\( h \).
+	To this end, for
+	\( f \in \func{\left\{1, \cdots, m \right\}}{\mathbb{R}} \),
+	set
+	\( \rho(f):=\left( f(m) + 1 \right)^{1/2} \).
+	\qed\end{sol}
+
+\begin{exe}\leavevmode \par
+	\begin{enumerate}
+		\item
+		      Show that there is no function \( h:\mathbb{Z}_{+} \to \mathbb{R} \)
+		      satisfying the formula
+		      \begin{eqnarray*}
+			      h(1)&=&3,\\
+			      h(i)&=& \left[ h(i-1)-1 \right]^{1/2}
+		      \end{eqnarray*}
+		      Explain why this example does not violate the principle of recursive definition.
+		      
+		\item
+		      Consider the recursive formula
+		      \begin{eqnarray*}
+			      h(1)&=&3,\\
+			      h(i)&=& \begin{cases}
+				      \left[ h(i-1)-1 \right]^{1/2} & \;\mathrm{:}\; h(i-1)>1    \\
+				      5                             & \;\mathrm{:}\; h(i-1)\le 1
+			      \end{cases}
+		      \end{eqnarray*}
+		      for \( i>1 \).
+	\end{enumerate}
+	Show that there exists a unique function
+	\( h:\mathbb{Z}_{+} \to \mathbb{R} \)
+	satisfying this formula.
+\end{exe}
+\begin{sol}\leavevmode \par
+	\fbox{(a)}
+	The given formula requires
+	\( h(1)=3\),
+	\( h(2)=\sqrt{2} \),
+	\( h(3)=\left( \sqrt{2} - 1 \right)^{1/2} \),
+	but
+	\( \left( \left( \sqrt{2} - 1 \right)^{1/2} - 1 \right)^{1/2}  \)
+	does not exist in \( \mathbb{R} \),
+	which implies
+	\( h(4) \)
+	cannot be defined.
+	
+	Note that the corresponding \( \rho \) should be given as
+	\begin{equation*}
+		\rho(f):=\left( f(m)-1 \right)^{1/2}
+	\end{equation*}
+	for
+	\( f \in \func{\left\{1, \cdots, m \right\}}{\mathbb{R}} \),
+	but
+	\( \rho \)
+	is not a function from
+	\( \bigcup_{m\in \mathbb{Z}_{+}}\func{\left\{1, \cdots, m \right\}}{\mathbb{R}} \)
+	to
+	''\( \mathbb{R}_{+} \).''
+	
+	This trouble is because of the absence of a good function \( \rho \),
+	not a violation of the principle of recursive definition,
+	which gives a requested function
+	\( h \)
+	if the hypothesis, for instance, existence of 
+	\( \rho \),
+	is satisfied, and says nothing if otherwise.
+	In fact, the principle of recursive definition can be expressed as
+	\begin{eqnarray*}
+		&&a_0\in A
+		\wedge
+		\rho \in \func{\bigcup_{m\in \mathbb{Z}_{+}}\func{\left\{1, \cdots, m \right\}}{A}}{A}\\
+		&\Rightarrow&
+		\unique{ h \in \func{\mathbb{Z}_{+}}{A} }
+		\left[
+			h(1)=a_0
+			\wedge
+			\Forall{ i \in \mathbb{Z}_{+} \setminus \left\{ 1 \right\} }
+			\left[
+				h(i) = \rho \left( h|_{\left\{ 1,\cdots,i-1 \right\}} \right)
+				\right]
+			\right]
+	\end{eqnarray*}
+	and the whole statement is still true even if \( \rho \) is absent and the hypothesis is false.
+	(Remember that statement \( A \Rightarrow B \) is true if \( A \) is false.)
+	
+	\fbox{(b)}
+	For
+	\( f \in \func{\left\{1, \cdots, m \right\}}{\mathbb{R}} \),
+	define
+	\begin{equation*}
+		\rho(f):=\begin{cases}
+			\left( f(m) - 1 \right)^{1/2} & \;\mathrm{:}\; f(m)>1     \\
+			5                             & \;\mathrm{:}\; f(m)\le 1.
+		\end{cases}
+	\end{equation*}
+	Then,
+	\( \rho(f)>0 \)
+	for all
+	\( f \).
+	The result follows from Theorem 8.4.
+	\qed\end{sol}
+
+\begin{lem}\label{lem:recursive}
+	Let
+	\( A \)
+	be a set, and let
+	\( a_0 \in A \).
+	Suppose \( \rho \) is a function from
+	\( \bigcup_{m\in \mathbb{Z}_{+}}\func{\left\{1, \cdots, m \right\}}{A} \)
+	to
+	\( A \).
+	Then for all \( n \in \mathbb{Z}_{+} \)
+	there exists a unique function
+	\( h_n: \left\{1, \cdots, n \right\} \to A\)
+	such that
+	\begin{equation}\label{eq:recursive}
+		\begin{split}
+			h_n(1)&=a_0\\
+			h_n(i)&=\rho \left( h_n |_{\left\{1, \cdots, i-1 \right\}} \right)
+		\end{split}
+	\end{equation}
+	for all
+	\( 1<i\le n \).
+\end{lem}
+
+\begin{proof}
+	Let \( X \) be the set of all
+	\( n \in \mathbb{Z}_{+} \)
+	for which the lemma holds.
+	Suppose \( \left\{1, \cdots, m \right\} \in X\),
+	and let \( h_{n-1} \) satisfy (\ref{eq:recursive})
+	for all \( i \) in its domain.
+	Since
+	\( h_{n-1} \in \func{\left\{1, \cdots, n-1 \right\}}{A} \),
+	we can define a function
+	\( h_n:\left\{1, \cdots, n \right\} \to A \)
+	via
+	\begin{equation*}
+		h_n(i):=\begin{cases}
+			h_{n-1}(i)                                                 & \;\mathrm{:}\; i \in \left\{ 1,\cdots,n-1 \right\} \\
+			\rho \left( h_n |_{\left\{1, \cdots, i-1 \right\}} \right) & \;\mathrm{:}\; i=n
+		\end{cases}
+	\end{equation*}
+	It is clear that \( h_n \) satisfies (\ref{eq:recursive}).
+	
+	To show the uniqueness of \( h_n \),
+	suppose
+	\( g: \left\{1, \cdots, n \right\} \to A\)
+	also satisfies (\ref{eq:recursive}) for all \( i \) in its domain.
+	Let \( Y \) be a subset of \( \mathbb{Z}_{+} \) consisting of all \( m \) such that we have
+	\( g(i)=h_n(i) \)
+	for all
+	\( i \in \left\{1, \cdots, n \right\}\cap \left\{1, \cdots, m \right\} \).
+	Suppose
+	\( \left\{1, \cdots, k-1 \right\} \in Y \).
+	We may assume
+	\( k-1 \le n \).
+	We have
+	\( g|_{\left\{1, \cdots, k-1 \right\}} = h_n|_{\left\{1, \cdots, k-1 \right\}} \)
+	by assumption, and hence
+	\begin{equation*}
+		g(k)
+		= \rho \left( g|_{\left\{1, \cdots, k-1 \right\}} \right)
+		= \rho \left( h_n|_{\left\{1, \cdots, k-1 \right\}} \right)
+		= h_n(k),
+	\end{equation*}
+	which yields \( k \in Y \).
+	Thus, strong induction principle gives \( Y = \mathbb{Z}_{+} \),
+	establishing the uniqueness of \(  h_n \).
+	We the conclude that \( n \in X \) and that \( X = \mathbb{Z}_{+} \).
+\end{proof}
+
+\begin{exe}
+	Prove Theorem 8.4.
+\end{exe}
+\begin{sol}
+	Define a function \( h:\mathbb{Z}_{+} \to A \)
+	by setting its rule to be the union of the function \( h_n \),
+	we have constructed in \refer{Lemma}{lem:recursive}.
+	\( h \)
+	is proved to be a function by exactly the same argument as Theorem 8.3
+	since there we have exploited nothing of the property of the range of \( f_n \).
+	
+	We show that \( h \) satisfies
+	\begin{equation}\label{eq:recursive2}
+		\begin{split}
+			h(1)&=a_0\\
+			h(i)&=\rho \left( h |_{\left\{1, \cdots, i-1 \right\}} \right)
+		\end{split}
+	\end{equation}
+	for all \( i >1 \).
+	Let \( W \) be the set of all \( i \in \mathbb{Z}_{+} \) for which
+	(\refeq{eq:recursive2}) is true.
+	It is easy to see \( W= \mathbb{Z}_{+} \) by induction.
+	
+	To prove the uniqueness of \( h \),
+	argue as we have done in \refer{Lemma}{lem:recursive}.
+	\qed\end{sol}
+
+\begin{exe}
+	Verify the following version of the principle of recursive definition:
+	Let \( A \) be a set.
+	Let \( \rho \) be a function assigning,
+	to every function \( f \) mapping a section \( S_n \) of \( \mathbb{Z}_{+} \) into \( A \),
+	a element \( \rho(f) \) of \( A \).
+	Then there is a unique function \( h:\mathbb{Z}_{+} \to A \) such that
+	\( h(n)=\rho(h|_{S_n}) \)
+	for each \( n \in \mathbb{Z}_{+} \).
+\end{exe}
+\begin{sol}
+	Note that \( S_1 = \emptyset \), and that \( h|_{S_1} \) is well-defined as a unique empty function, denoted by \( \emptyset \).(see \refer{NOTE}{}).
+	Set \( a_0:=\rho (\emptyset) \)
+	and apply Theorem 8.4.
+	\qed\end{sol}
+
+\end{document}

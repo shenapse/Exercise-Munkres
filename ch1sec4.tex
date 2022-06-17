@@ -1,0 +1,1957 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{mystyle}
+\usepackage{commands}
+\mathtoolsset{showonlyrefs=true}
+
+\begin{document}
+\section{The Integers and Real Numbers}
+\setcounter{exe}{0}
+\begin{rem}[Direct proof of Strong induction principle]
+	Here we provide another proof of Theorem 4.2, Strong induction principle, 
+	that includes no apagogical argument.
+	You can safely skip here if you are not interested.
+	This note is just an illustration of a possible way of verifying the result,
+	and nothing given here is needed later.
+	
+	Logical rule allows us to deduce that following statements are all equivalent to Theorem 4.2:
+	\begin{eqnarray*}
+		&&
+		A\subset \mathbb{Z}_{+}
+		\Rightarrow
+		\left[
+			\Forall{ n \in \mathbb{Z}_{+}}
+			\left[
+				S_n \subset A \Rightarrow n\in A
+				\right]
+			\Rightarrow
+			A=\mathbb{Z}_{+}
+			\right]\\
+		&\equiv&
+		\left[
+			A\subset \mathbb{Z}_{+}
+			\Rightarrow 
+			\left[
+				A \subsetneq \mathbb{Z}_{+}
+				\Rightarrow
+				\neg
+				\Forall{ n \in \mathbb{Z}_{+}}
+				\left[
+					S_n \subset A \Rightarrow n\in A
+					\right]
+				\right]
+			\right]\\
+		&\equiv&
+		\left[
+			A\subset \mathbb{Z}_{+}
+			\Rightarrow
+			\left[
+				A \subsetneq \mathbb{Z}_{+}
+				\Rightarrow
+				\neg \Forall{ n \in \mathbb{Z}_{+}}
+				\left[
+					\neg \left( S_n \subset A \right)  \vee n\in A
+					\right]
+				\right]
+			\right]\\
+		&\equiv&
+		\left[
+			A\subset \mathbb{Z}_{+}
+			\Rightarrow
+			\left[
+				A \subsetneq \mathbb{Z}_{+}
+				\Rightarrow
+				\Exists{ n \in \mathbb{Z}_{+}}
+				\left[
+					S_n \subset A \wedge n\notin A
+					\right]
+				\right]
+			\right].
+	\end{eqnarray*}
+	We, of course, prove the last one.
+	Suppose
+	\( A \subsetneq \mathbb{Z}_{+} \).
+	Then, Theorem 4.1 lets us have a smallest element
+	\( n \) of
+	\( \mathbb{Z}_{+} \setminus A \).
+	It turns out that so derived \( n \) has the required property.
+	In fact, smallest property implies 
+	\( S_n \subset A \),
+	and
+	\( n \in \mathbb{Z}_{+} \setminus A \)
+	does
+	\( n\notin A \).
+	Thus, Theorem 4.2 follows.
+\end{rem}
+
+\begin{rem}[Direct proof of Archimedean ordering property]\label{Archimedean}
+	We continue to apply an analogous argument.
+	This time, however,
+	the proof establishes some useful fact that is actually exploited later.(see Exrceise 8 and 9, for instance.)
+	
+	It is clear that following statements are equivalent to Archimedean ordering property:
+	
+	\begin{eqnarray*}
+		\neg
+		\Exists{ b\in \mathbb{R} }
+		\Forall{ n\in \mathbb{Z}_{+} }
+		\left[ n \le b \right]
+		&\equiv&
+		\Forall{ b\in \mathbb{R} }
+		\neg
+		\Forall{ n\in \mathbb{Z}_{+} }
+		\left[ n \le b \right]\\
+		&\equiv&
+		\Forall{ b\in \mathbb{R} }
+		\Exists{ n\in \mathbb{Z}_{+} }
+		\left[ n > b \right].
+	\end{eqnarray*}
+	Let
+	\( A \) be a subset of \( \mathbb{Z}_{+} \) such that 
+	\begin{equation*}
+		\Forall{ b\in \mathbb{R} }
+		\Exists{ n\in A }
+		\left[ n > b \right]
+	\end{equation*}
+	holds.
+	It is clear that 
+	\( A \)
+	satisfies the Hypothesis of Theorem 4.2,
+	from which we conclude \( A = \mathbb{Z}_{+}\).
+	This establishes the result.
+	
+	It is convenient to use Archimedean ordering property in the form we have just given the proof of, rather than the original stated in the text.
+	This equivalent statement of Archimedean ordering property can be verbalized as:\\
+	\textit{For any real number, there exists a positive integer larger than the real number.}
+\end{rem}
+
+\begin{exe}
+	Prove the following ''laws of algebra'' for \( \mathbb{R} \),
+	using only axiom (1)--(5):
+	\begin{enumerate}
+		\item
+		      If \( x+y=x \),
+		      then \( y=0 \).
+		      
+		\item
+		      \( 0\cdot x =0 \).
+		      
+		\item
+		      \( -0=0 \).
+		      
+		\item
+		      \( -(-x)=x \).
+		      
+		\item
+		      \( x(-y)=-(xy)=(-x)y \).
+		      
+		\item
+		      \( (-1)x = -x\).
+		      
+		\item
+		      \( x(y-z) = xy - xz \).
+		      
+		\item
+		      \( -(x-y)=-x-y;\,-(x-y)=-x+y \).
+		      
+		\item
+		      If
+		      \( x \neq 0 \)
+		      and
+		      \( x \cdot y =x \)
+		      then \( y=1 \).
+		      
+		\item
+		      \( x/x = 1 \)
+		      if \( x \neq 0 \).
+		      
+		\item
+		      \( x/1=x \).
+		      
+		\item
+		      \( x\neq 0 \)
+		      and
+		      \( y\neq 0 \Rightarrow xy \neq 0\).
+		      
+		\item
+		      \( (1/y)(1/z)=1/(yz) \)
+		      if \( y,z\neq 0 \).
+		      
+		\item
+		      \( (x/y)(w/z)=(xw)/(yz) \)
+		      if \( y,z\neq 0 \).
+		      
+		\item
+		      \( (x/y)+(w/z)=(xz+wy)/(yz) \)
+		      if \( y,z\neq 0 \).
+		      
+		\item
+		      \( x \neq 0 \Rightarrow 1/x \neq 0 \).
+		      
+		\item
+		      \( 1/(w/z) = z/w\)
+		      if
+		      \( w,z, \neq0 \).
+		      
+		\item
+		      \( (x/y)/(w/z)=(xz)/(yw) \)
+		      if
+		      \( y,w,z\neq 0 \).
+		      
+		\item
+		      \( (ax)/y=a(x/y) \)
+		      if
+		      \( y \neq 0 \).
+		      
+		\item
+		      \( (-x)/y=x/(-y)=-(x/y) \)
+		      if
+		      \( y \neq 0\).
+	\end{enumerate}
+\end{exe}\begin{sol}\leavevmode \par
+	\fbox{(a)}
+	The result is verified by
+	\begin{eqnarray*}
+		0
+		&\equalby{(4)}&
+		x +(-x)
+		=
+		(x+y)+(-x)
+		\equalby{(1)}
+		x+\left( y+(-x) \right)\\
+		&\equalby{(2)}&
+		x+\left( (-x)+y \right)
+		\equalby{(1)}
+		\left( x+(-x) \right)+y
+		\equalby{(4)}
+		0+y
+		\equalby{(3)}
+		y.
+	\end{eqnarray*}
+	
+	\fbox{(b)}
+	It is easy to see that
+	\begin{eqnarray*}
+		x\cdot x+0\cdot x
+		\equalby{(2)}
+		x\cdot x+x\cdot 0
+		\equalby{(5)}
+		x\cdot(x+0)
+		\equalby{(3)}
+		x\cdot x.
+	\end{eqnarray*}
+	Thus, (a) implies the result.
+	
+	\fbox{(c)}
+	(3) yields
+	\( 0+0=0 \).
+	Hence,
+	\( -0=0 \)
+	by (4).
+	
+	\fbox{(d)}
+	Observe
+	\( x+(-x)=0 \)
+	and use (4).
+	
+	\fbox{(e)}
+	It follows that
+	\begin{equation*}
+		0
+		\equalby{(b)}
+		x 0
+		\equalby{(4)}
+		x(y+(-y))
+		\equalby{(5)}
+		xy+x(-y).
+	\end{equation*}
+	So, by (4), we have
+	\( x(-y)=-(xy) \).
+	Similar argument shows
+	the other equality.
+	
+	\fbox{(f)}
+	We deduce that 
+	\begin{equation*}
+		0
+		\equalby{(b)}
+		\left( 1+(-1) \right)x
+		\equalby{(1)}
+		x+(-1)x,
+	\end{equation*}
+	and that
+	\( (-1)x=-x \)
+	by (4).
+	
+	\fbox{(g)}
+	Check that
+	\begin{equation*}
+		x(y-z)
+		=
+		x(y+(-z))
+		\equalby{(5)}
+		xy+x(-z)
+		\equalby{(e)}
+		xy-xz.
+	\end{equation*}
+	
+	\fbox{(h)}
+	Observe
+	\begin{eqnarray*}
+		(x+y) -x-y
+		=
+		(y+x)-x-y
+		=
+		y+(x+(-x))-y
+		=
+		y-y
+		=0,
+	\end{eqnarray*}
+	which implies
+	\( -(x+y)=-x-y \).
+	Similar argument proves
+	the other equality.
+	
+	\fbox{(i)}
+	Just use (4).
+	
+	\fbox{(j)}
+	This is an immediate consequence from the the definition of reciprocal and quotient.
+	
+	\fbox{(k)}
+	\( 1\cdot 1=1 \)
+	implies
+	\( 1/1 =1 \),
+	from which it follows that
+	\begin{equation*}
+		\frac{x}{1}
+		=
+		x\cdot \frac{1}{1}
+		=
+		x \cdot 1
+		=
+		x.
+	\end{equation*}
+	
+	\fbox{(\(\ell\))}
+	Note that the statement is equivalent to each of the following:
+	\begin{eqnarray*}
+		&&
+		\Forall{ x \in \mathbb{R} }
+		\Forall{ y \in \mathbb{R}}
+		\left[
+			x\neq 0
+			\wedge
+			y \neq	0
+			\Rightarrow
+			xy \neq 0
+			\right]\\
+		&\equiv&
+		\Forall{ x \in \mathbb{R}}
+		\Forall{ y \in \mathbb{R}}
+		\left[
+			xy = 0
+			\Rightarrow
+			x= 0
+			\vee
+			y = 0
+			\right]\\
+		&\equiv&
+		\Forall{ x \in \mathbb{R}}
+		\Forall{ y \in \mathbb{R}}
+		\left[
+			xy = 0
+			\Rightarrow
+			\left(
+			x \neq 0
+			\Rightarrow
+			y=0
+			\right)
+			\right].
+	\end{eqnarray*}
+	Of course, we establish the last statement.
+	If
+	\( xy=0 \)
+	and
+	\( x\neq 0 \),
+	then we have
+	\begin{equation*}
+		y
+		=
+		\left( x\cdot \frac{1}{x} \right)y
+		=
+		xy \cdot \frac{1}{x}
+		=0 \cdot \frac{1}{x}
+		=0.
+	\end{equation*}
+	
+	\fbox{(m)}
+	Observe
+	\begin{equation*}
+		yz \cdot \left( \frac{1}{y} \right) \left( \frac{1}{z} \right)
+		=
+		y
+		\left( z \cdot \frac{1}{z} \right) \frac{1}{y}
+		=
+		y \cdot \frac{1}{y}
+		=
+		1,
+	\end{equation*}
+	which implies
+	\begin{equation*}
+		\frac{1}{yz}
+		=
+		\left( \frac{1}{y} \right) \left( \frac{1}{z} \right).
+	\end{equation*}
+	
+	\fbox{(n)}
+	Use (m).
+	
+	\fbox{(o)}
+	Letting, in (n),
+	\( w=z \)
+	and
+	\( x=y \)
+	yields
+	\begin{equation*}
+		\frac{xz}{yz}
+		=
+		\frac{x}{y}\cdot \frac{w}{w}
+		=
+		\frac{x}{y}
+	\end{equation*}
+	and
+	\begin{equation*}
+		\frac{wy}{yz}
+		=
+		\frac{w}{z}
+	\end{equation*}
+	respectively,
+	from which the result follows.
+	
+	\fbox{(p)}
+	Note that
+	\begin{equation*}
+		\Forall{ x\in \mathbb{R} }
+		\left[
+			x\neq 0
+			\Rightarrow
+			\frac{1}{x}\neq 0
+			\right]
+		\equiv
+		\Forall{ x\in \mathbb{R} }
+		\left[
+			\frac{1}{x} = 0
+			\Rightarrow
+			x= 0
+			\right],
+	\end{equation*}
+	and that
+	the latter is vacuously true.
+	
+	\fbox{(q)}
+	Observe
+	\begin{eqnarray*}
+		\frac{w}{z}\cdot \frac{z}{w}
+		=
+		w\cdot \frac{1}{z} \cdot z \frac{1}{w}
+		=
+		w \cdot \frac{1}{w}
+		=
+		1,
+	\end{eqnarray*}
+	from which the result follows.
+	
+	\fbox{(r)}
+	For
+	\( x\neq 0 \),
+	replacing, in (m), 
+	\( y \)
+	with
+	\( y/x \)
+	and
+	\( z \)
+	with
+	\( w/z \)
+	allows us to have, along with (q),
+	\begin{equation*}
+		\frac{x/y}{w/z}
+		=
+		\left( \frac{1}{y/x} \right)\left( \frac{1}{w/z} \right)
+		=
+		\frac{1}{\frac{yw}{xz}}
+		=
+		\frac{xz}{yw}.
+	\end{equation*}
+	This is also valid for
+	\( x=0 \).
+	
+	\fbox{(s)}
+	For
+	\( a \neq 0 \),
+	setting
+	\( w=1 \)
+	and
+	\( z=a \)
+	in (r),
+	lets us to obtain
+	\begin{equation*}
+		\frac{x/y}{1/a}
+		=
+		\frac{ax}{y}.
+	\end{equation*}
+	Then, (q) implies
+	\begin{equation*}
+		\frac{(ax)}{y}
+		=
+		a \left( \frac{x}{y} \right),
+	\end{equation*}
+	which is also valid for 
+	\( a=0 \).
+	
+	\fbox{(t)}
+	In (o),
+	choosing
+	\( z=y \)
+	and
+	\( w=-x \)
+	gives
+	\begin{equation*}
+		\frac{x}{y}
+		+
+		\frac{(-x)}{y}
+		=
+		\frac{xy+(-x)y}{y^2}
+		=
+		0,
+	\end{equation*}
+	from which it follows that
+	\begin{equation*}
+		-\left( \frac{x}{y} \right)
+		=
+		\frac{(-x)}{y}.
+	\end{equation*}
+	Similar argument establishes the other equality.
+	\qed
+\end{sol}
+
+\begin{exe}
+	Prove the following ''laws of inequalities'' for \( \mathbb{R} \),
+	using only axiom (1)--(6)
+	along with the result of Exercise 1:
+\end{exe}
+\begin{enumerate}
+	\item
+	      \( x>y \)
+	      and
+	      \( w>z \Rightarrow x+w>y+z\).
+	      
+	\item
+	      \( x>0 \)
+	      and
+	      \( y>0 \Rightarrow x+y>0\)
+	      and
+	      \( x \cdot y >0 \).
+	      
+	\item
+	      \(  x>0 \Leftrightarrow -x <0\).
+	      
+	\item
+	      \( x>y \Leftrightarrow -x < -y \).
+	      
+	\item
+	      \( x>y \)
+	      and
+	      \( z<0 \Rightarrow xz<yz\).
+	      
+	\item
+	      \( x \neq 0 \Rightarrow x^2 >0 \),
+	      where \( x^2=x \cdot x \).
+	      
+	\item
+	      \( -1 < 0< 1 \).
+	      
+	\item
+	      \( xy>0 \Leftrightarrow \) \( x \) and \( y \) are both
+	      positive or both negative. 
+	      
+	\item
+	      \( x>0 \Rightarrow 1/x >0 \).
+	      
+	\item
+	      \( x>y>0 \Rightarrow 1/x < 1/y \).
+	      
+	\item
+	      \( x<y \Rightarrow x<(x+y)/2<y \).
+\end{enumerate}
+\begin{sol}\leavevmode \par
+	\fbox{(a)}
+	Use (6) successively to gain
+	\( x+y > y+w > y+z \).
+	
+	\fbox{(b)}
+	The statement immediately follows from (a) and (6) respectively.
+	
+	\fbox{(c)}
+	First, suppose
+	\( x>0 \).
+	Letting in (6)
+	\( y=0 \)
+	and
+	\( z=-x \)
+	yields
+	\begin{equation*}
+		0 = x+(-x) > -x.
+	\end{equation*}
+	
+	Suppose
+	\( -x<0 \).
+	It follows trivially from (6) that
+	\begin{equation*}
+		0 > y 
+		\Rightarrow
+		z> y+z.
+	\end{equation*}
+	Taking
+	\( y=-x \)
+	and
+	\( z=x \)
+	here proves the remaining implication.
+	
+	\fbox{(d)}
+	Use (6),(c),(h) of the previous exercise, and (6) in order,
+	to deduce
+	\begin{eqnarray*}
+		x>y
+		\equiv
+		x-y >0
+		\equiv
+		-(x-y)<0
+		\equiv
+		-x+y<0
+		\equiv
+		-x<-y.
+	\end{eqnarray*}
+	
+	\fbox{(e)}
+	Since
+	\( -z>0 \)
+	by (c),
+	it follows from (6) that
+	\begin{equation*}
+		x(-z) > y(-z)
+		\equiv
+		xz< yz.
+	\end{equation*}
+	
+	\fbox{(f)}
+	If
+	\( x>0 \),
+	then (6) implies 
+	\( x \cdot x > 0\).
+	If otherwise, say,
+	\( x<0 \),
+	then
+	\( -x>0 \).
+	So, it follows from (2),(6), and (d) of the previous exercise that
+	\( x \cdot x>0 \).
+	
+	\fbox{(g)}
+	Note that
+	\( 1 \neq 0 \).
+	So, it follows from (f) that
+	\( 1=1 \cdot 1 >0 \).
+	Then, (c) implies
+	\( -1 <0 \).
+	
+	\fbox{(h)}
+	We claim that
+	RHS on the statement of (h) is equivalent to:
+	\begin{eqnarray*}
+		\left( x>0 \wedge y>0 \right)
+		\vee
+		\left( x<0 \wedge y<0 \right)
+		&\equiv&
+		\left[
+			\left( x \le 0 \vee y \le 0 \right)
+			\Rightarrow
+			\left( x<0 \wedge y< 0 \right)
+			\right]\\
+		&\equiv&
+		xy>0
+	\end{eqnarray*}
+	The first equivalence is a result of logic.
+	We need to prove the second.
+	But, (\( \Leftarrow \)) part is obvious,
+	so we establish (\( \Rightarrow \)) part.
+	If
+	\( x \le 0 \vee y \le 0 \)
+	holds,
+	then hypothesis yields 
+	\( x<0 \wedge y< 0 \),
+	which implies, with the help of (b),
+	\begin{equation*}
+		xy= (-x)(-y)>0
+	\end{equation*}
+	as required.
+	On the other hand, If 
+	\( x \le 0 \vee y \le 0 \)
+	does not hold, that is, if
+	\( x>0 \wedge y>0 \)
+	is the case,
+	then (b) again gives the required reslut.
+	
+	\fbox{(i)}
+	Noting \( x>0 \) and
+	\begin{equation*}
+		x \cdot \frac{1}{x}=1>0,
+	\end{equation*}
+	apply (h) to get
+	\( 1/x>0 \).
+	
+	\fbox{(j)}
+	Observe that
+	\( xy>0 \)
+	by assumption and (h), and that
+	\( 1/(xy) >0 \)
+	by (i).
+	Then, exploit (o) of the previous exercise and (h) to gain
+	\begin{equation*}
+		\frac{1}{y} - \frac{1}{x}
+		=
+		\frac{x-y}{xy}>0.
+	\end{equation*}
+	
+	\fbox{(k)}
+	Use (6) successively to obtain
+	\( 2x < x+y < 2y \).
+	Since
+	\( 0<1 \)
+	by (g),
+	we have that
+	\( 2>0 \)
+	by (a),
+	and that, by (i),
+	\( 1/2 >0\),
+	which, combined with the first inequality, implies the result.
+	\qed\end{sol}
+
+\begin{exe}\leavevmode \par
+	\begin{enumerate}
+		\item
+		      Show that if \( \mathcal{A} \) is a collection of inductive sets,
+		      then the intersection of the elements of \( \mathcal{A} \) is a inductive set.
+		      
+		\item
+		      Prove the basic properties of (1) and (2) of \( \mathbb{Z}_{+} \).
+	\end{enumerate}
+\end{exe}\begin{sol}\leavevmode \par
+	\fbox{(a)}
+	Obviously
+	\( 1 \in \cap \mathcal{A} \).
+	the proof then completes by seeing
+	\begin{equation*}
+		x\in \cap \mathcal{A}
+		\equiv
+		\Forall{ A\in \mathcal{A}}
+		\left[  x \in A \right]
+		\Rightarrow
+		\Forall{ A\in \mathcal{A}}
+		\left[  x+1 \in A \right]
+		\equiv
+		x+1 \in \cap \mathcal{A}.
+	\end{equation*}
+	\fbox{(b)}
+	\( 1\in \mathbb{Z}_{+} \)
+	is a direct consequence of (a).
+	To prove principle of induction,
+	note that
+	\( A \subset \mathbb{Z}_{+}\),
+	by definition,
+	and that
+	\(  \mathbb{Z}_{+} = \cap \mathcal{A} \subset A \)
+	since
+	\( A \)
+	itself is inductive.
+	Thus,
+	\( A = \mathbb{Z}_{+} \).
+	\qed\end{sol}
+
+\begin{exe}\leavevmode \par
+	\begin{enumerate}
+		\item
+		      Prove by induction that given \( n \in \mathbb{Z}_{+} \), 
+		      every nonempty subset of \( \left\{ 1,\cdots, n \right\} \) has a largest element.
+		      
+		\item
+		      Explain why you cannot conclude from (a) that
+		      every nonempty subset of \( \mathbb{Z}_{+} \)
+		      has a largest element.
+	\end{enumerate}
+\end{exe}\begin{sol}\leavevmode \par
+	\fbox{(a)}
+	Let 
+	\( A \)
+	be a subset of
+	\( \mathbb{Z}_{+} \)
+	such that
+	given
+	\( n \in A \),
+	every nonempty subset of
+	\( \left\{ 1,\cdots,n  \right\}\)
+	has a largest element.
+	It is clear that
+	\( 1\in A \).
+	Assume
+	\(  x \in A \)
+	and let
+	\( B \subset \left\{ 1,\cdots,x+1 \right\} \).
+	We prove
+	\(  x+1 \in A \).
+	
+	If
+	\( x+1 \notin B \),
+	then
+	\( B \)
+	possesses a largest element
+	since there hold
+	\( B \subset \left\{ 1,\cdots,x \right\} \)
+	and
+	\( x\in A \).
+	So, suppose
+	\( x+1 \in B \).
+	Let
+	\( B_0:=B\setminus \left\{ x+1 \right\} \),
+	and let
+	\( k \) be a largest element of 
+	\( B_0 \).
+	Then, the existence of a largest element of 
+	\( B \)
+	is reduced to that of
+	\( \left\{ k,x+1 \right\}\).
+	But the set admits a largest element since comparability of
+	\( \mathbb{Z}_{+} \)
+	allows us to have either
+	\( k> x+1 \)
+	or
+	\( k< x+1 \).
+	This means 
+	\( x+1 \in A \)
+	and so, 
+	\( A \)
+	is inductive.
+	Thus,
+	\( A = \mathbb{Z}_{+} \).
+	
+	\fbox{(b)}
+	(a) does not deal with the sets like
+	\( \mathbb{Z}_{+} \)
+	and
+	\( \mathbb{Z}_{+} \setminus \left\{ 1,\cdots,n \right\}\).
+	\qed\end{sol}
+
+\begin{exe}
+	Prove the following properties of \( \mathbb{Z} \) and \( \mathbb{Z}_{+} \):
+	\begin{enumerate}
+		\item
+		      \( a,b \in \mathbb{Z}_{+} \Rightarrow a+b \in \mathbb{Z}_{+}\).
+		      
+		\item
+		      \( a,b \in \mathbb{Z}_{+} \Rightarrow a \cdot b \in \mathbb{Z}_{+}\).
+		      
+		\item
+		      Show that
+		      \( a\in \mathbb{Z}_{+} \Rightarrow a-1 \in \mathbb{Z}_{+} \cup \left\{ 0 \right\} \).
+		      
+		\item
+		      \( c,d \in \mathbb{Z} \Rightarrow c+d \in \mathbb{Z} \)
+		      and
+		      \( c-d \in \mathbb{Z} \).
+		      
+		\item
+		      \( c,d \in \mathbb{Z} \Rightarrow c \cdot d \in \mathbb{Z} \).
+	\end{enumerate}
+\end{exe}\begin{sol}\leavevmode \par
+	\fbox{(a)}
+	Given
+	\( a \in \mathbb{Z}_{+} \),
+	let
+	\( X:=\left\{x \in \mathbb{R} \pipe a+x \in \mathbb{Z}_{+} \right\} \).
+	The fact that 
+	\( \mathbb{Z}_{+} \)
+	is inductive implies
+	\( a+1 \in \mathbb{Z}_{+} \)
+	and so
+	\( 1\in X \).
+	Exactly the same argument shows that
+	if
+	\( y \in X \),
+	then
+	\( y+1 \in X \).
+	Hence,
+	\( X \)
+	is inductive,
+	which yields
+	\begin{equation*}
+		\Forall{ a }
+		\Forall{ b }
+		\left[
+			a\in \mathbb{Z}_{+} \wedge b \in \mathbb{R}
+			\Rightarrow
+			a+b \in \mathbb{Z}_{+}
+			\right].
+	\end{equation*}
+	Now it is easy to deduce (a) from this.
+	
+	\fbox{(b)}
+	Given
+	\( a \in \mathbb{Z}_{+} \),
+	let
+	\( X:=\left\{x \in \mathbb{Z}_{+} \pipe
+	a \cdot	x \in \mathbb{Z}_{+} \right\} \).
+	Assume
+	\( S_n \subset X \)
+	for every
+	\( n \in \mathbb{Z}_{+} \)
+	where
+	\( S_n \)
+	is a section of
+	\( n \).
+	Then,
+	we have
+	\( n \in X\)
+	since
+	\( a(n-1)\in \mathbb{Z}_{+} \wedge a \in \mathbb{Z}_{+} \)
+	and (a) give
+	\( an \in \mathbb{Z}_{+} \).
+	Thus,
+	\( X \)
+	is inductive, which completes the proof.
+	
+	\fbox{(c)}
+	We show the set
+	\( X:=	\left\{  x \in \mathbb{Z}_{+} \pipe
+	x-1 \in \mathbb{Z}_{+} \cup \left\{ 0 \right\}
+	\right\} \)
+	is inductive.
+	It is clear that
+	\( 1\in X \)
+	and 
+	\( \mathbb{Z}_{+} \cup \left\{ 0 \right\} \)
+	is inductive.
+	It follows from the latter fact that if
+	\( x\in X \),
+	then 
+	\( x+1 \in X \).
+	Thus,
+	\( X \)
+	is inductive.
+	
+	\fbox{(d)}
+	It suffices to prove that
+	\begin{equation}
+		c\in \mathbb{Z} \wedge d \in \mathbb{Z}_{+}
+		\Rightarrow
+		c+d \in \mathbb{Z} \wedge c-d \in \mathbb{Z}.
+		\label{eq:sec4E5d}
+	\end{equation}
+	Note that (a) and (c) establishes the following special case for this:
+	\begin{equation*}
+		c\in \mathbb{Z}_{+} \wedge d=1
+		\Rightarrow
+		c+d \in \mathbb{Z}_{+} \wedge c-d \in \mathbb{Z}_{+}\cup \left\{ 0 \right\},
+	\end{equation*}
+	which yields, by the definition of \( \mathbb{Z} \),
+	\begin{equation*}
+		c\in \mathbb{Z} \wedge d=1
+		\Rightarrow
+		c+d \in \mathbb{Z} \wedge c-d \in \mathbb{Z}.
+	\end{equation*}
+	This implies that if
+	\( z\in \mathbb{Z} \),
+	then
+	\( z+1\in \mathbb{Z} \wedge z-1\in \mathbb{Z} \).
+	Hence,
+	(\refeq{eq:sec4E5d})
+	follows from the induction on
+	\( d\).
+	
+	\fbox{(e)}
+	We already know (b), one special case for (e), and the fact
+	\( 0\cdot 0 =0 \in \mathbb{Z} \).
+	With this in mind, we start with considering another special case:
+	\begin{equation*}
+		c,d \in \mathbb{Z} \setminus
+		\left\{ \mathbb{Z}_{+}\cup \left\{ 0 \right\} \right\}
+		\Rightarrow
+		c \cdot d \in \mathbb{Z}.
+	\end{equation*}
+	The proof is easy as it is reduced to the case where (b) works.
+	So, it remains to show that
+	\begin{equation}
+		c \in \mathbb{Z}_{+}
+		\wedge
+		d\in \mathbb{Z} \setminus
+		\left\{ \mathbb{Z}_{+}\cup \left\{ 0 \right\} \right\}
+		\Rightarrow
+		c \cdot d \in \mathbb{Z}.
+		\label{eq:Sec4E5e}
+	\end{equation}
+	We prove this by induction on \( c \).
+	(\refeq{eq:Sec4E5e}) is obviously valid for
+	\( c = 1\).
+	Now assume (\refeq{eq:Sec4E5e}) holds for \( c = n\).
+	We have
+	\( d, dn \in \mathbb{Z} \)
+	and then (d) gives
+	\( d(n+1) = d+dn \in \mathbb{Z} \).
+	This means (\refeq{eq:Sec4E5e}) holds for \( c=n+1 \),
+	from which we conclude (\refeq{eq:Sec4E5e}).
+	\qed\end{sol}
+
+\begin{exe}
+	Let \( a \in \mathbb{R} \).
+	Define inductively
+	\begin{eqnarray*}
+		a^1 &=& a,\\
+		a^{n+1} &=& a^n \cdot a
+	\end{eqnarray*}
+	for \( n \in \mathbb{Z}_{+} \).
+	Show that for every \( n,m \in \mathbb{Z}_{+} \) and 
+	\( a,b \in \mathbb{Z}_{+} \),
+	\begin{eqnarray}
+		a^{n}a^{m} &=& a^{n+m}\label{eq1:sec4E6},\\
+		(a^{n})^{m} &=& a^{nm} \label{eq2:sec4E6},\\
+		a^{m}b^{m}&=& (ab)^{m}\label{eq3:sec4E6}.
+	\end{eqnarray}
+	These are called the \textbf{\textit{laws of exponents}}.
+\end{exe}\begin{sol}
+	Note that every term that appears in (\ref{eq1:sec4E6})--(\ref{eq3:sec4E6}) these equality is well-defined by induction.
+	(We need principle of recursive definition to define it rigorously. See \S7, \S8 for the principle on the set of positive integers.)
+	
+	First, we prove (\ref{eq1:sec4E6}).
+	Given 
+	\( a\in \mathbb{R} \)
+	and
+	\( n \in \mathbb{Z}_{+} \),
+	let
+	\begin{equation*}
+		X:=\left\{ x\in \mathbb{Z}_{+} \pipe a^{n}a^{x}=a^{n+x}\right\}.
+	\end{equation*}
+	It follows from the definition of
+	\( a^{n} \)
+	that
+	\( X \)
+	is inductive.
+	Thus, (\ref{eq1:sec4E6}) follows.
+	
+	We proceed to verifying (\ref{eq2:sec4E6}).
+	For 
+	\( a\in \mathbb{R} \)
+	and
+	\( n \in \mathbb{Z}_{+} \),
+	set
+	\begin{equation*}
+		Y:=\left\{ y\in \mathbb{Z}_{+} \pipe (a^{n})^{y}=a^{ny} \right\}.
+	\end{equation*}
+	It is easy to check that
+	\( Y \)
+	is inductive, from which we conclude (\ref{eq2:sec4E6}).
+	
+	We establish (\ref{eq3:sec4E6}).
+	Let
+	\(  a,b \in \mathbb{R} \)
+	and let
+	\begin{equation*}
+		W:=\left\{ m\in \mathbb{Z}_{+}
+		\pipe a^{m}b^{m}=(ab)^{m} \right\}.
+	\end{equation*}
+	It suffices to show that 
+	\( W \) is inductive.
+	Observe
+	\( 1\in W \)
+	and assume
+	\( m \in W \),
+	from which we deduce that
+	\begin{equation*}
+		a^{m+1}b^{m+1}
+		=
+		a (a^{m}b^{m})b
+		=
+		(ab)^{m}(ab)
+		=
+		(ab)^{m+1},
+	\end{equation*}
+	that is,
+	\( m+1 \in W \).
+	Hence, \( W \) is inductive.
+	\qed\end{sol}
+
+\begin{exe}
+	Let \( a \in \mathbb{R} \) and \( a\neq 0 \).
+	Define \( a^0 = 1 \),
+	and for \( n\in \mathbb{Z}_{+} \),
+	\( a^{-n}= 1/{a^n} \).
+	Show that the laws of exponents hold for \( a,b\neq 0 \) and \( n,m \in \mathbb{Z}_{+} \).
+\end{exe}\begin{sol}
+	Let
+	\( a,b \in \mathbb{R} \)
+	and
+	\(a \neq 0, b \neq 0 \)
+	throughout this exercise,
+	and let us simply mention (\ref{eq1:sec4E6}), for instance, 
+	to mean the corresponding statement we are concerned here.
+	
+	Note that, for \( n \in \mathbb{Z}_{+} \),
+	we have 
+	\begin{equation*}
+		a^{-n} = \frac{1}{a^n} = \left( \frac{1}{a} \right)^n.
+	\end{equation*}
+	
+	We first prove (\ref{eq3:sec4E6}) for convenience.
+	It is obvious that (\ref{eq3:sec4E6}) holds for
+	\( m =0 \).
+	For
+	\( -m \in \mathbb{Z}_{+}\),
+	previous exercise gives
+	\begin{equation*}
+		a^{m}b^{m}
+		=
+		\left( \frac{1}{a} \right)^{-m} \left( \frac{1}{b} \right)^{-m}
+		=
+		\left( \frac{1}{ab} \right)^{-m}
+		=
+		(ab)^{m}.
+	\end{equation*}
+	Thus, we complete the proof of (\ref{eq3:sec4E6}).
+	
+	Next, we show (\ref{eq2:sec4E6}).
+	Since Exercise 6 yields
+	\( 1^{\ell}=1 \)
+	for all 
+	\( \ell \in \mathbb{Z}_{+} \),
+	we deduce that (\ref{eq2:sec4E6}) is valid for the case where
+	either
+	\( n =0 \)
+	or
+	\( m =0 \)
+	holds.
+	For
+	\( -n, -m \in \mathbb{Z}_{+} \),
+	it follows from Exercise 6 and Exercise 1(h) that
+	\begin{equation*}
+		(a^n)^m
+		=
+		\left( \frac{1}{\frac{1}{a^{-n}}} \right)^{-m}
+		=
+		\left( a^{-n} \right)^{-m}
+		=
+		a^{(-n)(-m)}
+		=
+		a^{nm}.
+	\end{equation*}
+	So, (\ref{eq2:sec4E6}) holds for \( -n, -m \in \mathbb{Z}_{+} \).
+	One remaining case is where
+	\( n \in \mathbb{Z}_{+} \)
+	and
+	\( -m \in \mathbb{Z}_{+} \).
+	In this case,
+	we have
+	\begin{equation*}
+		(a^n)^m
+		=
+		\left( \frac{1}{a^{n}} \right)^{-m}
+		=
+		\left( \left( \frac{1}{a} \right)^{n} \right)^{-m}
+		=
+		\left( \frac{1}{a} \right)^{n(-m)}
+		=
+		\left( \frac{1}{a} \right)^{-(nm)}
+		=
+		a^{nm},
+	\end{equation*}
+	as required.
+	Confirm that similar argument applied to the case
+	\( m \in \mathbb{Z}_{+} \),
+	\( -n \in \mathbb{Z}_{+} \)
+	also leads us to the required equation.
+	Thus, (\ref{eq2:sec4E6}) is proved.
+	
+	Lastly, We turn to (\ref{eq1:sec4E6}).
+	For
+	\( n=0 \)
+	and
+	\( m=0 \),
+	(\ref{eq1:sec4E6})
+	is trivial.
+	For
+	\( -n, -m \in \mathbb{Z}_{+} \),
+	it is easy to see that
+	\begin{equation*}
+		a^n a^m
+		=
+		\left( \frac{1}{a} \right)^{-n} \left( \frac{1}{a} \right)^{-m}
+		=
+		\left( \frac{1}{a} \right)^{-(n+m)}
+		=
+		a^{n+m}.
+	\end{equation*}
+	Thanks to the symmetry of 
+	\( n \)
+	and
+	\( m \),
+	we only have to consider the case
+	\( n \in \mathbb{Z}_{+} \),
+	\( -m \in \mathbb{Z}_{+} \).
+	If 
+	\( n\ge -m \),
+	then
+	\begin{equation*}
+		a^n a^m
+		=
+		a^{n+m}a^{-m}a^{m}
+		=
+		a^{n+m}a^{0}
+		=
+		a^{n+m}.
+	\end{equation*}
+	It is now obvious how to prove if
+	\( n < -m \).
+	\qed\end{sol}
+
+We briefly establish two useful inequalities we often use in real analysis.
+We exploit these inequalities in Exercise 8 and
+\refer{Proposition}{prop:supremum},
+which is in turn used in a direct proof for existence of squared root (Exercise 10).
+\begin{lem}\label{lem:ineq_epsilon}
+	Let \( x \) and \( y \) be real numbers.
+	We claim that there hold
+	\begin{equation}\label{ineq:sec4ep1}
+		\Forall{ \epsilon >0 }\left[ x< y+ \epsilon \right]
+		\equiv
+		x \le y,
+	\end{equation}
+	and 
+	\begin{equation}\label{ineq:sec4ep2}
+		x \ge 0
+		\Rightarrow
+		\left[
+			\Forall{ \epsilon >0 }\left[ x <\epsilon \right]
+			\equiv
+			x=0
+			\right].
+	\end{equation}
+\end{lem}
+\begin{prf}
+	First consider (\ref{ineq:sec4ep1}),
+	which is equivalent to
+	\begin{equation*}
+		\Exists{ \epsilon >0 }\left[ x\ge y+ \epsilon \right]
+		\equiv
+		x > y.
+	\end{equation*}
+	This is true since LHS obviously implies RHS, and choosing \( \epsilon:=(x-y)/2 \) proves the converse.
+	(\ref{ineq:sec4ep2}) follows by setting \( y:=0 \) at (\ref{ineq:sec4ep1}).
+\end{prf}
+
+\begin{exe}\leavevmode \par
+	\begin{enumerate}
+		\item
+		      Show that \( \mathbb{R} \) has the greatest lower bound property.
+		      
+		\item
+		      Show that \( \inf{\left\{ 1/n \pipe n \in \mathbb{Z}_{+} \right\}}=0 \).
+		      
+		\item
+		      Show that given \( a \) with \( 0<a<1 \),
+		      \( \inf{\left\{ a^n \pipe n \in \mathbb{Z}_{+} \right\}}=0 \).
+	\end{enumerate}
+\end{exe}\begin{sol}\leavevmode \par
+	\fbox{(a)}
+	Use (7) and \S3 Exercise 14.
+	
+	\fbox{(b)}
+	Let
+	\( N:= \left\{ 1/n \pipe n \in \mathbb{Z}_{+}  \right\} \).
+	Note that \( 0 \) is a lower bound for \( N \),
+	and so \( \inf{N} \ge 0\).
+	In light of \refer{Lemma}{lem:ineq_epsilon}
+	proof is reduced to
+	\begin{equation*}
+		\Forall{ \epsilon > 0  }\left[ \inf{N} < \epsilon \right].
+	\end{equation*}
+	To this end, it suffices to prove that
+	\begin{equation*}
+		\Forall{ \epsilon > 0 }
+		\Exists{ n \in \mathbb{Z}_{+} }
+		\left[ \frac{1}{n} < \epsilon \right].
+	\end{equation*}
+	Fix 
+	\( \epsilon > 0  \).
+	Archimedean ordering property(see \refer{Note}{Archimedean}) allows us to have
+	\( n \in \mathbb{Z}_{+} \)
+	such that
+	\( 1/\epsilon < n \),
+	that is,
+	\( 1/n < \epsilon \).
+	
+	\fbox{(c)}
+	It is easy to deduce from binomial expansion that
+	\begin{equation*}
+		(1+h)^{n} \ge 1+ nh
+	\end{equation*}
+	for every
+	\( h>0 \)
+	and
+	\( n \in \mathbb{Z}_{+} \).
+	Choosing
+	\( h= (1-a)/a \)
+	yields
+	\begin{equation*}
+		0 \le a^n \le \frac{a}{a + n - an} < \frac{1}{n}.
+	\end{equation*}
+	Since it is obvious that
+	\( \inf{a_n} \ge 0 \),
+	it remains to show 
+	\( \inf{a_n} \le \inf{(1/n)} \),
+	that is,
+	monotonicity property of infimum.
+	We establish this in \refer{Proposition}{prop:supremum}.
+	\qed\end{sol}
+
+\begin{prp}[Property of supremum and infimum]\label{prop:supremum}
+	\leavevmode \par
+	\begin{enumerate}
+		\item \label{enu:sup_mono}
+		      Let
+		      \( A:=\left\{ a_n \in \mathbb{R} \pipe n \in \mathbb{Z}_{+} \right\} \)
+		      and
+		      \( B:=\left\{ b_n \in \mathbb{R} \pipe n \in \mathbb{Z}_{+} \right\} \).
+		      Suppose that
+		      \( \sup{A} \)
+		      and
+		      \( \inf{B} \)
+		      and etc.\! exist,
+		      and that
+		      \( a_n \le b_n \)
+		      for all \( n \in \mathbb{Z}_{+} \).
+		      Then we have
+		      \begin{equation*}
+			      \sup{A} \le \sup{B},\;\; \inf{A} \le \inf{B}.
+		      \end{equation*}
+		\item \label{enu:sup:scale}
+		      Let
+		      \( c>0 \), and
+		      let \( X \) and \( Y \) be nonempty subsets of \( \mathbb{R} \)
+		      for which \( \sup{X} \) and \( \inf{Y} \) etc.\! exist.
+		      Then we have
+		      \begin{equation*}
+			      \sup{cX}=c \cdot \sup{X},\;\;\inf{cY}=c \cdot \inf{Y},
+		      \end{equation*}
+		      where \( cX:=\left\{ c \cdot x \pipe x\in X \right\} \).
+	\end{enumerate}
+\end{prp}
+\begin{prf}
+	We show \ref{enu:sup_mono}.
+	Note that, in general, there holds
+	\( \inf{A} \le a_n \)
+	for all \( n \in \mathbb{Z}_{+} \),
+	which combined with assumption gives
+	\( \inf{A} \le b_n \)
+	for all
+	\( n \in \mathbb{Z}_{+} \).
+	This means
+	\( \inf{A} \)
+	is a lower bound for
+	\( B \),
+	from which we conclude that
+	\( \inf{A} \le \inf {B} \).
+	Similar argument verifies the other implication.
+	
+	Consider \ref{enu:sup:scale}.
+	Observe
+	\( cX \)
+	is bounded above by
+	\( c \cdot \sup{X} \).
+	Hence,
+	\( \sup{cX} \le c \cdot \sup{X} \).
+	For every
+	\( \epsilon>0 \)
+	there exists 
+	\( x\in X \)
+	such that
+	\( \sup{cX} - \epsilon < cx \),
+	or equivalently,
+	\( \left( \sup{cX} - \epsilon \right)/c <x \),
+	from which it follows that
+	\( \left( \sup{cX} - \epsilon \right)/c <\sup{X} \),
+	that is,
+	\( \sup{cX}<c \cdot \sup{X} + \epsilon\).
+	This implies that
+	\( \sup{cX} \le c \cdot \sup{X}\).
+\end{prf}
+
+\begin{exe}\leavevmode \par
+	\begin{enumerate}
+		\item
+		      Show that every nonempty subset of \( \mathbb{Z} \) that is bounded above has a largest element.
+		      
+		\item
+		      If \( x\notin \mathbb{Z} \),
+		      show there is exactly one \( n \in \mathbb{Z} \) such that \( n<x<n+1 \).
+		      
+		\item
+		      If \( x-y>1 \),
+		      show there is at least one \( n \in \mathbb{Z} \) such that \( y<n<x \).
+		      
+		\item
+		      If \( y<x \),
+		      show there is a rational number \( z \) such that \( y<z<x \).
+	\end{enumerate}
+\end{exe}\begin{sol}\leavevmode \par
+	\fbox{(a)}
+	Let
+	\( A \) be a nonempty subset of \( \mathbb{Z} \)
+	that is bounded above by \( N \in \mathbb{Z}_{+} \).
+	Assume first that \( A \cap \mathbb{Z}_{+} \neq \emptyset \).
+	Exercise 4(a) allows us to choose a largest element \( m \) of
+	\( \left\{ 1,\cdots, N \right\} \cap A \).
+	It is obvious that \( m \) is a largest element of \( A \).
+	
+	For general \( A \),
+	consider an order isomorphism
+	\( f:\mathbb{Z} \ni n \to n +K \in \mathbb{Z} \)
+	for sufficiently large \( K \in \mathbb{Z}_{+} \),
+	so that \( f(A) \cap \mathbb{Z}_{+} \neq \emptyset \).
+	Then the preceding argument guarantees
+	the existence of a largest element of \( f(A) \),
+	that is, that of \( A\).
+	
+	\fbox{(b)}
+	Let 
+	\( x \notin \mathbb{Z} \).
+	The set 
+	\( B:=\left\{ b \in \mathbb{Z} \pipe b <x \right\} \)
+	is nonempty and bounded above.
+	(a) implies that
+	\( B \) possesses a largest element
+	\( n \)
+	of
+	\( B \),
+	for which we have
+	\( n< x \le n+1 \).
+	The required inequality follows from the fact
+	\( x \notin \mathbb{Z} \).
+	Uniqueness of such
+	\( n \)
+	follows from the property of 
+	\( n \)
+	as a largest element.
+	
+	\fbox{(c)}
+	Let
+	\( x-y>1 \).
+	If
+	\(  x \in \mathbb{Z} \)
+	is the case,
+	then
+	\( n:=x-1 \)
+	does the job.
+	So, assume
+	\(  x \notin \mathbb{Z} \).
+	In that case, by (b),
+	there exists
+	\( n \)
+	such that
+	\( n<x<n+1 \).
+	Since
+	\( y+1<x<n+1 \),
+	we deduce that
+	\( y<n \).
+	Thus,
+	\( y<n<x \).
+	
+	\fbox{(d)}
+	In light of (c),
+	we may assume that
+	\( 0 < x-y \le 1 \).
+	Archimedean ordering property(see \refer{Note}{Archimedean}) lets us pick
+	\( m\in \mathbb{Z}_{+} \)
+	such that
+	\( 1/(x-y) < m \),
+	for which we have
+	\( mx-my>1 \).
+	Then, (c) gives
+	\( n \in \mathbb{Z} \)
+	such that 
+	\( my< n< mx \),
+	that is,
+	\( y<n/m<x \).
+	This completes the proof.
+	\qed\end{sol}
+
+\begin{exe}\leavevmode \par
+	Show that every positive number \( a \) has exactly one positive square root,
+	as follows:
+	\begin{enumerate}
+		\item
+		      Show that if \( x>0 \)
+		      and
+		      \( 0 \le h <1 \),
+		      then
+		      \begin{eqnarray*}
+			      (x+h)^2 &\le& x^2 +h(2x+1),\\
+			      (x-h)^2 &\le& x^2 -h(2x).
+		      \end{eqnarray*}
+		      
+		\item
+		      Let \( x>0 \).
+		      Show that if \( x^2<a \),
+		      then
+		      \( (x+h)^2<a \) for some \( h>0 \);
+		      and if if \( x^2>a \),
+		      then
+		      \( (x-h)^2>a \) for some \( h>0 \).
+		      
+		\item
+		      Given \( a>0 \),
+		      let \( B \) be the set of all real numbers \( x \) such that \( x^2 <a \).
+		      Show that \( B \) is bounded above and contains at least one positive number.
+		      Let \( b=\sup{B} \);
+		      show that \( b^2 = a \).
+		      
+		\item
+		      Show that if \( b \) and \( c \) are positive and \( b^2 = c^2 \),
+		      then \( b=c \).
+	\end{enumerate}
+\end{exe}\begin{sol}\leavevmode \par
+	\fbox{(a)}
+	Consider binomial expansion as we did in exercise 8(c).
+	note that both inequalities are valid for \( h=1\).
+	
+	\fbox{(b)}
+	Let
+	\( x>0 \)
+	and
+	\( x^2<a \).
+	If
+	\( (x+1)^2 <a\),
+	then
+	\( h:=1 \)
+	qualifies.
+	If, on the other hand,
+	\( (x+1)^2 \ge a\),
+	then we have
+	\begin{equation*}
+		0 < \frac{a-x^2}{2x+1} \le 1.
+	\end{equation*}
+	In this case, exercise 9(d) allows us to have a rational number
+	\( r \)
+	such that
+	\begin{equation*}
+		0< r< \frac{a-x^2}{2x+1},
+	\end{equation*}
+	which leads us to
+	\( (x+r)^2<a \).
+	
+	To show the other implication, check that
+	\begin{equation*}
+		\frac{x^2-a}{2x}<1
+	\end{equation*}
+	holds if
+	\( (x-1)^2 \le a\),
+	and choose a rational number
+	\( q \) with
+	\begin{equation*}
+		\frac{x^2-a}{2x}< q <1.
+	\end{equation*}
+	
+	\fbox{(c)}
+	Let
+	\( a>0\).
+	Observe
+	\( B:=\left\{  x \in \mathbb{R} \pipe x^2 <a \right\} \).
+	Since
+	\( 0^2=0<a \),
+	it follows from (b) that
+	\( h^2 <a \)
+	for some
+	\( h>0 \),
+	which gives
+	\( h \in B \),
+	and
+	\( B_0:=B \cap \mathbb{R}_{+} \neq \emptyset \).
+	
+	We claim that
+	\( B_0 \)
+	(and so \( B \))
+	is bounded above.
+	Let \(  x \in B_0 \).
+	If
+	\( a\le1 \),
+	then
+	\( x^2 < 1 \)
+	and so
+	\( x < 1 \).
+	Next, if
+	\( a>1 \),
+	then
+	we see that for every
+	\( x > 1 \)
+	we have
+	\( x<x^2<a \).
+	Thus, \( B_0 \)
+	is bounded above.
+	Note that we have also shown that  \( b>0 \).
+	
+	For every
+	\( h>0 \),
+	we have
+	\( b+h \notin B_0 \)
+	and so
+	\( (b+h)^2 \ge a \),
+	which yields, by (b),
+	\( b^2 \ge a \).
+	
+	Suppose, to the contrary, that
+	\( b^2 >a \)
+	were the case,
+	then (b) lets us to pick
+	\( h>0 \)
+	such that
+	\( (b+h)^2 < a \).
+	But this contradicts the fact that
+	\( b \)
+	is a supremum of
+	\( B \).
+	Thus,
+	\( b^2 =a \).
+	(We have not used here the second statement of (b).)
+	
+	We have shown \( b^2 \le a \) resorting to proof by contradiction since it is straightforward and depends on less information than direct proof.
+	
+	We provide two notes that proves the fact
+	\( b^2 \le a \)
+	by exploiting (b) or property of supremum.
+	In the first approach, we have to look a bit more into (b) in order to gain stronger result of it.
+	See \refer{Note}{note:root1}
+	and
+	\refer{Note}{note:root2}.
+	
+	\fbox{(d)}
+	Hypothesis is equivalent to 
+	\( (b-c)(b+c)=0 \).
+	If
+	\( b \)
+	and
+	\( c \)
+	are positive,
+	then
+	\( b-c =0 \).
+	\qed\end{sol}
+
+\begin{rem}[First direct proof for existence of square root]\label{note:root1}
+	As predicted, we begin with extracting more information from exercise 10(b) in order to construct short direct proof for exercise10(c), existence of square root.
+	
+	We provide a proposition, whose contraposition is used for our main proof:
+	\begin{prp}\label{cnt:quadratic}
+		Let
+		\( x>0 \)
+		and
+		\( \epsilon > 0\).
+		If \( x^2 < a\),
+		then
+		\( (x+h)^2 < a\)
+		for some \( h \in (0,\epsilon) \);
+		and if \( x^2 > a\),
+		then
+		\( (x-h)^2 > a\)
+		for some \( h \in (0,\epsilon) \).
+	\end{prp}
+	\begin{prf}
+		As a preparation, first observe the following very intuitive fact:\\
+		\textit{The mapping
+			\( f:\mathbb{R}_{+}\cup \{0\} \ni x \mapsto x^2 \in \mathbb{R}_{+}\cup \{ 0 \} \)
+			preserves order.}\\
+		Note that this is a direct consequence of exercise 2(h).
+		
+		Suppose
+		\( x^2 < a\).
+		Exercise 10(b) gives some
+		\( d>0 \)
+		such that
+		\( (x+d)^2 < a\).
+		Let
+		\( \epsilon_0 := \min\{\epsilon, d\} \).
+		It follows from the fact the mapping
+		\( f \)
+		defined above preserves the order that
+		for every 
+		\( h \in (0,\epsilon_0) \)
+		we have
+		\( f(x+h)<f(x+d) \),
+		that is,
+		\( (x+h)^2<(x+d)^2<a \).
+		Similar argument works for verifying the other implication.
+	\end{prf}
+	Note that the proof says more than Proposition \ref{cnt:quadratic} states,
+	but for our proof for exercise 10(c), we do not need further result.
+	More general result can be found in theory of continuous function.
+	
+	Now we provide a predicted direct proof for existence of squared root.
+	It suffices to show that 
+	\( b^2 \le a \).
+	Let
+	\( \epsilon:=\min \left\{ b,1 \right\} \).
+	For every
+	\( h \in (0,\epsilon) \),
+	there exists
+	\( x \in B_0 \)
+	such that
+	\( 0< b-h<x \),
+	which yields
+	\( (b-h)^2<x^2<a \).
+	Then Proposition \ref{cnt:quadratic} implies
+	\( b^2 \le a \).
+\end{rem}
+
+\begin{rem}[Second direct proof for existence of square root]\label{note:root2}
+	In the second approach,
+	we do not need such finer information as Proposition \ref{cnt:quadratic}.
+	We instead need an almost obvious property of supremum, which we have established in \refer{Proposition}{prop:supremum} and an obvious result of exercise 10(b) stated as follows:\leavevmode \par
+	\noindent
+	\textit{Let \( x>0 \).
+		If \( x^2 > a\),
+		then
+		\( (x-h)^2 > a\)
+		for some \( 0<h\le 1\).
+	}
+	
+	We establish
+	\( b^2 = a \).
+	Suppose
+	\( a>1 \).
+	We already know that
+	\( B_0 \) is bounded above by \( a \),
+	which gives
+	\( b\le a \).
+	This implies that if
+	\( b \le 1 \),
+	then,
+	\( b^2 \le b \le a \).
+	If \( b>1 \),
+	then for every
+	\( 0<h\le1 \),
+	there exists
+	\(  x \in B_0 \)
+	such that
+	\( 0< b-h <x \),
+	from which it follows that
+	\( 0< (b-h)^2<a \).
+	By the italic statement, this yields
+	\( b^2 \le a \).
+	Thus \( b^2 =a \) for this case.
+	
+	Next, Suppose
+	\( a \le 1 \).
+	In this case,
+	Archimedean ordering property(see \refer{Note}{Archimedean}) allows us to choose
+	\( k \in \mathbb{Z}_{+} \)
+	such that 
+	\( ak^2 >1 \).
+	Define the sets
+	\( B_k:=\left\{  x \in \mathbb{R} \pipe x^2 < ak^2 \right\} \)
+	and
+	\( kB:=\left\{ kx \pipe x \in B \right\} \).
+	For a fixed \( k \in \mathbb{Z}_{+} \), we see 
+	\( B_k = kB \),
+	from which we deduce that
+	\begin{equation*}
+		k^2b^2
+		=
+		\left( k \cdot \sup{B} \right)^2
+		=
+		\left( \sup{kB} \right)^2
+		=
+		\left( \sup{B_k} \right)^2
+		=
+		ak^2.
+	\end{equation*}
+	Thus, \( b^2 =a \).
+	\qed\end{rem}
+
+\begin{exe}
+	Given \( m \in \mathbb{Z} \),
+	we say that \( m \) is \textbf{\textit{even}} if \( m/2 \in \mathbb{Z} \),
+	and \( m \) is \textbf{\textit{odd}} if otherwise.
+	
+	\begin{enumerate}
+		\item
+		      Show that if \( m \) is odd,
+		      \( m=2n+1 \) for some \( n\in \mathbb{Z} \).
+		      
+		\item
+		      Show that if \( p \) and \( q \) are odd, so are \( p \cdot q \) and \( p^n \),
+		      for any \( n \in \mathbb{Z}_{+} \).
+		      
+		\item
+		      Show that if \( a>0 \)\ is rational,
+		      then \( a=m/n \) for some \( m,n \in \mathbb{Z}_{+} \)
+		      where not both \( m \) and \( n \) are even.
+		      
+		\item
+		      \textit{Theorem.}\;
+		      \( \sqrt{2} \) \textit{is irrational}.
+	\end{enumerate}
+\end{exe}\begin{sol}\leavevmode \par
+	\fbox{(a)}
+	If
+	\( m/2 \notin \mathbb{Z} \),
+	then Exercise 9(d) allows us to take
+	\( n \) such that
+	\( n < m/2 <n+1 \),
+	that is,
+	\( 2n < m <2n+2 \).
+	Thus,
+	\( m=2n+1 \).
+	
+	\fbox{(b)}
+	Note that
+	\begin{equation*}
+		\frac{m}{2}\in \mathbb{Z}
+		\equiv
+		\Exists{ n \in \mathbb{Z} }
+		\left[ m=2n \right]
+	\end{equation*}
+	and that this equivalence establishes the converse of (a).
+	Let
+	\( p \)
+	and
+	\( q \)
+	are odd.
+	Choose
+	\( k,\ell \in \mathbb{Z}\)
+	so that
+	\( p=2k+1 \),
+	\( q=2\ell +1 \).
+	Then, we have
+	\( p \cdot q = 2(2k \ell + k + \ell) +1 \).
+	Since 
+	\( 2k \ell + k + \ell \in \mathbb{Z} \),
+	we conclude that
+	\( p \cdot q \)
+	is odd.
+	
+	Let \( A \) be the subset of \( \mathbb{Z}_{+} \) consisting of all \( n \)
+	for which
+	\( p^n \)
+	is odd for every.
+	It is obvious that
+	\( 1 \in A \)
+	and that if
+	\( n \in A \),
+	then
+	\( p^{n+1}=p^n \cdot p \)
+	is odd by what we have just verified.
+	This means \( A \) is inductive, which completes the proof.
+	
+	\fbox{(c)}
+	Let 
+	\( a>0 \)
+	be a rational.
+	By definition,
+	\( a=\ell /k \)
+	for some
+	\( k, \ell \in \mathbb{Z} \)
+	with
+	\( k \neq 0 \).
+	If both
+	\( k\)
+	and
+	\( \ell \)
+	are even,
+	then there exists 
+	\( k',\ell' \in \mathbb{Z}\)
+	with
+	\( k'<k \),
+	\( \ell' < \ell \)
+	and
+	\( a={\ell'}/{k'} \).
+	
+	Let \( n \) be a smallest element of the set
+	\(	A:=\left\{ x\in \mathbb{Z}_{+} \pipe
+	\Exists{ m\in \mathbb{Z}_{+} }
+	\left[ a=\frac{n}{m} \right]
+	\right\} \),
+	and let
+	\( a=n/m \).
+	Because of the smallest property,
+	we cannot have a smaller
+	\( n' \)
+	or
+	\( m' \)
+	than
+	\( n \)
+	or
+	\( m \)
+	respectively.
+	Thus,
+	both
+	\( m \)
+	and
+	\( n \)
+	are not even.
+	
+	\fbox{(d)}
+	Observe the following equivalence:
+	\begin{eqnarray}
+		\sqrt{2}\in \mathbb{Q}
+		&\equiv&
+		\Exists{ n\in \mathbb{Z}_{+} }
+		\Exists{ m \in \mathbb{Z}_{+} }
+		\left[
+			2nn=mm 
+			\wedge
+			\neg
+			\left(
+			\frac{n}{2} \in \mathbb{Z}_{+}
+			\wedge
+			\frac{m}{2} \in \mathbb{Z}_{+}
+			\right)
+			\right] \label{equiv1:sec4E11}\\
+		&\equiv&
+		\Exists{ n\in \mathbb{Z}_{+} }
+		\Exists{ m \in \mathbb{Z}_{+} }
+		\left[
+			2nn=mm 
+			\wedge
+			\frac{n}{2} \notin \mathbb{Z}_{+}
+			\wedge
+			\frac{m}{2} \in \mathbb{Z}_{+}
+			\right]\label{equiv2:sec4E11}
+	\end{eqnarray}
+	For second equivalence, note that,
+	\( m \)
+	needs to be even since
+	\( 2nn \)
+	are even, from which it follows that
+	\( n \)
+	are odd.
+	Each of three statements turns out to be false since, in (\ref{equiv2:sec4E11}),
+	we have
+	\( 2nn/4 \notin \mathbb{Z}_{+} \)
+	while
+	\( mm/4 \in \mathbb{Z}_{+} \)
+	and hence
+	\( 2nn \neq mm \).
+	Thus, the statement \( \sqrt{2}\in \mathbb{Q}\) is false.
+	
+	Put in a language of number theory,
+	we can simply argue in (\ref{equiv1:sec4E11}) that
+	\( 2nn \)
+	has odd number of prime factors
+	whereas
+	\( mm \)
+	has even,
+	which implies \( 2nn\neq mm \).
+	\qed\end{sol}
+\end{document}

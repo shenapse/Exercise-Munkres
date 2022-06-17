@@ -1,0 +1,460 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{mystyle}
+\usepackage{commands}
+\mathtoolsset{showonlyrefs=true}
+
+\begin{document}
+\section{Infinite Sets and the Axiom of Choice}
+\setcounter{exe}{0}
+
+\begin{rem}[Equivalence of the axiom of choice and choice function]\leavevmode \par
+	We have seen
+	the axiom of choice imply Lemma 9.2, the existence of choice function.
+	But the converse is also true.
+	Indeed, if \( \mathcal{A} \) is a collection of disjoint nonempty sets,
+	and if \( c \) is a choice function for \( \mathcal{A} \),
+	then the set \( C:=\bigcup_{ A \in \mathcal{A}}c(A) \) has the required property.
+	So, we from now on identify the choice axiom and Lemma 9.2.
+\end{rem}
+
+\begin{exe}
+	Define a injective map \( f:\mathbb{Z}_{+} \to X^{\omega} \),
+	where \( X \) is the two element set \( \left\{ 0,1 \right\} \),
+	without using the choice axiom.
+\end{exe}
+
+\begin{sol}
+	Letting
+	\( \varphi \in \bij{\mathcal{P}(\mathbb{Z}_{+})}{\left\{ 0,1 \right\}^{\omega}} \),
+	define a function
+	\( f: \mathbb{Z}_{+} \to X^{\omega} \)
+	via
+	\begin{equation*}
+		f(n):=\varphi \circ i(n),
+	\end{equation*}
+	where \( i: \mathbb{Z}_{+} \to \mathcal{P}(\mathbb{Z}_{+})\)
+	is given by
+	\( i(x):=\{x\} \),
+	which is obviously injective.
+	\qed\end{sol}
+
+\begin{exe}
+	Find if possible a choice function for each of the following collections,
+	without using the choice axiom:
+	\begin{enumerate}
+		\item
+		      The collection \( \mathcal{A} \) of nonempty subsets of \( \mathbb{Z}_{+} \).
+		      
+		\item
+		      The collection \( \mathcal{B} \) of nonempty subsets of \( \mathbb{Z}\).
+		      
+		\item
+		      The collection \( \mathcal{C} \) of nonempty subsets of the rational numbers \( \mathbb{Q}\).
+		      
+		\item
+		      The collection \( \mathcal{D} \) of nonempty subsets of \( X^{\omega} \),
+		      where \( X=\left\{ 0,1 \right\} \).
+	\end{enumerate}
+\end{exe}
+\begin{sol}\leavevmode \par
+	\fbox{(a)}
+	It is easy to check that 
+	\( \bigcup_{A\in\mathcal{A}}(A,x_A) \)
+	qualifies as the rule for a required choice function,
+	where \( x_A \) denotes the smallest element of \( A \).
+	
+	\fbox{(b)}
+	Let \( f:\mathbb{Z} \to \mathbb{Z}_{+} \) be a function defined at \S7 Example 1,
+	which is proved to be bijective at \S7 Exercise 2.
+	If we set \( c \) to be a choice function for \( \mathcal{A} \) we have found in (a),
+	\( f ^{-1} \circ c \circ f \) is a choice function for \( \mathcal{B} \).
+	
+	\fbox{(c)}
+	Note that \( \mathbb{Q} \) is shown to be countable without the choice axiom.(See Exercise 4 if you need Theorem 7.5 to establish the countability.)
+	Hence, there exists a bijective function \( g:\mathbb{Q} \to \mathbb{Z}_{+} \).
+	Then 
+	\( g ^{-1} \circ c \circ g \) is a requested choice function.
+	
+	\fbox{(d)}
+	We cannot find it without the choice axiom,
+	and we need some knowledge about well-ordering theorem to explain why.
+	(so, you can skip here for the first reading.)
+	As Exercise 8 shows, \( X^{\omega} \) and \( \mathbb{R} \) have the same cardinality,
+	which implies, as we have seen in (b) and (c),
+	that the existence of a choice function for \( \mathcal{D} \) is
+	equivalent to that for \( \mathcal{P}(\mathbb{R})\setminus \emptyset \).
+	However, Exercise 7 in Supplementary Exercise tells us that
+	this is true if and only if the well-ordering theorem is valid on \( \mathbb{R} \),
+	which, as a well-known result in set theory says,
+	is true only under the choice axiom.
+	\qed\end{sol}
+
+\begin{exe}
+	Suppose that \( A \) is a set and \( \left\{ f_n \right\}_{n \in \mathbb{Z}_{+}} \)
+	is a given indexed family of injective functions
+	\begin{equation*}
+		f_n:\left\{ 1,\cdots,n \right\} \to A.
+	\end{equation*}
+	Show that \( A \) is infinite.
+	Can you define an injective function \( f:\mathbb{Z}_{+} \to A \)
+	without using the choice axiom?
+\end{exe}
+\begin{sol}
+	For every
+	\( n \in \mathbb{Z}_{+} \),
+	let
+	\( A_n:=f_n(\left\{ 1,\cdots,n \right\}) \),
+	and let a function
+	\( g_n: \left\{ 1,\cdots,n \right\} \to A_n\)
+	be given by
+	\( g_n(i):=f_n(i) \).
+	It is clear that every
+	\( g_n \)
+	is bijective.
+	As we have seen in Exercise 2(a),
+	there exists, without the choice axiom, a choice function, denoted by \( c \), for
+	\( \mathcal{P}(\mathbb{Z}_{+})\setminus \emptyset \),
+	and then, the argument in Exercise 2(d) shows that 
+	\( c_n:=g_n \circ c \circ g_n ^{-1} \)
+	is a choice function for \( \mathcal{P}(A_n) \setminus \emptyset \)
+	for every \( n \).
+	
+	Now we are ready to construct the required function.
+	Consider the following formula for \( f:\mathbb{Z}_{+} \to A \):
+	\begin{equation}\label{recursive_formula:injection_f}
+		\begin{split}
+			f(1)&=A_1\\
+			f(n)&=c_n \left( A_n \setminus f(\left\{ 1,\cdots,n-1 \right\}) \right)
+		\end{split}
+	\end{equation}
+	for every \( n >1 \).
+	In order to show that (\ref{recursive_formula:injection_f}) is what
+	principle of recursive definition applies,
+	we claim that the formula designates for \( f \) the unique element of \( A \) for every \( n\in \mathbb{Z}_{+} \).
+	We do this by induction.
+	Assume our claim holds for up to \( i-1 \).
+	We deduce from the fact
+	\( A_n \) has exactly \( n \) elements
+	while
+	\( f(\left\{ 1,\cdots,n-1 \right\}) \) does at most \( n-1 \)
+	that 
+	\( A_n \setminus f(\left\{ 1,\cdots,n-1 \right\} \neq \emptyset \),
+	of which choice function \( c_n \) extracts one element.
+	This means that the claim holds for \( i \).
+	Then strong induction principle gives that
+	our claim holds for all \( n \in \mathbb{Z}_{+} \).
+	Hence, (\refeq{recursive_formula:injection_f}) defines unique
+	\( f:\mathbb{Z}_{+} \to A \)
+	that satisfies the formula.
+	
+	We at last insists that \( f \) is injective.
+	In fact,
+	if
+	\( n <m \),
+	or equivalently
+	\( n \le m-1 \),
+	then the fact that \( c_n \) is a choice function for
+	\( \mathcal{P}(A_n) \setminus \emptyset\) gives
+	\begin{equation*}
+		f(m)
+		\in
+		A_m \setminus f \left( \left\{ 1,\cdots,n-1,n,n+1,\cdots,m-1 \right\} \right),
+	\end{equation*}
+	which yields
+	\( f(n) \neq f(m) \).
+	Thus,
+	\( f \)
+	is injective,
+	and we complete the construction of \( f \) without the choice axiom.
+	
+	Note that the implication of (1) \( \Rightarrow \) (3) in Theorem 9.1 is valid without the choice axiom.
+	Thus, the fact \( A \) is infinite can also be proved without it.
+	\qed\end{sol}
+
+\begin{exe}
+	There was a theorem in \S7 whose proof involved an infinite number of arbitrary choices.
+	Which one was it?
+	Rewrite the proof so as to make explicit the use of the choice axiom.
+\end{exe}
+\begin{sol}
+	That is where Theorem 7.5 says
+	''Because each \( A_n \) is countable,
+	we can choose, for each \( n \),
+	a surjective function \( f_n:\mathbb{Z}_{+} \to A \)''.
+	Here the set \( A_n \) is indexed by the set \( J \),
+	which might be infinite.
+	If it is infinite, we need the choice axiom (or a choice function) in order to extract
+	\( f_n \) from each of nonempty set \( \surj{\mathbb{Z}_{+}}{A_n} \).
+	If otherwise, say, if \( J \) is finite, of course we do not need it
+	since the finite axiom of choice suffices.
+	
+	Now it is obvious how we should rewrite it.
+	\qed\end{sol}
+
+\begin{exe}\leavevmode \par
+	\begin{enumerate}
+		\item
+		      Use the choice axiom to show that if \( f:A \to B \) is surjective,
+		      then \( f \) has a right inverse \( h:B\to A \).
+		      
+		\item
+		      Show that if \( f:A \to B \) is injective and \( A \) is not empty,
+		      then \( f \) has a left inverse.
+		      Is the axiom of choice needed?
+	\end{enumerate}
+\end{exe}
+\begin{sol}
+	This Exercise is the converse of \S2 Exercise 5(a),
+	which insists that,
+	
+	\noindent \textit{if a function admits a right inverse, the function is surjective;
+		if a function admits a left inverse, the function is injective.}
+	
+	\fbox{(a)}
+	Consider the indexed family \( \left\{ f ^{-1}(b) \right\}_{b\in B} \) of sets.
+	Each \( f ^{-1}(b) \) is nonempty since \( f \) is surjective.
+	The choice axiom allows us to have a choice function
+	\( c:B \to \bigcup_{b \in B}f ^{-1}(b) \).
+	Then we see that for every \( b\in B \)
+	\begin{equation*}
+		f \circ c(b) = f(c(b)) = b
+	\end{equation*}
+	since \( c(b) \in f ^{-1}(b) \).
+	Seeing \( c \) as a function from \( B \) to A,
+	we conclude that  \( f \) has a right inverse \( c \).
+	
+	\fbox{(b)}
+	The axiom choice is not needed this time.
+	Indeed,
+	if \( f \in \inj{A}{B} \)
+	and \( A \neq \emptyset \),
+	then a function \( \varphi:A \to f(A) \)
+	given by
+	\( \varphi(a)=f(a) \)
+	is bijective,
+	and hence we have
+	\begin{equation*}
+		\varphi ^{-1} \circ f(a) = a
+	\end{equation*}
+	for all \( a \in A \).
+	(Extend \( \varphi ^{-1} \) onto \( B \) if necessary by setting arbitrary value outside \( f(A) \).)
+	\qed\end{sol}
+
+\begin{rem}
+	Here are several technical remark about empty function.
+	
+	In Exercise 5(b), we cannot drop the assumption that ''\( A \) is not empty'';
+	\( A = \emptyset \) means that
+	\( f \) and therefore \( \varphi \) are an empty function,
+	which is born injective but not surjective whatever the range is.
+	Hence, \( \varphi \) by no means has the inverse.
+	
+	Also, note that in Exercise 5(a), the assumption \( f \) is surjective
+	rejects the possibility of 
+	\( f \) being an empty function,
+	and consequently guarantees that \( A \) and \( B \) are not empty.
+	We use this fact implicitly in the above proof.  
+\end{rem}
+
+\begin{exe}
+	Most of famous paradoxes of naive set theory are associated in some way or other with the concept of the ''set of all sets.''
+	None of the rules we have given for forming sets allows us to consider such a set.
+	And for good reason---the concept itself is self-contradictory.
+	For suppose that \( \mathcal{A} \) denotes the ''set of all sets.''
+	\begin{enumerate}
+		\item
+		      Show that \( \mathcal{P}(\mathcal{A}) \subset \mathcal{A} \);
+		      derive a contradiction.
+		      
+		\item
+		      (\textit{Russell's paradox.})
+		      Let \( \mathcal{B} \) be the subset of \( \mathcal{A} \) consisting of all sets that are not element of themselves;
+		      \begin{equation*}
+			      \mathcal{B} = \left\{ A \pipe A \in \mathcal{A}\wedge A \notin A \right\}
+		      \end{equation*}
+	\end{enumerate}
+	(Of course, there may be \textit{no} set \( A \) such that \( A\in A \);
+	if such is the case, then \( \mathcal{B} = \mathcal{A}\).)
+	Is \( \mathcal{B} \) an element of itself or not?
+\end{exe}
+\begin{sol}\leavevmode \par
+	\fbox{(a)}
+	If
+	\( a \in \mathcal{P}(A) \),
+	then \( a \) itself is a set by the definition of \( \mathcal{A} \).
+	Hence, \( a \in \mathcal{A} \).
+	Thus, \( \mathcal{P}(\mathcal{A}) \subset \mathcal{A} \).
+	But
+	\( \mathcal{P}(A) \subset A\)
+	leads
+	\( \mathcal{P}(A) \hookrightarrow A\),
+	contradicting to Theorem 7.8.
+	
+	\fbox{(b)}
+	BOTH !
+	
+	If we assume \( \mathcal{B} \notin \mathcal{B} \),
+	then the definition of
+	\( \mathcal{B} \)
+	leads to
+	\( \mathcal{B}\in \mathcal{B} \).
+	On the other hand, if we suppose \( \mathcal{B} \in \mathcal{B} \),
+	then we are led to \( \mathcal{B} \notin \mathcal{B} \).
+	\qed\end{sol}
+
+\begin{exe}
+	Let \( A \) and \( B \) be two nonempty sets.
+	If there is an injection of \( B \) into \( A \),
+	but no injection of \( A \) into \( B \),
+	we say that \( A \) has \textbf{\textit{greater cardinality}} than \( B \).
+	\begin{enumerate}
+		\item
+		      Conclude from Theorem 9.1 that every uncountable set has greater cardinality than \( \mathbb{Z}_{+} \).
+		      
+		\item
+		      Show that if \( A \) has greater cardinality than \( B \),
+		      and if \( B \) has greater cardinality than \( C \),
+		      then \( A \) has greater cardinality than \( C \).
+		      
+		\item
+		      Find a sequence \( A_1,A_2,\cdots \) of infinite sets, such that for each
+		      \( n \in \mathbb{Z}_{+} \),
+		      the set \( A_{n+1} \) has greater cardinality than \( A_n \).
+		      
+		\item
+		      Find a set that for every \( n \) has greater cardinality than \( A_n \).
+	\end{enumerate}
+\end{exe}
+\begin{sol}\leavevmode \par
+	\fbox{(a)}
+	Let \( A \) be a uncountable set, and \( B \) a countable set.
+	Theorem 9.1 tells us that \( B \hookrightarrow A \)
+	while definition of uncountable set implies
+	\( \bij{A}{B} = \emptyset \).
+	Thus, contrapositive of Schroeder-Bernstein theorem gives
+	\( \inj{A}{B} = \emptyset \),
+	from which we conclude the result.
+	
+	\fbox{(b)}
+	\S2 Exercise 4 gives \( C \hookrightarrow A \),
+	and contrapositive of that Exercise also implies
+	\( \inj{A}{C} = \emptyset \).
+	Thus, the result follows.
+	
+	\fbox{(c)}
+	Define \( A_n \) by the formula below:
+	\begin{eqnarray*}
+		A_1&=&A,\\
+		A_n&=&\mathcal{P}(A_{n-1})
+	\end{eqnarray*}
+	for all \( n >1 \).
+	It is easy to check that principle of recursion definition applies for this formula,
+	and hence \( A_n \) is unique defined.
+	
+	\( A_{n+1} \) has greater cardinality than \( A_n \)
+	since we see
+	\( A_n \hookrightarrow \mathcal{P}(A_n) = A_{n+1} \)
+	while there holds 
+	\( \inj{\mathcal{P}(A_n)}{A_n} = \emptyset \)
+	by Theorem 7.8.
+	
+	\fbox{(d)}
+	Define
+	\( A^{\ast}:=\mathcal{P}(\bigcup_{n\in \mathbb{Z}_{+}}A_n)\),
+	and repeat the same argument.
+	\qed\end{sol}
+
+\begin{exe}
+	Show that \( \mathcal{P}(\mathcal{\mathbb{Z}_{+}}) \) and \( \mathbb{R} \) have the same cardinality.
+\end{exe}
+\begin{sol}
+	It is easy to see, by considering decimal expansion for real numbers, that
+	\begin{equation}\label{preeq:RandPZ}
+		[0,1)
+		\hookrightarrow
+		\left\{ 0,1,2,\cdots,8,9 \right\}^{\omega}
+		\sim
+		\left\{ 0,1 \right\}^{\omega}
+		\hookrightarrow
+		[0,1).
+	\end{equation}
+	For instance, using the fact that any member \( x \) of \( [0,1) \) can be uniquely written, if we limit the expression to those not having infinite 9's tail, as
+	\begin{equation*}
+		x = 0. x_1 x_2 x_2 \cdots,
+	\end{equation*}
+	where \( x_i \in \left\{ 0,1,2,\cdots,8,9 \right\} \)
+	for every \( i \in \mathbb{Z}_{+} \),
+	we can define a injection
+	\( \iota:[0,1) \to \left\{ 0,1,2,\cdots,8,9 \right\}^{\omega}\)
+	via
+	\begin{equation*}
+		\iota (x) := (x_i)_{ i \in \mathbb{Z}_{+}}.
+	\end{equation*}
+	Since we can deduce from Schroeder-Bernstein theorem that
+	all the sets at (\refeq{preeq:RandPZ}) have the same cardinality,
+	it remains to show
+	\( [0,1) \sim \mathbb{R} \),
+	and 
+	\( \left\{ 0,1,2,\cdots,8,9 \right\}^{\omega}
+	\sim
+	\left\{ 0,1 \right\}^{\omega}
+	\sim
+	\mathcal{P}(\mathbb{Z}_{+}) \).
+	
+	We first work on the former.
+	We claim
+	\begin{equation*}
+		\mathbb{R}
+		\sim
+		(-1,1)
+		\sim
+		(0,1)
+		\sim
+		[0,1).
+	\end{equation*}
+	For the first equivalence, see \S3 Exercise 10;
+	for  the second consider a function \( f:(-1,1)\to(0,1) \) given by
+	\begin{equation*}
+		f(x):=\frac{1}{2}x +1;
+	\end{equation*}
+	for the third, verify that a function
+	\( g:[0,1)\to (0,1) \) 
+	given by
+	\begin{equation*}
+		g(x):=\begin{cases}
+			\frac{1}{2} & \;\mathrm{:}\; x= 0                                                       \\
+			\frac{x}{2} & \;\mathrm{:}\; \Exists{n\in \mathbb{Z}_{+}}\left[ x=\frac{1}{2^n} \right] \\
+			x           & \;\mathrm{:}\; \text{otherwise}
+		\end{cases}
+	\end{equation*}
+	is bijective.
+	
+	For the latter, we have, as we have  repeatedly seen,
+	\( \mathcal{P}(\mathbb{Z}_{+})
+	\sim
+	\mathbb{Z}_{+}^{\omega}
+	\sim
+	\left\{ 0,1 \right\}^{\omega}
+	\)
+	and
+	\begin{equation*}
+		\left\{ 0,1 \right\}^{\omega}
+		\hookrightarrow
+		\left\{ 0,1,2,\cdots,8,9 \right\}^{\omega}
+		\hookrightarrow
+		\mathbb{Z}_{+}^{\omega},
+	\end{equation*}
+	which yield, by Schroeder-Bernstein theorem, that
+	\begin{equation*}
+		\left\{ 0,1,2,\cdots,8,9 \right\}^{\omega}
+		\sim
+		\mathbb{Z}_{+}^{\omega}
+		\sim
+		\mathcal{P}(\mathbb{Z}_{+}).
+	\end{equation*}
+	
+	Thus, we conclude
+	\( \mathbb{R} \sim \mathcal{P}(\mathbb{Z}_{+}) \).
+	\qed\end{sol}
+
+\end{document}

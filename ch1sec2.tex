@@ -1,0 +1,849 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{mystyle}
+\usepackage{commands}
+\mathtoolsset{showonlyrefs=true}
+
+\begin{document}
+\section{Functions}
+% initialize exercise numbering 
+\setcounter{exe}{0}
+
+\begin{rem}[Empty Function]
+	You can skip this note.
+	Nothing proved in this note is used when working on exercises in \S2.
+	(We need the concept of empty function to let several exercise make sense; principle of recursive definition is one such example; see \S8 Exercise 8, \S10 Exercise 10.)
+	We consider here whether we are able to define a function from or to empty set \( \emptyset \).
+	Remembering a function is defined to be a certain subset of the catersian product of two sets,
+	the question is reduced to the one that "could empty set qualify as a function, and if so, in what cases?"
+	The answer is partially "yes";
+	there exist a unique function from \( \emptyset \) to \( \emptyset \),
+	and a unique function from \( \emptyset \) to nonempty set,
+	each called an \textit{empty function},
+	but no way could there be a function from nonempty set to \( \emptyset \).
+	
+	First of all, note that the definition of function is expressed as follows:
+	\begin{equation*}
+		f\in \func{X}{Y}
+		\equiv
+		\left[ f \subset X \times Y \right]
+		\wedge
+		\Forall{ x\in X }
+		\unique{ y\in Y }
+		\left[ (x,y)\in f \right],
+	\end{equation*}
+	where \( X \)
+	and
+	\( Y \)
+	are sets, of course.
+	Suppose \( X=\emptyset \).
+	We claim \( \func{\emptyset}{Y}=\{\emptyset\} \).
+	In fact, we see that
+	\begin{equation*}
+		f \subset \emptyset \times Y
+		\equiv
+		f = \emptyset,
+	\end{equation*}
+	and that the statements
+	\begin{equation*}
+		\Forall{ x\in X }
+		\unique{ y\in Y }
+		\left[ (x,y)\in f \right]
+		\equiv
+		\Forall{ x }
+		\left[ x \in \emptyset
+			\Rightarrow
+			\unique{ y\in Y } \left[ (x,y)\in \emptyset \right]
+			\right]
+	\end{equation*}
+	are true since the latter is vacuously true.
+	Note that this argument is valid if \( Y=\emptyset \).
+	Thus, the claim follows.
+	
+	On the other hand, suppose \( X \neq \emptyset \) and \( Y = \emptyset \).
+	We now insist \( \func{X}{\emptyset}= \emptyset \).
+	It suffices to show that \( f = \emptyset \) does not qualify as a function.
+	Indeed, the statements
+	\begin{equation*}
+		\Forall{ x\in X }
+		\unique{ y\in Y }
+		\left[ (x,y)\in f \right]
+		\equiv
+		\Forall{ x\in X }
+		\unique{ y }
+		\left[ y\in \emptyset \wedge (x,y)\in \emptyset \right]
+	\end{equation*}
+	are both false since, in general, there holds
+	\begin{equation*}
+		\Forall{ z }\left[ z \notin \emptyset \right]
+	\end{equation*}
+	and so, \( y\in \emptyset \) is false.
+	\qed\end{rem}
+
+
+\begin{rem}[Equivalent conditions for injectivity and surjectivity]
+	We summarize here some equivalent expressions for injectivity and surjectivity,
+	which we frequently exploit for establishing results that are related to those property.
+	Let
+	\( f \in \func{A}{B} \).
+	
+	For injectivity, we claim that
+	\begin{eqnarray}
+		f \in \inj{A}{B}
+		&\equiv& 
+		\Forall{ a_1 \in A}
+		\Forall{ a_2 \in A}
+		\left[ a_1 \neq a_2 \Rightarrow f(a_1) \neq  f(a_2) \right]\notag\\
+		&\equiv&
+		\Forall{ a_1 \in A}
+		\Forall{ a_2 \in A}
+		\left[ f(a_1) = f(a_2) \Rightarrow a_1 =a_2 \right]\notag\\
+		&\equiv&
+		\Forall{ a \in A }
+		\Forall{ A_0 \subset A }
+		\left[ f(a)\in f(A_0) \Leftrightarrow a \in A_0 \right]\label{note:equiv:inj1}\\
+		&\equiv&
+		\Forall{ a \in A }
+		\Forall{ A_0 \subset A }
+		\left[ f(a)\notin f(A_0) \Leftrightarrow a \notin A_0 \right].
+	\end{eqnarray}
+	First two equivalence are obvious by definition.
+	We prove the third.
+	Suppose 
+	\( f \in \inj{A}{B} \).
+	Let
+	\( a \in A \)
+	and let
+	\( A_0 \)
+	be a subset of
+	\( A \).
+	It is obvious that  we have
+	\begin{equation*}
+		a \in A_0 \Rightarrow f(a)\in f(A_0).
+	\end{equation*}
+	So, suppose 
+	\( f(a)\in f(A_0) \).
+	Then, there exists
+	\( x \in A_0 \)
+	such that
+	\( f(a) = f(x) \).
+	But injectivity gives
+	\( x=a \)
+	and so
+	\( a \in A_0\).
+	Conversely, suppose (\ref{note:equiv:inj1}) holds.
+	Let
+	\( a,a' \in A \)
+	with
+	\( f(a) = f(a') \).
+	Setting
+	\( A_0 := \{a'\} \)
+	in (\ref{note:equiv:inj1})
+	yields
+	\( a\in \{a'\} \),
+	which means
+	\( a=a' \)
+	establishing the injectivity.
+	
+	For surjectivity, we insist that
+	\begin{eqnarray*}
+		f \in \surj{A}{B}
+		&\equiv&
+		f(A)=B\\
+		&\equiv&
+		\Forall{b \in B}
+		\Exists{ a \in A}
+		\left[ f(a)=b \right]\\
+		&\equiv&
+		\Forall{b \in B}
+		\left[f ^{-1}(b) \neq \emptyset \right].
+	\end{eqnarray*}
+	First equivalence is due to the definition.
+	Second owes to the definition of image,
+	third to that of preimage.
+	
+	We can see more equivalent conditions as we proceed in this section.
+	\qed\end{rem}
+
+\begin{rem}[Injectivity of Empty function]
+	Let \( f_{\emptyset}:\emptyset \to Y \)
+	be an empty function.
+	\( f_{\emptyset} \) is injective, but not surjective.
+	In Fact, we see that
+	injectivity is vacuously satisfied, and that there holds
+	\begin{equation*}
+		\Forall{y \in Y}
+		\left[f_{\emptyset}^{-1}(y) = \emptyset \right]
+	\end{equation*}
+	since, in general, preimage is a subset of the domain of a function.
+	Thus, \( f_{\emptyset} \) is not surjective.
+	\qed\end{rem}
+
+\begin{exe}
+	Let \( f:A\to B \).
+	Let \( A_0\subset A \) and \( B_0 \subset B \).
+	\begin{enumerate}
+		\item
+		      Show that \( A_0 \subset f ^{-1}(f(A_0)) \)
+		      and that equality holds if \( f \) is injective.
+		      
+		\item
+		      Show that \( f(f^{-1}(B_0)) \subset B_0 \)
+		      and that equality holds if \( f \) is surjective.
+	\end{enumerate}
+\end{exe}\begin{sol}\leavevmode \par
+	\fbox{(a)}
+	Let
+	\(a \in A_0\).
+	It follows that 
+	\(f(a) \in f(A_0)\),
+	and that
+	\(f ^{-1} \left( f(a) \right) \subset f^{-1} \left( f(A_0)\right)\).
+	It is clear that
+	\(a \in f  ^{-1}\left( f(a) \right)\),
+	and so
+	\(a \in f  ^{-1}\left( f(A_0) \right)\).
+	Thus,
+	\( A_0 \subset f ^{-1}(f(A_0)) \).
+	
+	We prove the second implication.
+	In general, we trivially have
+	\begin{equation*}
+		\Forall{a \in f ^{-1}(f(A_0))}
+		\Exists{a' \in A_0}
+		\left[ f(a) = f(a')\right].
+	\end{equation*}
+	So, if we assume 
+	\(f \in \inj{A}{B}\),
+	then
+	\(a = a' \in A_0\).
+	Thus, 
+	\( f ^{-1}(f(A_0)) \subset A_0 \).
+	
+	\fbox{(b)}
+	In general, we have,
+	\begin{equation*}
+		\Forall{b \in f \left( f ^{-1}(B_0) \right)}
+		\Exists{a \in f ^{-1}(B_0)}
+		\left[ f(a) = b\right],
+	\end{equation*}
+	which yields, by definition of preimage,
+	\(b = f(a) \in B_0\).
+	Thus,
+	\(f \left( f ^{-1}(B_0) \right) \subset B_0\).
+	
+	Suppose
+	\( f \in \surj{A}{B} \).
+	Then we have
+	\begin{equation*}
+		\Forall{b \in B_0 }
+		\Exists{a \in f ^{-1}(B_0)}
+		\left[ f(a) = b \right].
+	\end{equation*}
+	Hence,
+	\(b  = f(a) \in f \left( f ^{-1}(B_0) \right)\).
+	\qed\end{sol}
+
+\begin{rem}[Another equivalent condition for injectivity and surjectivity ]
+	We prove the converse of each of second implication of Exercise 1(a) and (b).
+	Let
+	\( f\in \func{A}{B}\),
+	and let
+	\( A_0 \)
+	be a subset of \( A \),
+	and
+	\( B_0\)
+	be a subset of \( B \).
+	
+	Suppose
+	\( A_0 = f ^{-1}(f(A_0)) \)
+	holds.
+	For
+	\(a_1, a_2 \in A_0\)
+	with
+	\(f(a_1) = f(a_2)\),
+	we deduce
+	\begin{eqnarray*}
+		\left\{ a_1 \right\}
+		&=& f ^{-1}\left( f(a_1) \right)\\
+		&=& f ^{-1}\left( f(a_2) \right)\\
+		&=& \left\{ a_2 \right\}.
+	\end{eqnarray*}
+	Thus,
+	\( f \)
+	is injective.
+	
+	To see the converse of Exercise 2(b),
+	Set \( B_0 := B \)
+	and obtain
+	\(f \left( f ^{-1}(B) \right) = B\).
+	Thus,
+	\(f\)
+	is surjective.
+	\qed\end{rem}
+
+\begin{exe}
+	Let \( f:A\to B \) and 
+	let \( A_i\subset A \) and \( B_i \subset B \)
+	for \( i=0 \) and \( i=1 \).
+	Show that \( f ^{-1} \) preserves inclusions, unions , intersections,
+	and differences of sets;
+	\begin{enumerate}
+		\item
+		      \( B_0 \subset B_1 \Rightarrow f ^{-1}(B_0) \subset f ^{-1}(B_1) \).
+		      
+		\item
+		      \( f ^{-1}(B_0 \cup B_1) = f ^{-1}(B_0)\cup f ^{-1}(B_1) \).
+		      
+		\item
+		      \( f ^{-1}(B_0 \cap B_1) = f ^{-1}(B_0)\cap f ^{-1}(B_1) \).
+		      
+		\item
+		      \( f ^{-1}(B_0 \setminus B_1) = f ^{-1}(B_0)\setminus f ^{-1}(B_1) \).\leavevmode \par
+		      \noindent\text{Show that \( f \) preserves inclusions and unions only;}
+		      
+		\item
+		      \( A_0 \subset A_1 \Rightarrow f(A_0) \subset f(A_1) \).
+		      
+		\item
+		      \( f(A_0 \cup A_1) = f(A_0)\cup f(A_1) \).
+		      
+		\item
+		      \( f(A_0 \cap A_1) \subset f(A_0)\cap f(A_1) \);
+		      show that equality holds if \( f \) is injective.
+		      
+		\item
+		      \( f(A_0 \setminus A_1) \supset f(A_0)\setminus f(A_1) \);
+		      show that equality holds if \( f \) is injective.
+	\end{enumerate}
+\end{exe}\begin{sol}
+	We can safely omit and actually do Exercise 2(b), (c) and (f)
+	since we are anyway required to show the generalized versions of them in Exercise 3.
+	The proof there of course proves the (b), (c), (f) of Exercise 2.
+	
+	Let
+	\( f \in \func{A}{B} \),
+	and let
+	\( A_i \)
+	and
+	\( B_i\)
+	be subsets of \( A \)
+	and
+	\( B\),
+	respectively,
+	for
+	\( i=0,1 \).
+	
+	\fbox{(a)}
+	Let
+	\( a\in f ^{-1}(B_0) \).
+	By definition and hypothesis, we have
+	\( f(a) \in B_0 \subset B_1\),
+	which means
+	\( a \in f ^{-1}(B_1) \).
+	Thus,
+	\( f ^{-1}(B_0) \subset  f ^{-1}(B_1)\).
+	
+	\fbox{(d)}
+	Observe
+	\begin{eqnarray*}
+		a \in f ^{-1}(B_0 \setminus B_1)
+		&\equiv&
+		f(a) \in B_0 \setminus B_1 \\
+		&\equiv&
+		f(a) \in B_0 \wedge \neg \left( f(a) \in B_1 \right)\\
+		&\equiv&
+		a \in  f ^{-1}(B_0) \wedge \neg \left( a \in  f ^{-1}(B_1) \right)\\
+		&\equiv&
+		a \in  f ^{-1}(B_0) \setminus f ^{-1}(B_1),
+	\end{eqnarray*}
+	which completes the proof.
+	
+	\fbox{(e)}
+	Let
+	\( b \in f(A_0) \).
+	Ther exists
+	\( a \in A_0 \)
+	such that
+	\( b=f(a) \).
+	Since hypothesis gives
+	\( a \in A_1 \),
+	we conclude
+	\( b = f(a) \in f(A_1) \).
+	Thus,
+	\( f(A_0) \in f(A_1) \).
+	
+	\fbox{(g)}
+	Since
+	\( A_0 \cap A_1 \subset A_0 \)
+	and
+	\( A_0 \cap A_1 \subset A_1 \),
+	(e) yields
+	\( f(A_0 \cap A_1) \subset f(A_0) \)
+	and
+	\( f(A_0 \cap A_1) \subset f(A_1) \),
+	and so
+	\( f(A_0 \cap A_1) \subset f(A_0) \cap f(A_1)\).
+	
+	We proceed to proving the second claim.
+	In general, we have
+	\begin{equation*}
+		\Forall{ b\in f(A_0)\cap f(A_1) }
+		\Exists{ a_i \in A_i}
+		\left[ b = f(a_i) \right]
+	\end{equation*}
+	for \( i=0,1 \).
+	So, if we assume
+	\( f \in \inj{A}{B} \),
+	then
+	\( b = f(a_0) = f(a_1) \)
+	implies
+	\( a_0 = a_1 \).
+	Setting
+	\( a:=a_0(=a_1) \),
+	we see that
+	\( a \in A_0 \cap A_1 \)
+	and that
+	\( b = f(a) \in f(A_0 \cap A_1) \).
+	This establishes the claim.
+	
+	\fbox{(h)}
+	We generally see that
+	\begin{eqnarray}
+		b \in f(A_0)\setminus f(A_1)
+		&\equiv&
+		\Exists{a}
+		\left[
+			a\in A_0
+			\wedge
+			f(a)=b
+			\wedge
+			f(a)\in f(A_0)
+			\wedge
+			f(a) \notin f(A_1)
+			\right]\notag\\
+		&\equiv&
+		\Exists{a}
+		\left[
+			a\in A_0
+			\wedge
+			f(a)=b
+			\wedge
+			f(a) \notin f(A_1)
+			\right]\notag\\
+		&\Rightarrow&
+		\Exists{a}
+		\left[
+			a\in A_0
+			\wedge
+			f(a)=b
+			\wedge
+			a \notin A_1
+			\right]\label{equiv:sec2Ex2h1}\\
+		&\equiv&
+		b \in f(A_0 \setminus A_1)\notag,
+	\end{eqnarray}
+	where we note that, in general, there holds
+	\begin{equation}
+		\left[ f(x)\notin f(P) \Rightarrow x \notin P  \right]
+		\equiv
+		\left[ x \in P \Rightarrow f(x)\in f(P) \right]\label{equiv:sectionEx2h2},
+	\end{equation}
+	and that RHS is obviously true.
+	
+	Next we show the second implication.
+	If we assume that 
+	\( f \)
+	is injective,
+	or equivalently, if we assume 
+	\begin{equation*}
+		f(x)\notin f(P) \Leftrightarrow x \notin P,
+	\end{equation*}
+	holds for any subset \( P \) of \( B \), then we can replace "\( \Rightarrow \)" with "\( \equiv \)"
+	at (\ref{equiv:sec2Ex2h1}),
+	which proves the result.
+	\qed\end{sol}
+
+\begin{rem}[Yet another equivalent condition for injectivity]
+	We prove here the converse of second implications of Exercise 2(g) and (h).
+	In other words, we claim that 
+	\begin{eqnarray}
+		f \in \inj{A}{B}
+		&\equiv&
+		\Forall{A_0 \subset A }
+		\Forall{A_1 \subset A }
+		\left[ f(A_0 \cap A_1) = f(A_0) \cap f(A_1) \right]\label{note:equiv:2}\\
+		&\equiv&
+		\Forall{A_0 \subset A }
+		\Forall{A_1 \subset A }
+		\left[ f(A_0)\setminus f(A_1) = f(A_0 \setminus A_1) \right]\label{note:equiv:3}.
+	\end{eqnarray}
+	We have already proved
+	\( \left[ f \in \inj{A}{B} \Rightarrow (\ref{note:equiv:2})\right] \)
+	and
+	\( \left[ f \in \inj{A}{B} \Rightarrow (\ref{note:equiv:3})\right] \).
+	So, we establish each of the converse.
+	Let
+	\( a_0,a_1 \in A \)
+	with
+	\( f(a_0) = f(a_1) \).
+	If we assume (\ref{note:equiv:2}),
+	then
+	\( f(\left\{ a_0 \right\} \cap \left\{ a_1 \right\}) \neq \emptyset \)
+	and so
+	\( \left\{ a_0 \right\} = \left\{ a_1 \right\} \);
+	if we assume (\ref{note:equiv:3}),
+	then
+	\( f(\left\{ a_0 \right\} \setminus \left\{ a_1 \right\}) = \emptyset \)
+	and so
+	\( \left\{ a_0 \right\} \setminus \left\{ a_1 \right\} = \emptyset \),
+	which means
+	\( \left\{ a_0 \right\} = \left\{ a_1 \right\} \).
+	\qed\end{rem}
+
+\begin{exe}
+	Show that (b), (c), (f), and (g) of Exercise 2 hold for arbitrary unions and intersections.
+\end{exe}\begin{sol}
+	Let
+	\( f \in \func{A'}{B'} \),
+	and let
+	\( A \)
+	be a subset of
+	\( A' \)
+	for all
+	\( A \in \mathcal{A} \),
+	and 
+	\( B\)
+	be a subset of
+	\( B' \)
+	for all
+	\( B \in \mathcal{B} \).
+	
+	\fbox{(b)}
+	Observe that
+	\( \bigcup_{B \in \mathcal{B}} B \supset B\)
+	for all 
+	\( B \in \mathcal{B} \),
+	and that, by Exercise 2(a),
+	\(f^{-1} \left( \bigcup_{B \in \mathcal{B}} B \right)
+	\supset f^{-1} \left( B \right)\)
+	for all 
+	\( B \in \mathcal{B} \),
+	which yields
+	\(f^{-1} \left( \bigcup_{B \in \mathcal{B}} B \right)
+	\supset 
+	\bigcup_{B \in \mathcal{B}} f^{-1} \left( B \right)\).
+	On the other hand, we have, in general, 
+	\begin{equation*}
+		\Forall{a\in
+			f^{-1} \left( \bigcup_{B \in \mathcal{B}} B \right)
+		}
+		\Exists{B_0 \in \mathcal{B}}
+		\left[ f(a)\in B_0 \right],
+	\end{equation*}
+	from which it follows that
+	\(
+	a \in f^{-1} \left( f(a) \right)
+	\subset
+	f ^{-1}(B_0)
+	\subset
+	\bigcup_{B \in \mathcal{B}} f ^{-1} \left( B \right).
+	\)
+	Thus, the result follows.
+	
+	\fbox{(c)}
+	As we have done in (b), we deduce
+	\(f^{-1} \left( \bigcap_{B \in \mathcal{B}} B \right)
+	\subset 
+	\bigcap_{B \in \mathcal{B}} f^{-1} \left(  B \right)
+	\).
+	We show the opposite inclusion.
+	Let
+	\(a \in \bigcap_{B \in \mathcal{B}} f^{-1} \left(  B \right)\).
+	Definition of intersection gives
+	\(a \in f^{-1} \left(  B \right)\)
+	for all
+	\(B \in \mathcal{B}\),
+	or equivalently
+	\(f(a) \in B\)
+	for all
+	\(B \in \mathcal{B}\).
+	This means
+	\( f(a) \in \bigcap_{B \in \mathcal{B}} B \),
+	and hence
+	\( a \in f^{-1} \left( \bigcap_{B \in \mathcal{B}} B \right) \).
+	Thus,
+	\(
+	\bigcap_{B \in \mathcal{B}} f^{-1} \left(  B \right)
+	\subset 
+	f^{-1} \left( \bigcap_{B \in \mathcal{B}} B \right)
+	\).
+	
+	\fbox{(f)}
+	As before, we deduce that 
+	\(f \left( \bigcup_{A \in \mathcal{A}} A \right)
+	\supset 
+	\bigcup_{A \in \mathcal{A}} f \left(  A \right)
+	\).
+	
+	On the other hand,
+	we see, in general, that  
+	\begin{equation*}
+		\Forall{b \in
+			f \left(\bigcup_{A \in \mathcal{A}} A \right)
+		}
+		\Exists{ A_0 \in \mathcal{A} }
+		\Exists{ a \in A_0 }
+		\left[ b = f(a) \right],
+	\end{equation*}
+	and so
+	\(b = f(a) \in f(A_0) \subset \bigcup_{A \in \mathcal{A}} f \left(  A \right)\).
+	
+	\fbox{(g)}
+	The fact
+	\(\bigcap_{A \in \mathcal{A}} A \subset A\)
+	for all
+	\(A \in \mathcal{A}\)
+	implies 
+	\(f \left( \bigcap_{A \in \mathcal{A}} A \right)
+	\subset 
+	f \left(  A \right)
+	\).
+	The same argument as Exercise 2 shows the equality holds
+	if \( f \) is injective.
+	\qed\end{sol}
+
+\begin{exe}
+	Let \( f:A \to B \)
+	and \( g:B \to C \).
+	\begin{enumerate}
+		\item
+		      If \( C_0 \subset C \),
+		      show that
+		      \( (g \circ f)^{-1}(C_0) = f ^{-1} \left( g ^{-1}(C_0) \right) \).
+		      
+		\item
+		      If \( f \) and \( g \) are injective, show that \( g \circ f \) is injective.
+		      
+		\item
+		      If \( g \circ f \) is injective, what can you say about injectivity of \( f \) and \( g \).
+		      
+		\item
+		      If \( f \) and \( g \) are surjective, show that \( g \circ f \) is surjective.
+		      
+		\item
+		      If \( g \circ f \) is surjective, what can you say about surjectivity of \( f \) and \( g \).
+		      
+		\item
+		      Summarize your answers to (b)--(e) in the form of a theorem.
+	\end{enumerate}
+\end{exe}\begin{sol}
+	Let
+	\( f \in \func{A}{B} \)
+	and
+	\( g \in \func{B}{C} \).
+	
+	\fbox{(a)}
+	Observe that 
+	\begin{eqnarray*}
+		(g \circ f)^{-1}(C_0)
+		&=&	\left\{ a \in A \pipe
+		(g \circ f)(a) \in C_0
+		\right\}\\
+		&=&	\left\{ a \in A \pipe
+		f(a) \in g^{-1}(C_0)
+		\right\}\\
+		&=& f ^{-1} \left( g ^{-1}(C_0) \right).
+	\end{eqnarray*}
+	
+	\fbox{(b)}
+	Suppose
+	\( f \)
+	and
+	\( g \)
+	are injective.
+	
+	For any
+	\( a,a' \in A \)
+	with
+	\( a \neq a' \),
+	injectivity gives
+	\( f(a)\neq f(a') \),
+	and
+	\( g(f(a)) \neq g(f(a')) \).
+	Hence,
+	\( g \circ f \in \inj{A}{C}\).
+	
+	\fbox{(c)}
+	Suppose
+	\( g \circ f \in \inj{A}{C}\).
+	We claim in this case that
+	\( f \) 
+	is injective.
+	For \( a,a' \in A \)
+	with
+	\( f(a) = f(a') \),
+	we have
+	\( g \circ f(a) = g \circ f(a') \),
+	which means, by assumption, 
+	\( a=a' \).
+	Thus,
+	\( f \)
+	is injective.
+	
+	\fbox{(d)}
+	Suppose
+	\( f \)
+	and
+	\( g \)
+	are surjective.
+	In general, (a) implies that for every
+	\( c \in C \),
+	we have
+	\( \left( g \circ f \right)^{-1}(c)
+	= \left( f^{-1} \circ g^{-1}(c) \right)
+	= \left( f^{-1}\left( g^{-1}(c) \right) \right)
+	\).
+	Assumption then yields
+	\( g^{-1}(c) \neq \emptyset \)
+	and
+	\( f^{-1}\left( g^{-1}(c) \right) \neq \emptyset \).
+	Thus, 
+	\( g \circ f \)
+	is surjective.
+	
+	\fbox{(e)}
+	Suppose \( g \circ f \in \surj{A}{C}\).
+	We insist that \( g \) is surjective.
+	For every
+	\( c \in C \),
+	assumption implies that 
+	\( \left( g \circ f \right)^{-1}(c) = f^{-1}\left( g^{-1}(c) \right)\)
+	is nonempty,
+	which necessarily means that
+	\( g^{-1}(c) \neq \emptyset \).
+	Thus,
+	\( g \) is surjective.
+	
+	\fbox{(f)}
+	We summarize (a)-(e) to state the following:
+	\begin{thm}
+		Let
+		\( f \in \func{A}{B} \)
+		and
+		\( g \in \func{B}{C} \).
+		If both
+		\( f \)
+		and
+		\( g \)
+		are injective (or surjective),
+		so is
+		\( g \circ f \).
+		Conversely,
+		If
+		\( g \circ f \)
+		is  injective,
+		so is
+		\( f \);
+		and if 
+		\( g \circ f \)
+		is  surjective,
+		so is
+		\( g \).
+		\qed\end{thm}\end{sol}
+
+\begin{exe}
+	In general, let us denote the \textbf{\textit{identity function}}
+	for a set \( C \) by \( i_C \).
+	That is, define \( i_C:C\to C \) to be the function given by the rule
+	\( i_C(x)=x \) for all \( x \in C \).
+	Given \( f:A\to B \), we say that
+	a function \( g:B \to A \) is a \textbf{\textit{left inverse}} for \( f \)
+	if \( g \circ f = i_A \);
+	and we say that \( h:B \to A \)  is a \textbf{\textit{right inverse}} for \( f \)
+	if \( f \circ h = i_B \).
+	\begin{enumerate}
+		\item
+		      Show that if \( f \) has a left inverse, \( f \) is injective;
+		      and if \( f \) has a right inverse, \( f \) is surjective.
+		      
+		\item
+		      Give an example of a function that has a a left inverse but no right inverse.
+		      
+		\item
+		      Give an example of a function that has a a right inverse but no left inverse.
+		      
+		\item
+		      Can a function have more than one left inverse? More than one right inverse?
+		      
+		\item
+		      Show that if \( f \) has both a left inverse \( g \) and a right inverse \( h \),
+		      then \( f \) is bijective and \( g=h=f ^{-1} \).
+	\end{enumerate}
+\end{exe}\begin{sol}\leavevmode \par
+	\fbox{(a)}
+	This is a direct  consequence of Exercise 4(c) and (e).
+	
+	\fbox{(b)}
+	A function given by
+	\begin{equation*}
+		f:\mathbb{R}_{+} \ni x \mapsto \exp{x} \in \mathbb{R}_{+}
+	\end{equation*}
+	admits a left inverse
+	\begin{equation*}
+		\ell : \mathbb{R}_{+} \to \mathbb{R}_{+} :
+		x \mapsto 	\begin{cases}
+			1      & \mathrm{\colon\;} x \in (0,1) \\
+			\log x & \mathrm{\colon\;} x > 1,
+		\end{cases}
+	\end{equation*}
+	but no right inverse.
+	
+	\fbox{(c)}
+	A function given by
+	\begin{equation*}
+		g:\mathbb{R} \to \left\{ 0,1 \right\}:
+		x \mapsto \begin{cases}
+			1 & \mathrm{\colon\;} x \in \mathbb{Q}    \\
+			0 & \mathrm{\colon\;} x \notin \mathbb{Q}
+		\end{cases}
+	\end{equation*}
+	has a right inverse
+	\begin{equation*}
+		r:\left\{ 0,1 \right\}\to \mathbb{R}:
+		x \mapsto \begin{cases}
+			1 & \mathrm{\colon\;} x =1  \\
+			e & \mathrm{\colon\;} x =0,
+		\end{cases}
+	\end{equation*}
+	but no left inverse.
+	
+	\fbox{(d)}
+	Yes. For instance, setting
+	\( \ell :=1/2 \) on \( [0,1) \) in (b),
+	and
+	\( r(0) := \pi \) in (c)
+	does not spoil their inverse property.
+	
+	\fbox{(e)}
+	Apply Lemma 2.1.
+	\qed\end{sol}
+
+\begin{exe}
+	Let \( f:\mathbb{R} \to \mathbb{R} \) be the function \( f(x)=x^3 -x \).
+	By restricting the domain and range of \( f \) appropriately,
+	obtain from \( f \) a bijective function \( g \).
+	Draw the graphs of \( g \) and \( g ^{-1} \).
+	There are several possible choices for \( g \).)
+\end{exe}\begin{sol}
+	Consider a strictly increasing function given by
+	\begin{equation*}
+		g : (1,\infty) \ni x \mapsto x^3 -x \in \mathbb{R}_{+}.
+	\end{equation*}
+	\( g \)
+	possesses a inverse
+	\begin{equation*}
+		g ^{-1}: \mathbb{R}_{+} \ni x \mapsto \frac{1}{x^3-x} \in (1,\infty).
+	\end{equation*}
+	The drawing part is left to readers.
+	\qed\end{sol}
+\end{document}

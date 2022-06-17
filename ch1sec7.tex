@@ -1,0 +1,750 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{mystyle}
+\usepackage{commands}
+\mathtoolsset{showonlyrefs=true}
+
+\begin{document}
+\section{Countable and Uncountable Sets}
+\setcounter{exe}{0}
+Let us introduce new notations "\( \sim \)" and "\( \hookrightarrow \)".
+
+Because we study cardinality through bijection,
+we are repeatedly in need to write "there exists a bijection from...\! to...".
+Let us introduce a notation to omit this and thus simplify our description:
+let \( X \) be a set; define a relation on \( \mathcal{P}(X) \) by setting
+\( A \sim B \) if \( A \) and \( B \) are in bijective correspondence.
+It is easy to check that this is well-defined and is an equivalence relation.
+This observation invites us to the idea of classifying sets based on their cardinality.
+This idea is developed as we proceed;
+see \S7 Exercise 6, \S9 Exercise 7, \S10 Exercise 11.
+Note that \( A \sim B \) if and only if \( \bij{A}{B} \neq \emptyset \).
+
+Although the concept of cardinality is defined in terms of of bijection,
+it is quite often hard to verify the existence of a desired bijective function between sets of concern.
+That is why we have investigated some alternative conditions that allow us to say something about cardinality without explicit mention of bijection.
+One of them is the one given in terms of the existence of injection, such as \S6 Corollary 6.7, \S Theorem 7.1.
+However, it turns out that, as Schroeder-Bernstein theorem (Exercise 6) implies,
+injection is indeed a very good substituting tool to explore with.
+(Moreover, several concepts related to cardinality are formulated in terms of injection rather than bijection; see \S9 Exercise 7, \S10 Exercise).
+So, it is natural to have a notation that expresses the existence of injection;
+we write \( A \hookrightarrow B \) if there exists an injection from \( A \) to \( B \),
+that is, if \( \inj{A}{B}\neq \emptyset \).
+
+\begin{prp}[Cardinality of the set of functions]\label{prop:bij-card}
+	\leavevmode \par \noindent
+	Let \( A,B,C, \) etc.\! be sets. We claim that we have
+	\begin{enumerate}
+		\item \label{enu:power_card_func}
+		      \( \mathcal{P}(A) \sim \func{A}{\left\{ 0,1 \right\}}\).
+		      
+		\item \label{enu:card_func_augment}
+		      \( \func{A\times B}{C} \sim  \func{A}{\func{B}{C}}\).
+		      
+		\item \label{enu:func_card_func}
+		      \( A \sim A' \wedge B \sim B' \Rightarrow \func{A}{B}\sim \func{A'}{B'} \).
+		      
+		\item \label{enu:power_card_power}
+		      \( A \sim A' \Rightarrow \mathcal{P}(A) \sim \mathcal{P}(A') \).
+	\end{enumerate}
+\end{prp}
+\begin{prf}
+	Consider \ref{enu:power_card_func}.
+	Let \( \tau \) be a function given by
+	\begin{equation*}
+		\tau: \mathcal{P}(A) \ni B \mapsto \in 1_{B} \in \func{A}{\left\{ 0,1 \right\}},
+	\end{equation*}
+	where \( 1_B \) is the characteristic function of \( B \) given by
+	\begin{equation*}
+		1_B(x):=\begin{cases}
+			1 & \;\mathrm{:}\; x \in B              \\
+			0 & \;\mathrm{:}\; x \in A \setminus B.
+		\end{cases}
+	\end{equation*}
+	\( \tau \) is bijective since it admits the inverse
+	\( \tau' \) defined as follows:
+	\begin{equation*}
+		\tau':\func{A}{\left\{ 0,1 \right\}} \ni \chi
+		\mapsto
+		\left\{  x \in A \pipe \chi(x)=1\right\} \in \mathcal{P}(A).
+	\end{equation*}
+	
+	We show \ref{enu:card_func_augment}.
+	Consider a function \( \phi \) given by
+	\begin{equation*}
+		\phi : \func{A\times B}{C}\times A \ni (f,a)
+		\mapsto
+		f(a,\cdot) \in \func{B}{C},
+	\end{equation*}
+	and define a function \( \Phi \) by setting
+	\begin{equation*}
+		\Phi : \func{A\times B}{C} \ni f
+		\mapsto \phi(f,\cdot) \in \func{A}{\func{B}{C}}.
+	\end{equation*}
+	It is straightforward to check that \( \Phi \) is bijective.
+	
+	%Note that
+	%\( \func{A}{\func{B}{C}} \subset A \times (B\times C)\),
+	%\( \func{A\times B}{C} \subset (A\times B)\times C \),
+	%and that \( A \times (B\times C) \sim (A\times B)\times C\)
+	%under some bijective function \( \iota \).
+	%We show
+	%\( \func{A}{\func{B}{C}} \hookrightarrow \func{A\times B}{C}\)
+	%and
+	%\( \func{A\times B}{C} \hookrightarrow \func{A}{\func{B}{C}}\)
+	%under \( \iota \) and \( \iota ^{-1}\) respectively.
+	%Then, Schroeder-Bernstein theorem proves the result.
+	%Observe the following equivalence:
+	%\begin{eqnarray*}
+	%&&
+	%f\in \func{A}{\func{B}{C}}\\
+	%&\Leftrightarrow&
+	%\Forall{ a\in A }
+	%\unique{ f(a) \subset B \times C }
+	%\left[
+	%\Forall{ b\in B }
+	%\unique{ c\in C }
+	%\left[ (b,c) \in f(a) \right]
+	%\right]\\
+	%&\Leftrightarrow&
+	%\Forall{ a\in A }
+	%\unique{ F(a) \subset A \times (B \times C) }
+	%\left[
+	%\Forall{ b\in B }
+	%\unique{ c\in C }
+	%\left[ (a,(b,c)) \in F(a) \right]
+	%\right]\\
+	%&\Leftrightarrow&
+	%\left[
+	%\Forall{ a\in A }
+	%\unique{ F(a) \subset A \times (B \times C)}
+	%\right]
+	%\wedge
+	%\Forall{ a\in A }
+	%\Forall{ b\in B }
+	%\unique{ c\in C }
+	%\left[ (a,(b,c)) \in F(a) \right]\\
+	%&\Leftrightarrow&
+	%\bigcup_{a\in A}F(a) \subset A \times (B \times C)
+	%\wedge
+	%\Forall{ a\in A }
+	%\Forall{ b\in B }
+	%\unique{ c\in C }
+	%\left[ (a,(b,c)) \in \bigcup_{a\in A}F(a) \right]\\
+	%&\Leftrightarrow&
+	%\iota \left( \bigcup_{a\in A}F(a) \right)
+	%\subset (A \times B) \times C
+	%\wedge
+	%\Forall{ (a,b)\in A\times B }
+	%\unique{ c\in C }
+	%\left[ ((a,b),c) \in \iota \left( \bigcup_{a\in A}F(a) \right) \right]\\
+	%&\Leftrightarrow&
+	%\iota \left( \bigcup_{a\in A}F(a) \right) \in \func{A\times B}{C},
+	%\end{eqnarray*}
+	%where \( F(a):=\left\{ (a,(b,c)) \pipe (b,c)\in f(a)\wedge a\in A \right\} \).
+	%Since \( \iota \) and \( \iota ^{-1}\) are both bijective, this implies the result.
+	
+	\ref{enu:func_card_func} is easy to prove;
+	let \( \varphi \in \bij{A}{A'} \) and \( \psi \in \bij{B}{B'} \).
+	A function given by
+	\begin{equation*}
+		\func{A}{B} \ni g \mapsto \psi \circ g \circ \varphi ^{-1} \in \func{A'}{B'}
+	\end{equation*}
+	is bijective since it admits the inverse
+	\begin{equation*}
+		\func{A'}{B'} \ni h \mapsto \psi^{-1} \circ h \circ \varphi \in \func{A}{B}.
+	\end{equation*}
+	
+	\ref{enu:power_card_power} follows as 
+	\( \mathcal{P}(A)
+	\sim \func{A}{\left\{ 0,1 \right\}}
+	\sim \func{A'}{\left\{ 0,1 \right\}}
+	\sim \mathcal{P}(A')
+	\).
+\end{prf}
+
+\begin{exe}
+	Show that \( \mathbb{Q} \) is countably infinite.
+\end{exe}\begin{sol}
+	Note
+	\( \mathbb{Q}=\mathbb{Q}_{-} \cup \left\{ 0 \right\} \cup \mathbb{Q}_{+} \)
+	by definition,
+	where
+	\( \mathbb{Q}_{-}:=\left\{ q \pipe -q \in \mathbb{Q}_{+} \right\} \)
+	which is countable.
+	Apply Theorem 7.5.
+	\qed\end{sol}
+
+\begin{exe}
+	Show that the maps \( f \) and \( g \) of Example 1 and 2 are bijections.
+\end{exe}\begin{sol}
+	We list these functions here for convenience as follows:
+	The function \( f:\mathbb{Z} \to \mathbb{Z}_{+} \) in Example 1 is defined by
+	\begin{equation*}
+		f(n) = \begin{cases}
+			2n    & \;\mathrm{:}\;n>0    \\
+			-2n+1 & \;\mathrm{:}\;n\le0.
+		\end{cases}
+	\end{equation*}
+	Let
+	\( A:=\left\{ (x,y)\in \mathbb{Z}_{+} \times \mathbb{Z}_{+}
+	\pipe y \le x\right\} \).
+	The functions
+	\( f:\mathbb{Z}_{+} \times \mathbb{Z}_{+} \to A\)
+	and
+	\( g:A \to \mathbb{Z}_{+} \)
+	in Example 2 are defined by
+	\begin{equation*}
+		f(x,y) = (x+y-1,y),
+	\end{equation*}
+	and
+	\begin{equation*}
+		g(x,y)=\frac{1}{2}(x-1)x+y.
+	\end{equation*}
+	
+	We first consider \( f \) in Example 1.
+	Define a function \( h:\mathbb{Z}_{+} \to \mathbb{Z} \) by setting
+	\begin{equation*}
+		h(n):=\begin{cases}
+			m  & \;\mathrm{:}\;
+			\Exists{ m \in \mathbb{Z}_{+}}\left[ n=2m \right] \\
+			-m & \;\mathrm{:}\;
+			\Exists{ m \in \mathbb{Z}_{+}} \cup \left\{ 0 \right\}
+			\left[ n=2m + 1 \right].
+		\end{cases}
+	\end{equation*}
+	It is straightforward to check that \( h \) is well-defined and is the inverse of \( f \).
+	
+	We proceed to Example 2.
+	The function
+	\begin{equation*}
+		\varphi:A \ni (x,y) \mapsto (x-y+1,y) \in \mathbb{Z}_{+} \times \mathbb{Z}_{+}
+	\end{equation*}
+	is the inverse of \( f \).
+	So, both \( f \) and \( \varphi \) are bijective.
+	
+	Next, we show how \( g \) is constructed.
+	Let
+	\( s:\mathbb{Z}_{+}\cup\{0\} \to \mathbb{Z}_{+}\cup\{0\} \)
+	be a function such that
+	\( s(0):=0 \)
+	and
+	\( s(x):=\sum_{k=0}^{x}k \)
+	for
+	\( x \ge 1 \).
+	Observe that there holds, for \( x \ge 1 \),
+	\begin{equation*}
+		s(x-1) = \frac{1}{2}x(x-1),
+	\end{equation*}
+	and that, given \( n\in \mathbb{Z}_{+} \), the set
+	\begin{equation*}
+		X:=\left\{  x \in \mathbb{Z}_{+} \pipe n \le s(x) \right\}
+	\end{equation*}
+	is a nonempty subset of \( \mathbb{Z}_{+} \).
+	So, we can take the smallest element \( x^{\ast} \) of \( X \)
+	with the following property:
+	\begin{equation*}
+		s(x^{\ast} - 1) < n \le  s(x^{\ast}).
+	\end{equation*}
+	Since we have \( s(x)-s(x-1)=x \) in general,
+	there exists \( y \in \mathbb{Z}_{+} \) with \( 1 \le y \le x \)
+	such that
+	\begin{equation*}
+		n=s(x^{\ast} - 1)+y.
+	\end{equation*}
+	Uniqueness of \( x^{\ast} \) and \( y \) is obvious by construction.
+	Hence, we have shown that
+	\begin{equation*}
+		\Forall{ n \in \mathbb{Z}_{+} }
+		\unique{ (x,y)\in A }
+		\left[ n=\frac{1}{2}x(x-1)+y \right],
+	\end{equation*}
+	which implies
+	\( g \)
+	is bijective.
+	\qed\end{sol}
+
+\begin{exe}
+	Let \( X \) be the two-element set \( \left\{ 0,1 \right\} \).
+	Show there is a bijective correspondence between the set
+	\( \mathcal{P}(\mathbb{Z}_{+}) \)
+	and the cartesian product \( X^{\omega} \).
+\end{exe}\begin{sol}
+	Noting the fact \( X^{\omega} = \func{\mathbb{Z}_{+}}{X} \),
+	it suffices to show that, for a set \( A \), we have
+	\( \mathcal{P}(A) \sim \func{A}{\left\{ 0,1 \right\}}\).
+	But, we have already proved this.
+	See \refer{Proposition}{prop:bij-card}.
+	\qed\end{sol}
+
+\begin{exe}\leavevmode \par
+	\begin{enumerate}
+		\item
+		      A real number \( x \) is said to be \textbf{\textit{algebraic}}(over the rationals)
+		      if it satisfies some polynomial equation of positive degree
+		      \begin{equation*}
+			      x^n + a_{n-1}x^{n-1}+\cdots+a_1x + a_0 = 0
+		      \end{equation*}
+		      with rational coefficients \( a_i \).
+		      Assuming that each polynomial equation has only finitely many roots,
+		      show that the set of algebraic numbers is countable.
+		      
+		\item
+		      A real number is said to be \textbf{\textit{transcendental}}
+		      if it is not algebraic.
+		      Assuming the reals are uncountable,
+		      show that the transcendental numbers are uncountable.
+	\end{enumerate}
+\end{exe}\begin{sol}\leavevmode \par
+	\fbox{(a)}
+	Without loss of generality, we may assume each polynomial equation has integer coefficients.
+	Let \( E \) represent the set of polynomial equations over integers,
+	and, given \( f \in E \), let \( \mathrm{deg}(f) \) be the degree of \( f \).
+	Let \( E_n \) be the set consisting of elements of \( E \) whose degree is \( n \).
+	We define a function \( H : E \to \mathbb{Z}_{+}\) by setting,
+	for
+	\( E \ni f(x)=a_0 + a_1 x +\cdots +a_n x^n \),
+	\begin{equation*}
+		H(f):=n+\sum_{k=0}^{\mathrm{deg}(f)}|a_k|.
+	\end{equation*}
+	Observe that
+	\( H(f) \ge 2\) for all \( f \in E \), 
+	and that the set defined as
+	\( E_n(h):=\left\{ f\in E_n \pipe H(f)=h \right\} \)
+	is finite for every
+	\( n, h \in \mathbb{Z}_{+} \),
+	and that \( E_n=\bigcup_{h\in \mathbb{Z}_{+}}E_n(h) \)
+	for every
+	\( n \in \mathbb{Z}_{+} \),
+	and that
+	\( E=\bigcup_{n \in \mathbb{Z}_{+}}E_n \).
+	
+	Let \( g:E \to \mathcal{P}(\mathbb{R}) \) be a function that maps every \( f \in E \) to the set consisting of its roots.
+	Each \( g(E_n(h)) \) is finite
+	since each \( E_n(h) \) is finite and each of \( f \in E_n(h) \) has at most finitely many roots.
+	Thus,
+	the set of algebraic numbers
+	\begin{equation*}
+		g(E)
+		=
+		g \left( \bigcup_{n,h \in \mathbb{Z}_{+}}E_n(h) \right)
+		=
+		\bigcup_{n,h \in \mathbb{Z}_{+}}g(E_n(h))
+	\end{equation*}
+	is countable.
+	
+	\fbox{(b)}
+	We prove that the set of transcendental number has the same cardinality as that of real numbers.
+	Let \( A \) be the set of algebraic numbers.
+	In order to establish the existence of transcendental numbers,
+	we claim \( \mathbb{R}\setminus A \neq \emptyset \).
+	In fact, we have in general
+	\( \mathbb{R}\setminus A = \emptyset  \Leftrightarrow \mathbb{R} \subset A\),
+	and RHS turns out to be false since a countable set cannot include an uncountable set.
+	
+	Let \( \theta \) be a transcendental number.
+	It is obvious that \( n \theta \) is also transcendental number for all \( n \in \mathbb{Z}_{+} \).
+	Consider a partition of \( \mathbb{R} \) given by
+	\begin{equation*}
+		\mathbb{R} = A \cup T_1 \cup T_2,
+	\end{equation*}
+	where \( T_1:=\left\{ n \theta \pipe n \in \mathbb{Z}_{+} \right\} \)
+	and
+	\( T_2:=\mathbb{R} \setminus (A \cup T_1) \),
+	both combined constitutes the set of transcendental numbers.
+	It is easy to see that
+	\( A \) and \( T_1 \) are countable, and hence
+	\( A \cup T_1 \sim T_1 \),
+	which implies
+	\( \mathbb{R} = (A \cup T_1) \cup T_2 \sim T_1 \cup T_2\).
+	Thus, the proof is completed.
+	\qed\end{sol}
+
+\begin{exe}
+	Determine, for each of the following sets,
+	whether or not it is countable.
+	Justify your answers.
+	\begin{enumerate}
+		\item
+		      The set \( A \) of all functions
+		      \( f:\left\{ 0,1 \right\} \to \mathbb{Z}_{+} \).
+		      
+		\item
+		      The set \( B_n \) of all functions
+		      \( f:\left\{ 1,\cdots,n \right\} \to \mathbb{Z}_{+} \).
+		      
+		\item
+		      The set \( C=\bigcup_{n \in \mathbb{Z}_{+}}B_n \).
+		      
+		\item
+		      The set \( D \) of all functions
+		      \( f:\mathbb{Z}_{+} \to \mathbb{Z}_{+} \).
+		      
+		\item
+		      The set \( E \) of all functions
+		      \( f:\mathbb{Z}_{+} \to \left\{ 0,1 \right\} \).
+		      
+		\item
+		      The set \( F \) of all functions
+		      \( f:\mathbb{Z}_{+} \to \left\{ 0,1 \right\} \).
+		      that are "eventually zero."
+		      [We say that \( f \) is \textbf{\textit{eventually zero}} if there is a positive integer \( N \) such that \( f(n)=0 \) for all \( n \ge N \).]
+		      
+		\item
+		      The set \( G \) of all functions
+		      \( f:\mathbb{Z}_{+} \to \mathbb{Z}_{+} \).
+		      that are eventually \( 1 \).
+		      
+		\item
+		      The set \( H \) of all functions
+		      \( f:\mathbb{Z}_{+} \to \mathbb{Z}_{+} \).
+		      that are eventually constant.
+		      
+		\item
+		      The set \( I \) of all two-element subsets of \( \mathbb{Z}_{+} \).
+		      
+		\item
+		      The set \( J \) of all finite subsets of \( \mathbb{Z}_{+} \).
+	\end{enumerate}
+	
+\end{exe}\begin{sol}
+	Remember the concept of cartesian product is defined in terms of functions.
+	
+	\fbox{(a)}
+	\( A=\func{\left\{ 0,1 \right\}}{\mathbb{Z}_{+}}
+	\sim \mathbb{Z}_{+}\times \mathbb{Z}_{+} \)
+	is countable by Theorem 7.6.
+	
+	\fbox{(b)}
+	\( B_n = \func{\left\{ 1,2,\cdots,n \right\}}{\mathbb{Z}_{+}}
+	\sim \mathbb{Z}_{+}^{n} \)
+	is countable by Theorem 7.6.
+	
+	\fbox{(c)}
+	Theorem 7.5 yields that \( C \) is countable.
+	
+	\fbox{(d)}
+	Observe that we have
+	\( D=\func{\mathbb{Z}_{+}}{\mathbb{Z}_{+}}\sim \mathbb{Z}_{+}^{\omega} \),
+	and
+	\( \left\{ 0,1 \right\}^{\omega} \sim \left\{ 1,2 \right\}^{\omega} \subset \mathbb{Z}_{+}^{\omega}\).
+	Then, Theorem 7.7 and contrapositive of Theorem 7.3 implies
+	\( \mathbb{Z}_{+}^{\omega} \) is uncountable.
+	
+	\fbox{(e)}
+	\( E = \func{\mathbb{Z}_{+}}{\left\{ 0,1 \right\}}
+	\sim \mathcal{P}(\mathbb{Z}_{+}) \)
+	is uncountable by Theorem 7.8.
+	
+	\fbox{(f)}
+	We provide a bit generalized proof for (f) here in order to illustrate the idea that works for (g) and (h).
+	
+	Consider a function
+	\( N:F\to \mathbb{Z}_{+} \)
+	that assigns, to every \( f\in F \), the smallest element \( N(f) \) of the set
+	\begin{equation*}
+		\left\{
+		n \in \mathbb{Z}_{+} \pipe
+		\Forall{ m \in \mathbb{Z}_{+} }
+		\Forall{ k \in \mathbb{Z}_{+} }
+		\left[
+			m\ge n \wedge k \ge n \Rightarrow f(m)=f(k) \right]
+		\right\},
+	\end{equation*}
+	which the definition of \( F \) guarantees is nonempty.
+	In other words, \( N(f)\) designates exactly when \( f \) starts to be a constant.
+	Setting \( F_n:=\left\{ f\in F \pipe N(f)=n \right\} \),
+	we see that \( F= \bigcup_{n\in \mathbb{Z}_{+}}F_n \),
+	and that each \( F_n \) is countable since a function \( \varphi \) defined by
+	\begin{equation*}
+		\varphi : F_n \ni f \mapsto f|_{S_{n+1}}
+		\in \func{S_{n+1}}{\mathbb{Z}_{+}}
+	\end{equation*}
+	is injective, where
+	\( f|_{S_{n+1}} \)
+	represents the restriction of \( f \) onto \( S_{n+1} \).
+	Thus, \( F \) is countable. 
+	
+	\fbox{(g)}\fbox{(h)}
+	\( G \) and \( H \) can be proved to be countable by trivial modifications of (f).
+	
+	\fbox{(i)}
+	Let \( I^{\ast}:=\left\{ (x_i)_{i=0,1}\in \mathbb{Z}_{+} \times \mathbb{Z}_{+} \pipe x_0 < x_1 \right\} \).
+	It is obvious that \( I \sim I^{\ast} \).
+	We then deduce from the fact 
+	\( I^{\ast} \hookrightarrow \mathbb{Z}_{+} \times \mathbb{Z}_{+} \)
+	that \( I \) is countable.
+	
+	\fbox{(j)}
+	Let \( J_n:=\left\{ N \in J \pipe \card{N} = n \right\} \),
+	and let
+	\begin{equation*}
+		J_n^{\ast}
+		:=
+		\left\{
+		(x_i)_{i \in S_{n+1}}\in \mathbb{Z}_{+}^{n} \pipe
+		\Forall{ i \in S_{n} }\left[ x_i < x_{i+1} \right]
+		\right\}.
+	\end{equation*}
+	As before, we deduce from the fact
+	\( J_n^{\ast} \hookrightarrow
+	\func{S_{n+1}}{\mathbb{Z}_{+}}\sim \mathbb{Z}_{+}^n \)
+	that \( J_n^{\ast} \) is countable,
+	and so is \( J_n \) since \( J_n^{\ast} \sim J_n \).
+	Thus, \( J=\bigcup_{n\in \mathbb{Z}_{+}}J_n \)
+	is countable.
+	\qed\end{sol}
+
+\begin{exe}
+	We say that two sets \( A \) and \( B \)
+	\textbf{\textit{have the same cardinality}}
+	if there is a bijection of \( A \) with \( B \).
+	\begin{enumerate}
+		\item
+		      Show that if \( B \subset A \) and if there is an injection
+		      \begin{equation*}
+			      f:A \to B,
+		      \end{equation*}
+		      then \( A \) and \( B \) have the same cardinality.
+		      
+		\item
+		      \text{Theorem\;(Schroeder-Bernstein theorem).}\;\;
+		      If there are injections
+		      \( f:A\to C \)
+		      and
+		      \( g:C \to A \),
+		      then \( A \) and \( C \) have the same cardinality.
+	\end{enumerate}
+\end{exe}\begin{sol}\leavevmode \par
+	\fbox{(a)}
+	Let \( B \subset A \) and \( f\in \inj{A}{B} \).
+	Define the sets \( A_n \)  and \( B_n \) recursively by the formula
+	\begin{eqnarray*}
+		A_1&:=&A,\\
+		B_1&:=&B,\\
+		A_n&:=&f(A_{n-1}),\\
+		B_n&:=&f(B_{n-1}),
+	\end{eqnarray*}
+	for \( n>1 \).
+	We have
+	\( A_1 \supset B_1 \supset A_2 \supset B_2 \supset A_3 \supset \cdots \)
+	by definition.
+	Consider a function \( h:A\to B \) such that
+	\( h(x):=f(x) \)
+	if
+	\( x\in A_n\setminus B_n \)
+	for some \( n \), and
+	\( h(x):=x \) if otherwise.
+	
+	Then, we claim \( h \) is bijective.
+	We first show the injectivity.
+	Let \( x,y \in A \)
+	with
+	\( x \neq y \).
+	We may assume
+	\( x\in A_n\setminus B_n \)
+	for some \( n \) and
+	\( y \notin A_n\setminus B_n \)
+	for all
+	\( n \in \mathbb{Z}_{+} \)
+	since otherwise injectivity trivially follows.
+	But, in this case,
+	\( f \in \inj{A}{B} \) implies
+	\( h(x)=f(x) \in f(A_n)\setminus f(B_n)=A_{n+1}\setminus B_{n+1} \),
+	and hence,
+	\begin{equation*}
+		h(y)=y \neq h(x),
+	\end{equation*}
+	establishing \( h\in \inj{A}{B} \).
+	
+	We prove next that \( h \) is surjective.
+	Let \( b \in B(=B_1) \).
+	Seeing the definition of \( h \),
+	we may assume
+	\( b \in A_n \setminus B_n \)
+	for some
+	\( n \ge 2 \).
+	Then,
+	\( f \in \inj{A}{B} \) implies
+	\begin{equation*}
+		b \in f(A_{n-1})\setminus f(B_{n-1})=f(A_{n-1} \setminus B_{n-1}),
+	\end{equation*}
+	which completes the proof.
+	
+	\fbox{(b)}
+	Let
+	\( C_0:=f(A) \)
+	and
+	\( C_1:=f \circ g(C) \subset C \).
+	It is obvious that
+	\( A \sim C_0 \)
+	and
+	\( C \hookrightarrow C_1\).
+	Then (a) yields \( c \sim C_1 \).
+	On the other hand, it follows from
+	\( g(C) \subset A \) and \( f(A) \subset C \)
+	that
+	\( f \circ g(C) \subset f(A) \subset C \),
+	that is,
+	\( C_1 \subset C_0 \subset C \),
+	which gives \( C \hookrightarrow C_0 \hookrightarrow \).
+	Hence, (a) establishes \( C_0 \sim C \sim C_1 \).
+	Thus, \( A \sim C \).
+	\qed\end{sol}
+
+\begin{exe}
+	Show that the sets \( D \) and \( E \) of Exercise 5
+	have the same cardinality.
+\end{exe}\begin{sol}
+	Note that
+	\( D=\func{\mathbb{Z}_{+}}{\mathbb{Z}_{+}}
+	\sim \mathbb{Z}_{+}^{\omega} \),
+	\( E=\func{\mathbb{Z}_{+}}{\left\{ 0,1 \right\}}
+	\sim \left\{ 0,1 \right\}^{\omega} \),
+	and that 
+	\( \left\{ 0,1 \right\}^{\omega} \sim \mathcal{P}(\mathbb{Z}_{+})\).
+	
+	It is clear that there holds \( E \hookrightarrow D \).
+	Conversely, we claim \( D \hookrightarrow E \).
+	Indeed, the fact
+	\( \mathbb{Z}_{+} \subset \mathcal{P}(\mathbb{Z}_{+}) \)
+	and \refer{Proposotion}{prop:bij-card}
+	allow us to have
+	\begin{eqnarray*}
+		\func{\mathbb{Z}_{+}}{\mathbb{Z}_{+}}
+		&\hookrightarrow &
+		\func{\mathbb{Z}_{+}}{\mathcal{P}(\mathbb{Z}_{+})}\\
+		&\sim&
+		\func{\mathbb{Z}_{+}}{\func{\mathbb{Z}_{+}}{\left\{ 0,1 \right\}}}\\
+		&\sim&
+		\func{\mathbb{Z}_{+}\times \mathbb{Z}_{+}}{\left\{ 0,1 \right\}}\\
+		&\sim&
+		\func{\mathbb{Z}_{+}}{\left\{ 0,1 \right\}}.
+	\end{eqnarray*}
+	Schroeder-Bernstein theorem then establishes \( D \sim E \).
+	\qed\end{sol}
+
+\begin{exe}
+	Let \( X \) denote the two-element set \( \left\{ 0,1 \right\} \);
+	let \( \mathcal{B} \) be the set of \textit{countable} subsets of \( X^{\omega} \).
+	Show that \( X^{\omega} \) and \( \mathcal{B} \) have the same cardinality.
+\end{exe}\begin{sol}
+	A function
+	\( \left\{ 0,1 \right\}^{\omega} \mapsto \left\{ x \right\} \in \mathcal{B}\)
+	is obviously injective.
+	In order to claim by Schroeder-Bernstein theorem that
+	\( \mathcal{B} \sim \left\{ 0,1 \right\}^{\omega} \),
+	we show \( \mathcal{B} \hookrightarrow \left\{ 0,1 \right\}^{\omega}\). 
+	
+	Observe that countability allows us to write down each 
+	\( B \in \mathcal{B} \) as
+	\( B=\left\{ x^{(1)}, x^{(2)},\cdots \right\} \)
+	and that constructing a function that assigns, to 
+	\( \left\{ x^{(1)}, x^{(2)},\cdots \right\} \),
+	\begin{equation*}
+		\left(
+		x^{(1)}_1,
+		x^{(1)}_2,x^{(2)}_1,
+		x^{(1)}_3,x^{(2)}_2,x^{(3)}_1,
+		x^{(1)}_4,x^{(2)}_3,x^{(3)}_2,x^{(4)}_1,
+		x^{(1)}_5,x^{(2)}_4,x^{(3)}_3,x^{(4)}_2,x^{(5)}_1,\cdots
+		\right)
+	\end{equation*}
+	finishes the proof.
+	We do that by considering a function
+	\( \varphi : \mathcal{B} \to \left\{ 0,1 \right\}^{\omega} \)
+	given by
+	\begin{equation*}
+		\varphi
+		\left( \left\{ \left( x^{(1)}_i \right)_{i \in \mathbb{Z}_{+}},
+		\left( x^{(2)}_i \right)_{i \in \mathbb{Z}_{+}},\cdots \right\} \right)
+		=
+		\left( x^{(i - s(n-1))}_{s(n-1)+n-i+1} \right)_{i \in \mathbb{Z}_{+}}
+	\end{equation*}
+	where \( n \in \mathbb{Z}_{+} \) is uniquely determined by
+	given \( i \) and the inequality
+	\begin{equation*}
+		s(n-1) < i \le s(n),
+	\end{equation*}
+	and \( s(\cdot) \) is defined as \( s(0):=0 \), and
+	\( s(n):=\sum_{j=1}^n j \)
+	for \( n \ge 1 \).
+	It is easy to verify that \( \varphi \) is injective.
+	
+	See Exercise 2, which shares the same underlying idea as this one.
+	Here we have considered the following way of lining up the elements of \( B \):
+	\begin{eqnarray*}
+		&&x^{(1)}_1,\\
+		&&x^{(1)}_2,x^{(2)}_1,\\
+		&&x^{(1)}_3,x^{(2)}_2,x^{(3)}_1,\\
+		&&x^{(1)}_4,x^{(2)}_3,x^{(3)}_2,x^{(4)}_1,\\
+		&&x^{(1)}_5,x^{(2)}_4,x^{(3)}_3,x^{(4)}_2,x^{(5)}_1,\cdots.
+	\end{eqnarray*}
+	Compare this with \( g \) there.
+	\qed\end{sol}
+
+\begin{exe}\leavevmode \par
+	\begin{enumerate}
+		\item
+		      The formula
+		      \begin{eqnarray*}
+			      h(1)&=&1,\\
+			      h(2)&=&2,\\
+			      h(n)&=&\left[ h(n+1) \right]^2 - \left[ h(n-1) \right]^2
+		      \end{eqnarray*}
+		      for \( n\ge 2 \)
+		      is not one to which the principle of recursive definition applies.
+		      Show that nevertheless there does exist a function
+		      \( h:\mathbb{Z}_{+}\to \mathbb{R}\)
+		      satisfying this formula.
+		      
+		\item
+		      Show that the formula of part (a) does not determine \( h \)
+		      uniquely.
+		      
+		\item
+		      Show that there is no function \( h:\mathbb{Z}_{+} \to \mathbb{R} \)
+		      satisfying the formula
+		      \begin{eqnarray*}
+			      h(1)&=&1,\\
+			      h(2)&=&2,\\
+			      h(n)&=&\left[ h(n+1) \right]^2 + \left[ h(n-1) \right]^2.
+		      \end{eqnarray*}
+		      for \( n\ge 2 \).
+	\end{enumerate}
+\end{exe}\begin{sol}\leavevmode \par
+	\fbox{(a)}
+	Let \( h \) satisfy the following formula:
+	\begin{eqnarray*}
+		h(1)&=&1,\\
+		h(2)&=&2,\\
+		h(n)&=&\sqrt{h(n-1)+\left[ h(n-2) \right]^2)},
+	\end{eqnarray*}
+	for \( n \ge 3 \).
+	Then, principle of recursive definition yields unique
+	\( h: \mathbb{Z}_{+} \to \mathbb{R}_{+}\)
+	that satisfies the formula above.
+	It is clear that \( h \) also satisfies the given formula.
+	
+	\fbox{(b)}
+	Consider the formula
+	\begin{eqnarray*}
+		f(1)&=&1,\\
+		f(2)&=&2,\\
+		f(3)&=&-\sqrt{3},\\
+		f(n)&=&\sqrt{f(n-1)+\left[ f(n-2) \right]^2)},\\
+		f(n)&>&0,
+	\end{eqnarray*}
+	for all \( n \ge 4 \).
+	This defines unique \( f:\mathbb{Z}_{+} \to \mathbb{R} \)
+	also satisfying the formula at (a),
+	but \( f \neq h \),
+	where \( h \) is the function we have construct in (a).
+	
+	\fbox{(c)}
+	The given formula requires
+	\( h(3) \pm 1\),
+	and
+	\( h(4)^2=h(3)-4 \);
+	the latter is impossible.
+	\qed\end{sol}
+\end{document}

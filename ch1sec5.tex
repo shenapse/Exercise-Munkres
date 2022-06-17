@@ -1,0 +1,397 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{mystyle}
+\usepackage{commands}
+\mathtoolsset{showonlyrefs=true}
+\begin{document}
+\section{Cartesian Product}
+\setcounter{exe}{0}
+
+Note that \S2 Exercise 5 serves as an useful criterion to show that 
+a given function is injective or surjective, or bijective.
+We exploit it throughout this section,
+and rarely prove a function is, for instance, bijective by chasing definition.
+
+\begin{exe}
+	Show there is a bijective correspondence of \( A\times B \)
+	and \( B \times A \).
+\end{exe}\begin{sol}
+	Observe each of the following functions
+	\begin{eqnarray*}
+		&&f:A\times B \ni (a,b)\mapsto (b,a)\in B \times A\\
+		&&g:B\times A \ni (b,a)\mapsto (a,b)\in A \times B
+	\end{eqnarray*}
+	is the inverse of the other, and hence is bijective.
+	\qed\end{sol}
+
+\begin{exe}\leavevmode \par
+	\begin{enumerate}
+		\item
+		      Show that if \( n>1 \)
+		      there is bijective correspondence of
+		      \begin{equation*}
+			      A_1 \times \cdots \times A_n
+		      \end{equation*}
+		      with
+		      \begin{equation*}
+			      (A_1 \times \cdots \times A_{n-1})\times A_{n}
+		      \end{equation*}
+		      
+		\item
+		      Given the indexed family \( \left\{ A_1, A_2\cdots \right\} \),
+		      let \( B_i=A_{2i-1}\times A_{2i} \)
+		      for each positive integer \( i \).
+		      Show there is bijective correspondence of \( A_1 \times A_2 \times \cdots \)
+		      with \( B_1 \times B_2 \times \cdots \).
+	\end{enumerate}
+\end{exe}\begin{sol}\leavevmode \par
+	\fbox{(a)}
+	Check that each of the following functions is the inverse of the other:
+	\begin{eqnarray*}
+		&&	f:\prod_{i =1}^n A_i \ni (a_1,\cdots,a_n)
+		\mapsto ((a_1,\cdots,a_{n-1}),a_n)
+		\in \left( \prod_{i =1}^{n-1} A_i \right) \times A_n\\
+		&&	g:\left( \prod_{i =1}^{n-1} A_i \right) \times A_n
+		\ni ((a_1,\cdots,a_{n-1}),a_n) \mapsto (a_1,\cdots,a_n)
+		\in \prod_{i =1}^n A_i.
+	\end{eqnarray*}
+	
+	\fbox{(b)}
+	Apply the same argument to:
+	\begin{eqnarray*}
+		&&	f:\prod_{i \in \mathbb{Z}_{+}} A_i \ni (a_i)_{i \in \mathbb{Z}_{+}}
+		\mapsto ((a_{2i - 1},a_{2i}))_{i \in \mathbb{Z}_{+}}
+		\in \prod_{i \in \mathbb{Z}_{+}} B_i \\
+		&&	g:\prod_{i \in \mathbb{Z}_{+}} B_i
+		\ni ((a_{2i - 1},a_{2i}))_{i \in \mathbb{Z}_{+}}
+		\mapsto (a_i)_{i \in \mathbb{Z}_{+}}
+		\in \prod_{i =1}^n A_i.
+	\end{eqnarray*}
+	\qed\end{sol}
+
+\begin{exe}
+	Let \( A=A_1 \times A_2 \times \cdots \)
+	and
+	\( B = B_1 \times B_2 \times \cdots \).
+	\begin{enumerate}
+		\item
+		      Show that if \( B_i \subset A_i \) for all \( i \),
+		      then \( B \subset A \).
+		      (Strictly speaking,
+		      if we are given a function mapping the index set \( \mathbb{Z}_{+} \) into the union of the sets \( B_i \),
+		      we must change its range before it can be considered as a function mapping
+		      \( \mathbb{Z}_{+} \) into the union of the sets \( A_i \).
+		      We shall ignore this technicality when dealing with cartesian product.)
+		      
+		\item
+		      Show the converse of (a) holds if \( B\) is nonempty.
+		      
+		\item
+		      Show that if \( A \) is nonempty, each \( A_i \) is nonempty.
+		      Does the converse hold?
+		      
+		\item
+		      What is the relation between the set \( A\cup B \)
+		      and the cartesian product of the sets \( A_i \cup B_i \)?
+		      What is the relation between the set \( A\cap B \) and the cartesian product of the sets \( A_i \cap B_i \)?
+	\end{enumerate}
+\end{exe}\begin{sol}\leavevmode \par
+	\fbox{(a)}
+	Let 
+	\( \left( x_i \right)_{i \in \mathbb{Z}_{+}}\in B \).
+	Hypothesis gives 
+	\( x_i \in B_i \subset A_i \)
+	for every
+	\( i \),
+	which means
+	\( \left( x_i \right)_{i \in \mathbb{Z}_{+}}\in A \).
+	
+	\fbox{(b)}
+	Fix \( i_0 \in \mathbb{Z}_{+} \)
+	and
+	\( b_0 \in B_{i_0} \).
+	Hypothesis allows us to have
+	\( \left( b_i' \right)_{i \in \mathbb{Z}_{+}} \in B\).
+	Then, define a new \( \omega \)-tuple 
+	\( (b_i)_{i \in \mathbb{Z}_{+}}\) by setting
+	\begin{equation*}
+		b_{i} := 
+		\begin{cases}
+			b_0				
+			 & \mathrm{\colon\;} i = i_0 \\
+			b_{i}'
+			 & \mathrm{\colon\;}
+			i \in \mathbb{Z}_{+} \setminus \left\{ i_0 \right\},
+		\end{cases}
+	\end{equation*}
+	from which it follow that
+	\( (b_i)_{i \in \mathbb{Z}_{+}} \in B \subset A\).
+	Hence, we have, in particular,
+	\( b_0 \in A_{i_0} \).
+	
+	\fbox{(c)}
+	If \( (a_i)_{i \in \mathbb{Z}_{+}} \in A  \),
+	then for every \( i \) we have
+	\( a_i \in A_i \)
+	and hence, \( A_i \neq \emptyset \).
+	
+	Converse does not hold in general.
+	We cannot conclude from the assumption that existence of \( \omega \)-tuple which qualifies as a element of Cartesian product \( A \).
+	
+	\fbox{(d)}
+	For intersection,
+	confirm the following equivalence:
+	\begin{eqnarray*}
+		\left( x_i \right)_{i \in \mathbb{Z}_{+}}
+		\in \left( \prod_{i \in \mathbb{Z}_{+}} A_i \right)
+		\cap
+		\left( \prod_{i \in \mathbb{Z}_{+}} B_i \right)
+		&\equiv&
+		\Forall{ i \in \mathbb{Z}_{+} }\left[ x_i \in A_i \right]
+		\wedge
+		\Forall{ i \in \mathbb{Z}_{+} }\left[ x_i \in B_i \right]\\
+		&\equiv&
+		\Forall{ i \in \mathbb{Z}_{+} }\left[ x_i \in A_i \cap B_i \right]\\
+		&\equiv&
+		\left( x_i \right)_{i \in \mathbb{Z}_{+}} \in
+		\prod_{i \in \mathbb{Z}_{+}} \left( A_i \cap B_i \right).
+	\end{eqnarray*}
+	For union, however, we can only insist, as we have seen in \S1 Exercise 2(m), that
+	\begin{equation*}
+		\left( \prod_{i \in \mathbb{Z}_{+}} A_i \right)
+		\cup
+		\left( \prod_{i \in \mathbb{Z}_{+}} B_i \right)
+		\subset
+		\prod_{i \in \mathbb{Z}_{+}} \left( A_i \cup B_i \right).
+	\end{equation*}
+	Proof and counterexample can be derived by trivial modification of those found there.
+	\qed\end{sol}
+
+\begin{exe}
+	Let \( m,n \in \mathbb{Z}_{+} \).
+	Let \( X \neq \emptyset \).
+	\begin{enumerate}
+		\item
+		      If \( m \le n \), find an injective map \( f:X^m \to X^n \).
+		      
+		\item
+		      Find a bijective map \( g:X^m \times X^n \to X^{m+n} \).
+		      
+		\item
+		      Find a bijective map \( h:X^n \to X^{\omega} \).
+		      
+		\item
+		      Find a bijective map \( k:X^n \times X^{\omega} \to X^{\omega} \).
+		      
+		\item
+		      Find a bijective map \( \ell:X^{\omega} \times X^{\omega} \to X^{\omega} \).
+		      
+		\item
+		      If \( A \subset B \), find an injective map \( f:X^A \to X^B \).
+	\end{enumerate}
+\end{exe}\begin{sol}\leavevmode \par
+	\fbox{(a)}
+	Let
+	\( m \le n \).
+	Fix
+	\( x_0 \in X \)
+	and consider a function \( f \) given by
+	\begin{equation*}
+		f:X^m \ni (x_1,\cdots,x_m)
+		\mapsto
+		(x_1,\cdots,x_m,\underbrace{x_0,x_0,\cdots,x_0}_{n-m}) \in X^n,
+	\end{equation*}
+	and note that \( f \) has a left inverse
+	\begin{equation*}
+		f_{\ell}:X^n \ni (x_1,\cdots,x_n)
+		\mapsto
+		(x_1,\cdots,x_m) \in X^m.
+	\end{equation*}
+	Thus, \S2 Exercise 5 implies
+	\( f \)
+	is injective.
+	
+	Note that \( f \) is a trivial ''inclusion'' function from \( X^m \) into \( X^n \)
+	while \( f_{\ell} \) is a ''cut-off'' function of \( X^n \) to \( X^m \).
+	
+	\fbox{(b)}
+	Confirm that
+	\begin{equation*}
+		g:X^m \times X^n \ni
+		((x_1,\cdots,x_m),(y_1,\cdots,y_n))
+		\mapsto
+		(x_1,\cdots,x_m,y_1,\cdots,y_n)
+		\in X^{m+n}
+	\end{equation*}
+	is bijective since it admits the inverse
+	\begin{equation*}
+		g_1:X^{m+n} \ni
+		(x_1,\cdots,x_{n+m})
+		\mapsto
+		((x_1,\cdots,x_m),(x_{m+1},\cdots,x_{n+m}))
+		\in X^m \times X^n.
+	\end{equation*}
+	
+	\fbox{(c)}
+	Similar argument for (a) works here.
+	Fix
+	\( x_0 \in X \)
+	and define a ''inclusion'' function
+	\begin{equation*}
+		h:X^m \ni (x_1,\cdots,x_m)
+		\mapsto
+		(x_1,\cdots,x_m,x_0,x_0,\cdots) \in X^{\omega}.
+	\end{equation*}
+	\( h \)
+	admits a left inverse, which is given as a''cut-off'' function by the rule
+	\begin{equation*}
+		h_{\ell}:X^{\omega} \ni (x_i)_{i \in \mathbb{Z}_{+}}
+		\mapsto
+		(x_1,\cdots,x_n) \in X^n.
+	\end{equation*}
+	So, \( f \) is injective.
+	
+	\fbox{(d)}
+	Make sure that a function given by
+	\begin{equation*}
+		k:X^n \times X^{\omega} \ni
+		((x_1,\cdots,x_n),(y_1,y_2,\cdots))
+		\mapsto
+		(x_1,\cdots,x_n,y_1,y_2,\cdots)
+		\in X^{\omega}
+	\end{equation*}
+	is bijective since it has the inverse
+	\begin{equation*}
+		k_1:X^{\omega} \ni
+		(x_i)_{i \in \mathbb{Z}_{+}}
+		\mapsto
+		((x_1,\cdots,x_n),(x_{n+1},x_{n+2},\cdots))
+		\in X^n \times X^{\omega}.
+	\end{equation*}
+	
+	\fbox{(e)}
+	Do the same thing as (d) to the following:
+	\begin{eqnarray*}
+		&&\ell : X^{\omega} \times X^{\omega} \ni
+		\left( (x_i)_{i \in \mathbb{Z}_{+}}, (y_i)_{i \in \mathbb{Z}_{+}} \right)
+		\mapsto
+		(x_1,y_1,x_2,y_2,\cdots)
+		\in X^{\omega}\\
+		&&\ell_1 : X^{\omega} \ni
+		\left( x_i \right)_{i \in \mathbb{Z}_{+}}
+		\mapsto
+		\left(	\left( x_{2i-1} \right)_{i \in \mathbb{Z}_{+}},
+		\left( x_{2i} \right)_{i \in \mathbb{Z}_{+}}
+		\right)
+		\in X^{\omega} \times X^{\omega}.
+	\end{eqnarray*}
+	
+	\fbox{(f)}
+	Successive application of (e) implies a function
+	\begin{equation*}
+		\ell_0:	\left( A^{\omega} \right)^n
+		\ni 	\left( (a_i ^{(1)})_{i \in \mathbb{Z}_{+}},
+		\cdots,
+		(a_i ^{(n)})_{i \in \mathbb{Z}_{+}}
+		\right)
+		\mapsto
+		\left( a_1 ^{(1)}, a_1 ^{(2)},\cdots,a_1 ^{(n)},
+		a_2 ^{(1)}, a_2 ^{(2)},\cdots
+		\right)
+		\in A^{\omega}
+	\end{equation*}
+	is bijective.
+	So,
+	\begin{equation*}
+		m:=i\circ \ell_0
+	\end{equation*}
+	is injective,
+	where
+	\begin{equation*}
+		i:A^{\omega} \ni (a_i)_{i \in \mathbb{Z}_{+}}
+		\mapsto
+		(a_i)_{i \in \mathbb{Z}_{+}} \in B^{\omega},
+	\end{equation*}
+	which is obviously injective.
+	\qed\end{sol}
+
+\begin{exe}
+	Which of the following subsets of \( \mathbb{R}^{\omega} \)
+	can be expressed as the cartesian product of subsets of \( \mathbb{R} \)?
+	\begin{enumerate}
+		\item
+		      \( \left\{ \bm{x} \pipe x_i \;\text{is an integer for all \( i \)} \right\} \).
+		      
+		\item
+		      \( \left\{ \bm{x} \pipe x_i \ge i \;\text{for all \( i \)} \right\} \).
+		      
+		\item
+		      \( \left\{ \bm{x} \pipe x_i \;\text{is an integer for all \( i\ge 100 \)} \right\} \).
+		      
+		\item
+		      \( \left\{ \bm{x} \pipe x_2=x_3 \right\} \).
+	\end{enumerate}
+\end{exe}\begin{sol}\leavevmode \par
+	\fbox{(a)}
+	\( \mathbb{Z}^{\omega} \).
+	\fbox{(b)}
+	\( [1,\infty) \times [2,\infty) \times [3,\infty)\times \cdots \).
+	\fbox{(c)}
+	\(
+	\underbrace{\mathbb{R}\times \cdots \times \mathbb{R}}_{99}
+	\times \mathbb{Z} \times \mathbb{Z} \times \cdots
+	\).
+	
+	\fbox{(d)}
+	Let \( X:=\left\{ x \pipe x_2=x_3 \right\} \).
+	\( X \) is not the cartesian product of subsets of \( \mathbb{R} \).
+	Observe
+	\( (0,0,\cdots),(1,1,\cdots) \in X \),
+	but
+	\( (0,1,0,\cdots) \notin X \),
+	which violates an obvious necessary condition for \( X \) to be the cartesian product.
+	\qed\end{sol}
+
+We end this section by introducing an extension of the proposition we have proved in \S1, which can be used to work on Exercise 5(d).
+\begin{prp}[Equivalent condition for cartesian product]
+	Let
+	\( X_i \)
+	be a set for every
+	\( i \in \mathbb{Z}_{+} \),
+	and let
+	\( A \)
+	be a subset of
+	\( \prod_{i \in \mathbb{Z}_{+}} X_i \).
+	A necessary and sufficient condition for \( A \) to be the cartesian product of subsets of \( X_i \) is that there holds
+	\begin{equation*}
+		\left( x_i^{(1)} \right)_{i \in \mathbb{Z}_{+}},
+		\left( x_i^{(2)} \right)_{i \in \mathbb{Z}_{+}},\cdots \in A 
+		\Rightarrow
+		(z_i)_{i \in \mathbb{Z}_{+}} \in A,
+	\end{equation*}
+	where \( z_i=x_i^{(j)} \)
+	for some
+	\( j \in \mathbb{Z}_{+}\).
+\end{prp}
+\begin{prf}
+	Sufficiency is proved as before.
+	We show necessity part.
+	Suppose that \( A \) itself is the cartesian product,
+	and let
+	\( \left( x_i^{(1)} \right)_{i \in \mathbb{Z}_{+}}
+	,\left( x_i^{(2)} \right)_{i \in \mathbb{Z}_{+}},\cdots \in A \).
+	Let \( I \) be a subset of \( \mathbb{Z}_{+} \) such that we have
+	\( (z_i)_{i \in \mathbb{Z}_{+}} \in A \),
+	where each \( z_i \) is given by
+	\begin{equation*}
+		z_i:=\begin{cases}
+			x_i^{(j)} & \mathrm{:}\;i \in I    \\
+			x_i^{(1)} & \mathrm{:}\;i \notin I
+		\end{cases}
+	\end{equation*}
+	for arbitrary chosen
+	\( j \in \mathbb{Z}_{+}\).
+	Since \( A \) is assumed to be a cartesian product,
+	it is easy to see that \( I \) is inductive, and so \( I=\mathbb{Z}_{+} \).
+	This proves the necessity.
+\end{prf}
+\end{document}

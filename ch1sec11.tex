@@ -1,0 +1,323 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{mystyle}
+\usepackage{commands}
+\mathtoolsset{showonlyrefs=true}
+
+\begin{document}
+\section{The Maximum Principle}
+\setcounter{exe}{0}
+\begin{exe}
+	If \( a \) and \( b \) are real numbers, define \( a \prec b \) if \( b-a \) is positive and rational.
+	Show that this is a strict partial order on \( \mathbb{R} \).
+	What are the maximal simply ordered subsets?
+\end{exe}
+\begin{sol}
+	For any \( a \in \mathbb{R} \) we have \( a - a = 0 \),
+	which gives \( \neg a \prec a \).
+	Suppose \( a \prec b \) and \( b \prec c \), or equivalently
+	suppose
+	\( b -a \in \mathbb{Q}_{+} \)
+	and
+	\( c-b\in \mathbb{Q}_{+} \).
+	Then we have
+	\begin{equation*}
+		c-a = (c-b) + (b-a) \in \mathbb{Q}_{+},
+	\end{equation*}
+	which leads to \( a \prec c \).
+	Hence, \( \prec \) is a strict partial order on \( \mathbb{R} \).
+	
+	A maximal simply ordered subset is the set
+	\begin{equation*}
+		\left\{ b\in \mathbb{R} \pipe 
+		\Exists{ q \in \mathbb{Q} }
+		\left[ b= a+q \right]
+		\right\},
+	\end{equation*}
+	where \( a \in \mathbb{R} \) is arbitrary given.
+	\qed\end{sol}
+
+\begin{exe}\leavevmode \par
+	\begin{enumerate}
+		\item
+		      Let \( \prec \) be a strict partial order on the set \( A \).
+		      Define a relation on \( A \) by letting \( a \preceq b \)
+		      if either \( a \prec b \) or \( a=b \).
+		      Show that this relation has the following properties, which are called the 
+		      \textbf{\textit{partial order axioms}}:
+		      \begin{enumerate}
+			      \item
+			            \( a \preceq a \) for all \( a \in A \).
+			            
+			      \item
+			            \( a \preceq b \) and \( b \preceq a \Rightarrow a=b\). 
+			      \item
+			            \( a \preceq b \) and \( b \preceq c \Rightarrow a \preceq c\). 
+		      \end{enumerate}
+		\item
+		      Let \( P \) be a relation on \( A \) that satisfies properties (i)-(iii).
+		      Define a relation \( S \) on \( A \) by letting \( aSb \) if \( aPb \) and \( a \neq b \).
+		      Show that \( S \) is a strict partial order on \( A \).
+	\end{enumerate}
+\end{exe}
+\begin{sol}\leavevmode \par
+	\fbox{(a)}
+	(i) is obvious by the fact \( a=a \) for all \( a \in A \).
+	To verify (ii), observe that, exploiting transitivity of \( \prec \), we have
+	\begin{equation*}
+		a\prec b \wedge b \prec a
+		\equiv
+		a \prec a \wedge a\prec b \wedge b \prec a
+		\equiv
+		F,
+	\end{equation*}
+	and that
+	\begin{eqnarray*}
+		a \preceq b \wedge b \prec a
+		&\equiv&
+		(a\prec b \vee a=b) \wedge (b\prec a \vee a=b)\\
+		&\equiv&
+		(a\prec b \wedge b\prec a) \vee a=b\\
+		&\equiv&
+		a=b.
+	\end{eqnarray*}
+	To see (iii),
+	suppose \(  a\preceq b \) and \(  b\preceq c \).
+	If both \( a \prec b \) and \( b \prec c \) hold, then transitivity of \( \prec \)
+	gives \( a\prec c \).
+	If not, it is easy to check \( a \preceq c \).
+	
+	\fbox{(b)}
+	Nonreflexivity is proved by seeing
+	\begin{eqnarray*}
+		\Forall{ a\in A }\left[ aPa \right]
+		&\equiv&
+		\Forall{ a\in A }\left[ aPa \wedge a \neq a \right]\\
+		&\equiv&
+		\Forall{ a \in A }\left[ T \wedge F \right]\\
+		&\equiv&
+		F.
+	\end{eqnarray*}
+	To show transitivity,
+	observe that (iii) on the partial order axioms gives
+	\begin{equation*}
+		aSb \wedge bSc \Rightarrow aPc.
+	\end{equation*}
+	Moreover, (ii) on the partial order axioms gives
+	\begin{eqnarray*}
+		aSb \wedge bSc \Rightarrow a=c
+		&\equiv&
+		aSb \wedge bSc \Rightarrow aSb \wedge bSa \wedge a=c\\
+		&\equiv&
+		aSb \wedge bSc \Rightarrow a=b \wedge a=c\\
+		&\equiv&
+		F,
+	\end{eqnarray*}
+	which implies
+	\begin{equation*}
+		aSb \wedge bSc \Rightarrow a\neq c.
+	\end{equation*}
+	Thus,
+	\( aSb \wedge bSc \Rightarrow aSc \).
+	\qed\end{sol}
+
+\begin{exe}
+	Let \( A \) be a strict partial order \( \prec \);
+	let \(  x \in A \).
+	Suppose that we wish to find a maximal simply ordered subset \( B \) of \( A \)
+	that contains \( x \).
+	One plausible way of attempting to define \( B \) is to let \( B \) equal the set of all those elements of \( A \) that are \textit{comparable} with \( x \);
+	\begin{equation*}
+		B=\left\{ y \in A \pipe x\prec y \vee y \prec x \right\}.
+	\end{equation*}
+	But this will not always work.
+	In which of Example 1 and 2 will this procedure succeed and in which will it not?
+\end{exe}
+\begin{sol}
+	It fails in Example 1.
+	Consider
+	\( A:=\left\{ \left\{ 1,2 \right\}, \left\{ 3 \right\},\mathcal{P}(\mathbb{Z}_{+}) \right\} \),
+	and
+	\( x:= \mathcal{P}(\mathbb{Z}_{+}) \),
+	in which case we find
+	\( B=\left\{ \left\{ 1,2 \right\}, \left\{ 3 \right\} \right\} \) not simply ordered.
+	\qed\end{sol}
+
+\begin{exe}
+	Given two points \( (x_0,y_0) \) and \( (x_1,y_1) \) of \( \mathbb{R}^2 \),
+	define
+	\begin{equation*}
+		(x_0,y_0) \prec (x_1,y_1) 
+	\end{equation*}
+	if \( x_0 < x_1 \) and \( y_0 \le y_1 \).
+	Show that the curves \( y=x^3 \) and \( y=2 \) are maximal simply ordered subsets of \( \mathbb{R}^2 \),
+	and the curve \( y=x^2 \) is not.
+	Find all maximal simply ordered subsets.
+\end{exe}
+\begin{sol}
+	We begin with considering the last question for convenience.
+	We claim that
+	\begin{enumerate}
+		\item[(i)]
+		      Let \( A \) be a subset of \( \mathbb{R}^2 \).
+		      \( A \) is simply ordered by \( \prec \)
+		      if and only if it is the rule of a weakly increasing function, denoted by \( f_A \), on a subset of \( \mathbb{R} \).
+		      
+		\item[(ii)]
+		      Moreover,
+		      \( (A,\prec) \) is a maximal simply ordered set if and only if the domain of \( f_A \) equals \( \mathbb{R} \).
+	\end{enumerate}
+	''if'' part of (i) is easy to check.
+	Consider ''only if'' part.
+	Suppose \( (x,y_0),(x,y_1) \in A \).
+	Since these points are not comparable under \( \prec \), a simple order,
+	comparability of it implies
+	\( (x,y_0)=(x,y_1) \)
+	and so,
+	Hence, \( A \) is the rule of some function on a subset of \( \mathbb{R} \).
+	It follows from the definition of \( \prec \) that
+	so derived function is in fact weakly increasing.
+	This completes the proof of (i).
+	
+	We proceed to ''if'' part of (ii).
+	Suppose the domain of \( f_A \), denoted by \( D \),
+	coincides with \( \mathbb{R} \).
+	Then, for any \( (a,b)\in \mathbb{R}^2 \setminus A \),
+	there exists \( (a,f_A(a))\in A \).
+	Clearly, \( (a,b) \) and \( (a,f_A(a)) \) are not comparable,
+	which implies \( A \cup \left\{ (a,b) \right\} \) is no longer a simply ordered set.
+	So, \( A \) is maximal.
+	
+	We next show (contrapositive of) the converse.
+	Suppose \( D \subsetneq \mathbb{R} \),
+	and let \(  p \in \mathbb{R} \setminus D \).
+	It is easy to construct a weakly increasing function \( g \) on \( D \cup \left\{ p \right\} \)
+	that extends \( f_A \).
+	Let \( G \) be the rule of \( g \).
+	(i) tells us that \( G \) is simply ordered, and \( G \supsetneq A \),
+	which means \( A \) is not a maximal simply ordered set.
+	Thus, (ii) follows.
+	
+	We deduce from (i) and (ii) that the set of all maximal simply ordered subsets is the set of the rules of all weakly increasing functions from \( \mathbb{R} \) to \( \mathbb{R} \).
+	
+	It is now trivial to to verify the claim about \( y=x^3 \), \( y=2 \),
+	and \( y=x^2 \).
+	\qed\end{sol}
+
+\begin{exe}
+	Show that Zorn's Lemma implies the following:\\
+	\text{Lemma (Kuratowski).}\;\;
+	Let \( \mathcal{A} \) be a collection of sets.
+	Suppose that for every subcollection \( \mathcal{B} \) of  \( \mathcal{A} \)
+	that is simply ordered by proper inclusion, the union of the elements of
+	\( \mathcal{B} \) belongs to \( \mathcal{A} \).
+	Then \( \mathcal{B} \) has an element that is properly contained in no other element of \( \mathcal{A} \).
+\end{exe}
+\begin{sol}
+	Proper inclusion induces a strict partial \( \prec \) order on \( \mathcal{A} \).
+	Every simply ordered subcollection \( \mathcal{B} \) of \( \mathcal{A} \)
+	admits an upper bound in \( \mathcal{A} \)
+	since the union of the elements of \( \mathcal{B} \) belongs to \( \mathcal{A} \) by assumption,
+	which means \( (\mathcal{A},\prec) \) satisfies the hypothesis of
+	Zorn's Lemma.
+	Hence, \( (\mathcal{A},\prec) \) has a maximal element,
+	which is property contained in no other element of \( \mathcal{A} \)
+	by definition.
+	\qed\end{sol}
+
+\begin{exe}
+	A collection \( \mathcal{A} \) of subsets of a set \( X \) is said to be of \textit{finite type},
+	provided that a subset \( B \) of \( X \) belongs to \( \mathcal{A} \) if and only if
+	every finite subset of \( B \) belongs to \( \mathcal{A} \).
+	Show that Kuratowski lemma implies the following:\\
+	\text{Lemma (Tukey, 1940).}\;\;
+	Let \( \mathcal{A} \) be a collection of sets.
+	If \( \mathcal{A} \)  is of finite type,
+	then \( \mathcal{A} \) has an element 
+	that is properly contained in no other element of \( \mathcal{A} \).
+\end{exe}
+\begin{sol}
+	Suppose \( \mathcal{A} \) be of finite type.
+	Let \( \mathcal{B} \) be a subcollection of \( \mathcal{A} \) that is simply ordered by proper inclusion.
+	Set \( B^{\ast}:=\bigcup_{B\in \mathcal{B}}B\).
+	If \( F \) is a finite subset of \( B^{\ast} \),
+	then there exists \( B\in \mathcal{B} \) such that \( F \subset B \).
+	Since \( B\in \mathcal{A} \) and \( \mathcal{A} \) is assumed to be of finite type,
+	we deduce \( F \in \mathcal{A} \),
+	which leads to \( B^{\ast} \in \mathcal{A} \).
+	Thus, Kuratowski lemma implies Tukey lemma.
+	\qed\end{sol}
+
+\begin{exe}
+	Show that Tukey lemma implies the Hausdorff maximum principle.
+\end{exe}
+\begin{sol}
+	Let \( (A,\prec) \) be a set \( A \) equipped with a strict partial order \( \prec \),
+	and let \( \mathcal{A} \) be the collection of all subsets of \( A \)
+	that are simply ordered by \( \prec \).
+	It suffices to show that \( \mathcal{A} \) is of finite type  thanks to Tukey lemma.
+	
+	\S3 Exercise 7 implies that if \( B\in \mathcal{A} \), then every (finite) subset of \( B \) belongs to \( \mathcal{A}\).
+	
+	Conversely, let \( B \) be a subset of \( A \) of which every finite subset belongs to \( \mathcal{A} \).
+	We insist \( B \in \mathcal{A} \).
+	For, if \( x \) and \( y \) are two distinct points in \( B \),
+	then the fact \( \left( \left\{ x,y \right\},\prec_{\left\{ x,y \right\}} \right)\)
+	is a simply ordered set gives that
+	\( B \) satisfies comparability,
+	where \( \prec_{\left\{ x,y \right\}} \) is a restriction of \( \prec \) onto
+	\( \left\{ x,y \right\}\).
+	Similarly, we deduce that \( B \) satisfies nonareflexivity and transitivity,
+	and so \( B \) is simply ordered.
+	This means \( B \in \mathcal{A} \).
+	Thus, \( \mathcal{A} \) is of finite type.
+	\qed\end{sol}
+
+\begin{exe}
+	A typical use of Zorn's lemma in algebra is the proof that every vector space has a basis.
+	Recall that if \( A \) is a subset of the vector space \( V \),
+	we say a vector belongs to the \textit{span} of \( A \)
+	if it equals a finite linear combination of elements of \( A \).
+	The set \( A \) is \textit{independent} if the only finite linear combination of elements of \( A \) that equals zero vector is the trivial one having all coefficient zero.
+	If \( A \) is independent and if every vector in \( V \) belongs to the span of \( A \),
+	then \( A \) is a \textit{basis} of \( V \).
+	\begin{enumerate}
+		\item
+		      If \( A \) is independent and \( v \in V \) does not belong to the span of \( A \),
+		      show \( A \cup \left\{ v \right\} \) is independent.
+		      
+		\item
+		      Show the collection \( \mathcal{I} \) of all independent sets in \( V \) has a maximum element.
+		      
+		\item
+		      Show that \( V \) has a basis.
+	\end{enumerate}
+\end{exe}
+\begin{sol}\leavevmode \par
+	\fbox{(a)}
+	Let \( A \) is independent  and let \( v \in V \).
+	Suppose \( A \cup \left\{ v \right\} \) is not independent.
+	There exist nontrivial coefficients \( c_1,c_2,\cdots,c_n \)
+	such that
+	\begin{equation}\label{eq:dependent_linear}
+		c_1 a_1 + \cdots + c_{n-1}a_{n-1} + c_n v = 0.
+	\end{equation}
+	We may assume all \( c_n \) are nonzero.
+	It then follows from (\refeq{eq:dependent_linear}) that
+	\( v \) belongs to the span of \( A \),
+	from which we deduce that
+	\( v \in V \) belongs to the span of \( A \).
+	
+	\fbox{(b)}
+	Introduce a strict partial order \( \prec \) on \( \mathcal{I} \) by setting
+	\( A \prec B \) if \( A \subsetneq B \).
+	Then, Hausdorff maximum principle yields a required maximal element.
+	
+	\fbox{(c)}
+	Let \( I \in \mathcal{I} \), and let \( v \) be a vector in \( V \).
+	Suppose \( v \) does not belong to the span of \( I \).
+	Then (a) tells us that \( I \cup \left\{ v \right\} \) is independent.
+	This means \( I \) is not a maximal element of \( \mathcal{I} \).
+	Thus, every vector in \( V \) belongs to the span of some maximal element of \( \mathcal{I} \).
+	\qed\end{sol}
+
+\end{document}

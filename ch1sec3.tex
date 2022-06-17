@@ -1,0 +1,968 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{mystyle}
+\usepackage{commands}
+\mathtoolsset{showonlyrefs=true}
+
+\begin{document}
+\section{Relations}
+\setcounter{exe}{0}
+\textit{Equivalence Relations}
+\begin{exe}
+	Define two points \( (x_0,y_0) \) and \( (x_1,y_1) \) of the plane to be equivalent 
+	if \( y_0 - x_0^{2} = y_1 - x_1^{2} \).
+	Check that this is an equivalence relation and describe the equivalence classes.
+\end{exe}\begin{sol}
+	Concerning set here is a subset of
+	\( \mathbb{R} \times \mathbb{R} \).
+	So, it is a relation.
+	reflexivity and symmetry are obviously satisfied.
+	If
+	\( (x_0,y_0) \sim (x_1,y_1) \)
+	and
+	\( (x_1,y_1) \sim (x_2,y_2) \),
+	then
+	\( y_0 - {x_0}^2 = y_1 - {x_1}^2 = y_2 - {x_2}^2\),
+	that is,
+	\( (x_0,y_0) \sim (x_2,y_2) \).
+	Thus, the given relation satisfies transitivity,
+	and is an equivalence relation.
+	
+	The collection of equivalence classes consists of all parabolas that are symmetric with respect to \( y \)-axis.
+	\qed\end{sol}
+
+\begin{exe}
+	Let \( C \) be a relation on a set \( A \).
+	If \( A_0\subset A \),
+	define the \textbf{\textit{restriction}} of \( C \) to \( A_0 \) to be the relation
+	\( C \cap (A_0\times A_0) \).
+	Show that the restriction of an equivalence relation is an equivalence relation.
+\end{exe}\begin{sol}
+	Observe
+	\( D:=C \cap (A_0 \times A_0) \)
+	is a subset of \( A_0 \times A_0 \) and so a relation on \( A_0 \).
+	
+	(Reflexivity)
+	If
+	\( x \in A_0 \),
+	then
+	\( (x,x) \in D\)
+	since
+	\( (x,x) \in C\).
+	Hence,
+	\( xDx\).
+	
+	(Symmetry)
+	If \( xDy \), or equivalently, if \( (x,y)\in D \),
+	then
+	\( (x,y) \in C \)
+	and
+	\( (x,y) \in A_0 \times A_0 \).
+	Symmetry of \( C \) gives 
+	\( (y,x) \in C \).
+	It follows from
+	\( (y,x) \in A_0 \times A_0 \)
+	that 
+	\( (y,x) \in C \cap (A_0 \times A_0) = D \).
+	
+	(Transitivity)
+	If \( xDy \)
+	and
+	\( yDz \),
+	or equivalently, if
+	\( (x,y)\in D \)
+	and
+	\( (y,z) \in D \),
+	similar argument shows that
+	\( (x,z) \in C \)
+	Since
+	\( (x,z) \in A_0 \times A_0 \),
+	we have
+	\( (x,z) \in D \),
+	that is,
+	\( xDy \).
+	\qed\end{sol}
+
+\begin{exe}
+	Here is an ''proof'' that every relation \( C \) that is both symmetric and transitive 
+	is also reflexive:
+	''Since \( C \) is symmetric,
+	\( aCb \) implies \( bCa \).
+	Since \( C \) is a transitive,
+	\( aCb \) and \( bCa \) together imply \( aCa \), as desired.''
+	Find the flaw in this argument.
+\end{exe}\begin{sol}
+	Suppose
+	\( C \)
+	is a relation on \( A \).
+	Note that
+	\( C \)
+	is reflexive if
+	\begin{equation*}
+		\Forall{ a }
+		\left[ a\in A \Rightarrow aCa \right]
+	\end{equation*}
+	is true while what is shown in the given ''proof'' is
+	\begin{equation*}
+		\Forall{ a }
+		\left[ aCb \Rightarrow aCa \right].
+	\end{equation*}
+	\qed\end{sol}
+
+\begin{exe}
+	Let \( f:A\to B \) be a surjective function.
+	Let us define a relation on \( A \) by setting \( a_0 \sim a_1 \) if
+	\begin{equation*}
+		f(a_0) = f(a_1).
+	\end{equation*}
+	\begin{enumerate}
+		\item
+		      Show that this is an equivalence relation.
+		      
+		\item
+		      Let \( A^{\ast} \) be the set of equivalence classes.
+		      Show that there is a bijective correspondence of \( A^{\ast} \) with B.
+	\end{enumerate}
+\end{exe}\begin{sol}
+	Let
+	\( f \in \surj{A}{B} \).
+	
+	\fbox{(a)}
+	\( C:=\left\{ (a_0,a_1) \in A \times A \pipe f(a_0)=f(a_1) \right\} \)
+	is a subset of \( A \times A \), that is, a relation on \( A \).
+	We show that
+	\( C \) satisfies reflexivity, symmetry, transitivity.
+	
+	(Reflexivity)
+	\( \Forall{ a \in A }\left[ f(a) = f(a) \right] \)
+	means
+	\( \Forall{ a \in A }\left[ aCa \right] \)
+	
+	(Symmetry)
+	For
+	\( a_0, a_1  \in A\),
+	we have
+	\begin{equation*}
+		a_0Ca_1
+		\equiv
+		f(a_0) = f(a_1)
+		\equiv
+		f(a_1) = f(a_0)
+		\equiv
+		a_1Ca_0.
+	\end{equation*}
+	
+	(Transitivity)
+	For
+	\( a_0, a_1,a_2  \in A\),
+	we have
+	\begin{equation*}
+		a_0Ca_1
+		\wedge
+		a_1Ca_2
+		\equiv
+		f(a_0) = f(a_1)
+		\wedge
+		f(a_1) = f(a_2)
+		\Rightarrow
+		f(a_0) = f(a_2)
+		\equiv
+		a_0Ca_2.
+	\end{equation*}
+	
+	\fbox{(b)}
+	Let \( A^{\ast} \) be the set of equivalence classes.
+	The definition of equivalence class leads to 
+	\begin{equation}
+		\Forall{ E \in A^{\ast} }
+		\unique{ b \in B }
+		\Forall{ a \in E }
+		\left[ b = f(a) \right]\label{homeo:sec3E4}
+	\end{equation}
+	We first establish this.
+	Let
+	\( E \in A^{\ast} \).
+	By definition, we have
+	\begin{equation*}
+		\Forall{ a \in E }
+		\Forall{ a' \in E }
+		\left[ f(a) = f(a') \right].
+	\end{equation*}
+	Setting this common values as \( b \), that is, setting
+	\( b:=f(a) \),
+	this \( b \) has the required property.
+	(\refeq{homeo:sec3E4}) allows us to define a function
+	\( g: A^{\ast}\ni E \mapsto b \in B \).
+	Since each of equivalence classes is disjoint one another,
+	\( g \) is injective.
+	Moreover,
+	surjectivity of \( f \) gives
+	\begin{equation*}
+		\Forall{ b \in B }
+		\Exists{ a \in A }
+		\left[ f(a) =b \right],
+	\end{equation*}
+	which yields
+	\begin{equation*}
+		\Forall{ b \in B }
+		\Exists{ E \in A^{\ast} }
+		\Forall{ a \in E }
+		\left[ f(a) =b \right],
+	\end{equation*}
+	from which we conclude
+	\begin{equation*}
+		\Forall{ b \in B }
+		\Exists{ E \in A^{\ast} }
+		\left[ g(E) =b \right].
+	\end{equation*}
+	Thus, \( g \) is surjective.
+	\qed\end{sol}
+
+\begin{exe}
+	Let \( S \)  and \( S' \) be the following subsets of the plane.
+	\begin{eqnarray*}
+		S&=&\left\{ (x,y)  \pipe y=x+1 \;\text{and}\; 0<x<2\right\},\\
+		S'&=&\left\{ (x,y)  \pipe y-x \in \mathbb{Z}\right\}.
+	\end{eqnarray*}
+	\begin{enumerate}
+		\item
+		      Show that \( S' \) is an equivalence relation on the real line and \( S' \supset S \).
+		      Describe the equivalence classes.
+		      
+		\item
+		      Show that given any collection of equivalence relations on a set \( A \),
+		      their intersection is an equivalence relation on \( A \).
+		      
+		\item
+		      Describe the equivalence relation \( T \) on the real line
+		      that is the intersection of all equivalence relation on the real line that contains \( S \).
+		      Describe the equivalence classes of \( T \).
+	\end{enumerate}
+\end{exe}\begin{sol}\leavevmode \par
+	\fbox{(a)}
+	We first claim that 
+	\( S \subset S' \)
+	since for every \( (x,y) \in S\),
+	we deduce that
+	\begin{equation*}
+		(x,y) \in S
+		\equiv
+		(y=x+1)
+		\wedge
+		(0<x<2)
+		\Rightarrow
+		y-x=1
+		\Rightarrow
+		(x,y)\in S'.
+	\end{equation*}
+	\( S' \) is clearly a relation by definition.
+	We show that \( S' \) is an equivalence relation.
+	
+	(Reflexivity)
+	This is obvious since
+	we see that \( x- x =0 \) is an integer 
+	for every \( x \in \mathbb{R} \),
+	and so \( (x,x) \in S' \).
+	
+	(Symmetry)
+	This is also obvious since 
+	if \( y-x \) is an integer, so is \( x-y \),
+	establishing the fact that 
+	\( (x,y)\in S' \)
+	implies 
+	\( (y,x)\in S'\).
+	
+	(Transitivity)
+	Observe that
+	if \( y-x \) and \( z-y \) are integers,
+	so is \( z-x = (z-y) + (y-x)\).
+	This proves the transitivity.
+	
+	\fbox{(b)}
+	Let \( \mathcal{C} \) be a collection of equivalence relations on \( A \).
+	Note that
+	\( \bigcap_{C \in \mathcal{C}}C \)
+	is a relation on \( A \)
+	since every member of \( \mathcal{C} \) is a subset of \( A \times A \).
+	We proceed to showing that
+	\( \bigcap_{C \in \mathcal{C}}C \)
+	is an equivalence relation.
+	
+	(Reflexivity)
+	For every
+	\( a \in A \),
+	we have
+	\( (a,a) \in C \)
+	for all
+	\( C\in \mathcal{C} \).
+	Hence, we conclude
+	\( (a,a) \in \bigcap_{C \in \mathcal{C}}C \).
+	
+	(Symmetry)
+	Let 
+	\( (a,a') \in \bigcap_{C \in \mathcal{C}}C \).
+	It follows that
+	\( (a,a') \in C \)
+	and 
+	\( (a',a) \in C \)
+	for all
+	\( C\in \mathcal{C} \)
+	by symmetry of each \( C \).
+	Thus, have
+	\( (a',a) \in \bigcap_{C \in \mathcal{C}}C \).
+	
+	(Transitivity)
+	Apply similar argument to prove the validity of transitivity.
+	
+	\fbox{(c)}
+	\( T \)
+	is the smallest equivalence relation on the real line that containis \( S \),
+	which is given by
+	\begin{equation*}
+		T=T_2 \cup T_1 \cup T_0 \cup T_{-1}\cup T_{-2},
+	\end{equation*}
+	where
+	\begin{eqnarray*}
+		T_2		&:=&\left\{ (x,y) \pipe y=x+2 \wedge 0<x<1	\right\}\\
+		T_1		&:=&\left\{ (x,y) \pipe y=x+1 \wedge 0<x<2	\right\}\\
+		T_0		&:=&\left\{ (x,x) \pipe x \in \mathbb{R}		\right\}\\
+		T_{-1}	&:=&\left\{ (x,y) \pipe y=x -1 \wedge 1<x<3	\right\}\\
+		T_{-2}	&:=&\left\{ (x,y) \pipe y=x -2 \wedge 2<x<3	\right\}.
+	\end{eqnarray*}
+	The equivalence classes are:
+	\( T_0 \) and \( T_{-1} \cup T_{1} \) and \( T_{-2} \cup T_{2} \).
+	\qed\end{sol}
+
+\leavevmode \par
+\noindent\textit{Order Relations}\leavevmode \par
+Let us introduce a notation;
+Let \( (A,<) \) denote the ordered set \( A \) equipped with order relation \( < \).
+If we say ''let \(  (A,<) \) be a ordered set'',
+we mean that a ordered set \( A \) is given whose order relation is defined to be \( < \).
+
+\begin{dfn}[Order isomorphism]
+	Let \( A \) and \( B \) be simply ordered sets, and let \( f: A\to B \) be a function.
+	We say that \( f \) is an \textit{order isomorphism} from \( A \) to \( B \)
+	if it is surjective and order preserving.
+\end{dfn}
+
+\begin{prp}[Sufficient condition for order isomorphism]\label{prop:sufcdn_iso}
+	\leavevmode \par \noindent
+	Let
+	\( (A,<_{A})\)
+	and
+	\( (B,<_{B}) \)
+	be ordered sets,
+	and let \( f:A\to B \) be a bijective function.
+	We claim that
+	\( f \) is order-preserving, that is, an order isomorphism
+	if and only if
+	\( f ^{-1} \) is.
+\end{prp}
+\begin{prf}
+	Note that there holds
+	\begin{eqnarray*}
+		&&
+		\Forall{ a_1 \in A }
+		\Forall{ a_2 \in A }
+		\left[ a_1 <_{A} a_2 \Rightarrow f(a_1) <_{B} f(a_2) \right]\\
+		&\equiv&
+		\Forall{ a_1 \in A }
+		\Forall{ a_2 \in A }
+		\left[f(a_1) \ge_{B} f(a_2) \Rightarrow  a_1 \ge_{A} a_2 \right]\\
+		&\equiv&
+		\Forall{ a_1 \in A }
+		\Forall{ a_2 \in A }
+		\left[f(a_1) >_{B} f(a_2) \Rightarrow  a_1 >_{A} a_2 \right].
+	\end{eqnarray*}
+	So, for
+	\( f\in \bij{A}{B} \),
+	we conclude that
+	\( f \)
+	preserves order if and only if \( f^{-1} \) does.
+\end{prf}
+
+We summarize here the property of order isomorphism,
+which insists, roughly speaking, that
+an order isomorphism preserves the property of an ordered set
+such as
+an immediate predecessor (successor),
+a smallest (largest) element,
+an upper (lower) bound,
+a supremum (infimum),
+and a section (see \S4).
+\begin{prp}[Property of sets of the same order type]\label{prop:order_type}
+	\leavevmode \par \noindent
+	Let
+	\( (A,<_{A})\)
+	and
+	\( (B,<_{B}) \)
+	be an ordered sets of the same order type with an order isomorphism
+	\( f:A \to B \).
+	We insist that
+	\begin{enumerate}
+		\item \label{enu:isom_bounded}
+		      A subset \( A_0 \) of \( A \) is bounded above (below) by an element \( u \) of \( A \)
+		      if and only if \( f(A_0) \) is bounded above (below) by \( f(u) \).
+		      
+		\item \label{enu:ismo_smallest}
+		      An element \( a \) of \( A \) is a smallest(largest) element of subset \( A_1 \) of \( A \)
+		      if and only if \( f(a) \) is that of \( f(A_1)\).
+		      
+		\item \label{enu:isom_supremum}
+		      A subset \( P \) of \( A \) has a supremum \( s \)
+		      if and only if \( f(P) \) has the supremum \( f(s) \).
+		      
+		\item \label{enu:isom_immediate}
+		      An element \( i \) of \( A \) has an immediate predecessor (successor)
+		      if and only if \( f(i) \) does.
+		      
+		\item \label{enu:isom_section}
+		      Let \(\alpha\) be an element of \( A \); let \( S_{\alpha}(A) \) denote the set of the elements of \( A \) less than \(\alpha\).
+		      We call \( S_{\alpha}(A) \) \textit{a section of \( A \) by \(\alpha\)}.
+		      For every \( \alpha \), we claim \( f(S_{\alpha}(A))= S_{f(\alpha)}(B) \),
+		      that is,\leavevmode \par \noindent
+		      \textit{the image of a section of ordered set by an element under an order isomorphism
+			      is the section of the range by the value of the isomorphism at that element.}
+	\end{enumerate}
+\end{prp}
+\begin{prf}
+	\ref{enu:isom_bounded}
+	and
+	\ref{enu:isom_section}
+	are direct consequences of \refer{Proposition}{prop:sufcdn_iso}.
+	
+	\ref{enu:ismo_smallest} is easy to show; just note
+	\begin{eqnarray*}
+		\Forall{  x \in A_1 }\left[ a \le x \right]
+		&\equiv&
+		\Forall{  x \in A_1 }\left[ f(a) \le f(x) \right]\\
+		&\equiv&
+		\Forall{  y \in f(A_1) }\left[ f(a) \le y \right].
+	\end{eqnarray*}
+	The proof for a largest element is now trivial.
+	
+	To prove \ref{enu:isom_supremum},
+	note that \( s \) is a smallest element of the set of all upper bounds for \( P \),
+	which is equivalent, by \ref{enu:isom_bounded} and \ref{enu:ismo_smallest},
+	to the statement that
+	\( f(s) \) is a smallest element of the set of all upper bounds for \( f(P) \).
+	Thus, \ref{enu:isom_supremum} follows.
+	
+	Lastly, consider \ref{enu:isom_immediate}.
+	suppose \( i \in A \)
+	has an immediate successor \( i' \).
+	Note that
+	\begin{eqnarray*}
+		(i,i')= \emptyset
+		&\equiv&
+		\Forall{ x\in A }\left[ x \notin(i,i') \right]\\
+		&\equiv&
+		\Forall{ x\in A }\left[ f(x) \notin f((i,i')) \right]\\
+		&\equiv&
+		\Forall{ x\in A }\left[ f(x) \notin  \left( f(i),f(i') \right) \right]\\
+		&\equiv&
+		\Forall{ y\in B }\left[ y \notin  \left( f(i),f(i') \right) \right]\\
+		&\equiv&
+		\left( f(i),f(i') \right) = \emptyset.
+	\end{eqnarray*}
+	Second equivalence comes from \( f\in \inj{A}{B} \),
+	third from the assumption that \( f \) is an order isomorphism,
+	fourth from \( f \in \surj{A}{B} \).
+	Thus, we complete the proof for \ref{enu:isom_immediate}.
+\end{prf}
+
+\begin{exe}
+	Define a relation on the plane by setting
+	\begin{equation*}
+		(x_0,y_0) < (x_1,y_1) 
+	\end{equation*}
+	if either \( y_0 - x_0^{2} < y_1 - x_1^{2} \),
+	or
+	\( y_0 - x_0^{2} = y_1 - x_1^{2} \) and \( x_0 < x_1 \).
+	Show that this is an order relation on the plane,
+	and describe it geometrically.
+\end{exe}\begin{sol}
+	(Comparability)
+	Let
+	\( (x_0,y_0), (x_1,y_1) \in \mathbb{R}^2\)
+	with
+	\( (x_0,y_0) \neq (x_1,y_1) \).
+	If
+	\( y_0 - {x_0}^2 \neq y_1 - {x_1}^2 \)
+	holds, comparability is trivial.
+	If, on the other hand,
+	\( y_0-{x_0}^2 = y_1 -{x_1}^2 \)
+	holds,
+	then we necessarily have
+	\( x_0 \neq x_1 \),
+	which gives
+	\( x_0 < x_1 \)
+	or
+	\( x_0 > x_1 \)
+	and hence
+	\( (x_0,y_0) < (x_1,y_1) \)
+	or
+	\( (x_0,y_0) > (x_1,y_1) \)
+	respectively.
+	
+	(Nonreflexivity)
+	Observe the following equivalence:
+	\begin{eqnarray*}
+		&&
+		\Exists{ (x,y) \in \mathbb{R}^2 }
+		\left[ (x,y) < (x,y) \right]\\
+		&\equiv&
+		\Exists{ (x,y) \in \mathbb{R}^2 }
+		\left[
+			\left( y-x^2 < y-x^2\right) \vee
+			\left( \left( y-x^2=y-x^2 \right) \wedge (x<x) \right)
+			\right]\\
+		&\equiv&
+		\Exists{ (x,y) \in \mathbb{R}^2 }
+		\left[
+			F \vee
+			\left( T \wedge F \right)
+			\right]\\
+		&\equiv&
+		F
+	\end{eqnarray*}
+	\indent(Transitivity)
+	Suppose
+	\( (x_0,y_0) < (x_{1},y_{1})\)
+	and
+	\( (x_1,y_1) < (x_{2},y_{2})\).
+	If 
+	\( y_{i-1} - {x_{i-1}}^2 <  y_{i} - {x_{i}}^2\)
+	for some \( i=1,2 \),
+	then
+	\( (x_0,y_0) < (x_{2},y_{2})\)
+	is obvious.
+	So, we consider the case where
+	\begin{equation*}
+		y_{0} - {x_{0}}^2 = y_{1} - {x_{1}}^2
+		\wedge
+		x_0<x_1
+		\wedge
+		y_{1} - {x_{1}}^2 = y_{2} - {x_{2}}^2
+		\wedge
+		x_1<x_2
+	\end{equation*}
+	holds.
+	But it is also clear for this case that
+	\( (x_0,y_0) < (x_{2},y_{2})\).
+	
+	This order relation makes
+	\( (x_0,y_0) < (x_{1},y_{1})\)
+	if
+	\( (x_1,y_1) \)
+	is on a ''higher'' parabola than
+	\( (x_0,y_0) \),
+	or, if both of them happen to be on the same parabola
+	and if
+	\( (x_1,y_1) \)
+	is located more right than
+	\( (x_0,y_0) \).
+	\qed\end{sol}
+
+\begin{exe}
+	Show that the restriction of an order relation is an order relation.
+\end{exe}\begin{sol}%7
+	Analogical argument of \S 3 Exercise 2 works.
+	\qed\end{sol}
+
+\begin{exe}
+	Check that the relation defined in Example 7 is an order relation.
+\end{exe}\begin{sol}
+	Comparability is obvious,
+	and we can show nonreflexivity exactly as we have done in Exercise 6.
+	So, we establish transitivity.
+	Suppose
+	\( x_0 C x_1 \)
+	and
+	\( x_1 C x_2 \).
+	If
+	\( x_{i-1}^2 < x_{i}^2 \)
+	for some
+	\( i \),
+	then transitivity is obvious.
+	But, transitivity is also obvious in the case
+	\( x_{0}^2 = x_{1}^2 
+	\wedge x_0 < x_1
+	\wedge x_{1}^2 = x_{2}^2
+	\wedge x_{1}< x_{2}
+	\).
+	\qed\end{sol}
+
+\begin{exe}
+	Check that the dictionary order is an order relation.
+\end{exe}\begin{sol}
+	(Comparability)
+	Let
+	\( (a_0,b_0),(a_1,b_1) \in A\times B\)
+	with
+	\( (a_0,b_0) \neq (a_1,b_1) \).
+	It follows that
+	\( a_0 \neq a_1\)
+	or
+	''\( a_0 = a_1\) and \(b_0 \neq b_1\)'',
+	which implies there hold either
+	''\( a_0 <_{A} a_1 \) or \( a_0 >_{A} a_1 \)''
+	or
+	''\( a_0 = a_1 \) and 
+	\( ( b_0 <_{B} b_1\) or \( b_0 >_{B} b_1 ) \).''
+	since each of \( A \) and \( B \) is equipped with order relation and hence
+	both of them satisfy comparability.
+	Thus,
+	\( (a_0,b_0) \)
+	and
+	\( (a_1,b_1) \)
+	are comparable.
+	
+	(Nonreflexivity)
+	Noting that
+	\( A \)
+	and
+	\( B \)
+	satisfy nonereflexivity,
+	\begin{eqnarray*}
+		\Exists{ (a,b)\in A \times B }\left[ (a,b) < (a,b) \right]
+		&\equiv&
+		\Exists{ (a,b)\in A \times B }\left[ a<a \vee (a=a \wedge b<b) \right]\\
+		&\equiv&
+		\Exists{ (a,b)\in A \times B }\left[ F \vee (T \wedge F) \right]\\
+		&\equiv&
+		F.
+	\end{eqnarray*}
+	\indent(Transitivity)
+	Suppose
+	\( (a_0,b_0) < (a_{1},b_{1})\)
+	and
+	\( (a_1,b_1) < (a_{2},b_{2})\).
+	If
+	\( a_{i-1} < a_i \)
+	for some \( i \),
+	then it is obvious that
+	\( (a_0,b_0) < (a_{2},b_{2})\).
+	If, on the other hand,
+	\( a_0 = a_1 \wedge b_0 <b_1 \wedge a_1=a_2 \wedge b_1 < b_2 \)
+	holds,
+	then it follows that 
+	\( a_0 = a_2 \wedge b_0 < b_2 \),
+	that is,
+	\( (a_0,b_0) < (a_{2},b_{2})\).
+	\qed\end{sol}
+
+\begin{exe}\leavevmode \par
+	\begin{enumerate}
+		\item
+		      Show that the map \( f:(-1,1)\to \mathbb{R} \) of Example 9 is order preserving.
+		      
+		\item
+		      Show that the equation \( g(y)= {2y}/\left[ 1+(1+4y^2)^{1/2} \right] \)
+		      defines a function \( g:(-1,1) \to \mathbb{R} \)
+		      that is both a left and right inverse of \( f \).
+	\end{enumerate}
+\end{exe}\begin{sol}\leavevmode \par
+	\fbox{(a)}
+	Note that \( f(x) = -f(-x) \) and that it suffices to show the claim for
+	\( f \) restricted on \( [0,1) \).
+	From the fact that
+	\( y^2(1-x^2) - x^2(1-y^2) = y^2 - x^2\),
+	we deduce that
+	\begin{eqnarray*}
+		x<y \wedge(x,y\in [0,1))
+		&\equiv&
+		x^2<y^2 \wedge(x,y\in [0,1))\\
+		&\equiv&
+		x^2(1-y^2)<y^2(1-x^2) \wedge(x,y\in [0,1))\\
+		&\equiv&
+		\frac{x^2}{1-x^2}<\frac{y^2}{1-y^2}\wedge(x,y\in [0,1)).
+	\end{eqnarray*}
+	
+	\fbox{(b)}
+	Note that if \( f \) admits left and right inverse,
+	then \S2 Exercise 5 implies
+	\( f \) is bijective and these inverses are equal to \( f ^{-1}\).
+	
+	To verify the inverse property of \( g \) is reduced to an elementary calculation.
+	So, the proof is left to readers.
+	\qed\end{sol}
+
+\begin{exe}
+	Show that an element in an ordered set has at most one immediate successor and at most one immediate predecessor.
+	Show that a subset of an ordered set has at most one smallest element and at most one largest element.
+\end{exe}\begin{sol}%1
+	Consider the first statement;
+	suppose \( a<b \) and \( a'<b \).
+	we need to establish one of the following equivalent statements:
+	\begin{equation*}
+		\left[(a,b) = \emptyset \wedge (a',b) = \emptyset \Rightarrow a=a' \right]
+		\equiv
+		\left[a \neq a' \Rightarrow
+			(a,b) \neq \emptyset \vee (a',b) \neq \emptyset \right].
+	\end{equation*}
+	The latter is obvious as
+	we may assume \( a<a' \) there, and in this case
+	\( a'\in(a,b) \).
+	Thus, first statement is valid for immediate predecessors.
+	Similar argument proves the claim for immediate successors.
+	
+	We now turn to the second statement.
+	Let
+	\( a \)
+	and
+	\( a' \)
+	be largest elements of a subset \( A_0 \) of an ordered set \( A \).
+	Largestness gives \( a \ge x \) for all \( x \in A_0 \), in particular,
+	\( a \ge a' \).
+	Exchanging the role of \( a \) and \( a' \) yields \( a'\ge a \).
+	Thus, \( a=a' \).
+	The same argument works for a smallest element.
+	\qed\end{sol}
+
+\begin{exe}
+	Let \( \mathbb{Z}_{+} \) denote the set of positive integers.
+	Consider the following order relations on \( \mathbb{Z}_{+} \times \mathbb{Z}_{+} \):
+	\begin{enumerate}
+		\item[(i)]
+		      The dictionary order.
+		      
+		\item[(ii)]
+		      \( (x_0,y_0) < (x_1,y_1) \)
+		      if either 
+		      \( y_0 - x_0 < y_1 - x_1 \),
+		      or
+		      \( y_0 - x_0 = y_1 - x_1 \) and \( x_0 < x_1 \).
+		      
+		\item[(iii)]
+		      \( (x_0,y_0) < (x_1,y_1) \)
+		      if either 
+		      \( y_0 + x_0 < y_1 + x_1 \),
+		      or
+		      \( y_0 + x_0 = y_1 + x_1 \) and \( x_0 < x_1 \).
+	\end{enumerate}
+	In these order relations, which elements have immediate predecessors?
+	Does the set have a smallest element?
+	Show that all three order types are different.
+\end{exe}\begin{sol}%12
+	In dictionary order (i), every element except that on the line \( y=1 \)
+	has a immediate predecessor, and
+	\( \mathbb{Z}_{+} \times \mathbb{Z}_{+} \)
+	has a smallest element \( (1,1)\).
+	
+	In the order relation (ii),
+	every element except that on the lines \( x=1 \) and \( y=1 \)
+	has a immediate predecessor,
+	and
+	\( \mathbb{Z}_{+} \times \mathbb{Z}_{+} \)
+	admits no smallest element.
+	
+	In the order relation (iii),
+	\( \mathbb{Z}_{+} \times \mathbb{Z}_{+} \)
+	has a smallest element \( (1,1)\).
+	and every element but \( (1,1) \) has a immediate predecessor.
+	
+	To prove that (i)(ii)(iii) all have different order types,
+	We need \refer{Proposition}{prop:order_type},
+	from which it follows that sets of the same order type have
+	the same number of smallest elements,
+	and the same number of elements which admit (no) immediate predecessors.
+	(We need the concept of cardinality in order to rigorously describe what is meant by  ''the same number'' here, but we can safely omit this problem since situation is not so complicated to require a further definition.)
+	So, we deduce from this fact that \( \mathbb{Z}_{+} \times \mathbb{Z}_{+} \) in (ii) has different order type from that in (i) and (iii)
+	since (ii), contrary to the others, allows us to have no smallest element.
+	Moreover, observe that
+	\( \mathbb{Z}_{+} \times \mathbb{Z}_{+} \) in (i)
+	has infinitely many elements which admit no immediate predecessors
+	while there is only one such element in (iii),
+	from which we conclude that (i) and (iii) have different order type.
+	\qed\end{sol}
+
+\begin{exe}
+	Prove the following:\leavevmode \par
+	\noindent\textit{Theorem.
+		If an ordered set \( A \) has the least upper bound property,
+		then it has the greatest lower bound property.
+	}
+\end{exe}\begin{sol}%13
+	Let
+	\( A \)
+	be an ordered set that has the largest upper bound property,
+	and let \( A_0 \) be a nonempty subset of
+	\( A \)
+	that is bounded below.
+	Let \( B \) the set of all lower bounds for
+	\( A_0 \), say,
+	\( B:=\left\{ a \in A \pipe \Forall{ a_0 \in A_0 \left[ a \le a_0 \right] } \right\} \).
+	Observe that
+	\( B \)
+	is nonempty and bounded above by every member of \( A_0 \).
+	
+	The largest upper bound property of
+	\( A \)
+	allows us to have a supremum 
+	\( s \)
+	of 
+	\( B \).
+	It is obvious that 
+	\( s \le a_0 \)
+	for all
+	\( a_0 \in A_0 \),
+	and so
+	\( s \in B \).
+	This means
+	\( s=\max{B} \).
+	Thus,
+	\( s=\inf{A_0} \).
+	\qed\end{sol}
+
+\begin{exe}
+	If \( C \) is a relation on a set \( A \),
+	define a new relation \( D \) on \( A \) by letting \( (b,a) \in D \)
+	if \( (a,b)\in C \).
+	\begin{enumerate}
+		\item
+		      Show that \( C \) is symmetric if and only if \( C=D \).
+		      
+		\item
+		      Show that if \( C \) is an order relation,
+		      \( D \) is also an order relation.
+		      
+		\item
+		      Prove the converse of the theorem in Exercise 13.
+	\end{enumerate}
+\end{exe}\begin{sol}\leavevmode \par
+	\fbox{(a)}
+	if we assume that \( C \) is symmetric, then it follows that 
+	\begin{equation*}
+		(a,b) \in C
+		\equiv
+		(b,a) \in C
+		\equiv
+		(a,b) \in D,
+	\end{equation*}
+	and that
+	\( C=D \).
+	Conversely, if we assume
+	\( C=D \),
+	then we have
+	\begin{equation*}
+		(a,b)\in C
+		\equiv
+		(b,a) \in D
+		\equiv
+		(b,a) \in C,
+	\end{equation*}
+	from which we conclude that \( C \) is symmetric.
+	
+	\fbox{(b)}
+	Let \( C \) be an order relation.
+	It is clear that
+	\( D \) inherits comparability and nonereflexivity from \( C \).
+	This is also the case for transitivity.
+	In fact, if we let
+	\( (x,y) \in D \)
+	and
+	\( (y,z) \in D \),
+	or equivalently, if
+	\( (y,x) \in C \)
+	and
+	\( (z,y) \in C \),
+	then, by transitivity
+	\( (z,x) \in C \),
+	that is,
+	\( (x,z) \in D \).
+	
+	\fbox{(c)}
+	Let
+	\( (A,<_{C})\)
+	and
+	\( (A,<_{D}) \)
+	be ordered set equipped with order relation
+	\( C\)
+	and
+	\( D \),
+	respectively,
+	and let
+	\( A_0 \) be a nonempty subset of
+	\( A \).
+	(b) makes it easy to check that
+	\( (A_0, <_{C})\)
+	has an upper bound if and only if
+	\( (A_0, <_{D})\)
+	has an lower bound,
+	and that
+	\( m \)
+	is a largest element of
+	\( (A_0, <_{C})\)
+	if and only if it a smallest element of
+	\( (A_0, <_{D})\),
+	and that
+	\( s \) is a supremum of \( (A_0, <_{C})\)
+	if and only if it is a infimum of \( (A_0, <_{D})\).
+	As a result,
+	\( (A_0, <_{C})\)
+	has the greatest lower bound property if and only if
+	\( (A_0, <_{D})\)
+	has the least upper bound property.
+	
+	If we assume that
+	\( (A_0, <_{C})\)
+	has the greatest lower bound property,
+	or equivalently, if
+	\( (A_0, <_{D})\)
+	has the least upper bound property,
+	then Exercise 13 implies that
+	\( (A_0, <_{D})\)
+	has the greatest lower bound property,
+	to which it is equivalent to state that
+	\( (A_0, <_{C})\)
+	has the least upper bound property.
+	\qed\end{sol}
+
+\begin{exe}
+	Assume that real line has the least upper bound property.
+	\begin{enumerate}
+		\item
+		      Show that the sets
+		      \begin{equation*}
+			      \begin{split}
+				      [0,1] &= \left\{ x \pipe 0 \le x \le 1 \right\},\\
+				      [0,1) &= \left\{ x \pipe 0 \le x <1 \right\}
+			      \end{split}
+		      \end{equation*}
+		      have the least upper bound property.
+		      
+		\item
+		      Does \( [0,1] \times [0,1] \) in the dictionary order have the least upper bound property?
+		      What about \( [0,1] \times [0,1) \)?
+		      What about \( [0,1) \times [0,1] \)?
+	\end{enumerate}
+\end{exe}\begin{sol}\leavevmode \par
+	\fbox{(a)}
+	We establish the greatest lower bound property instead.
+	Let \( A \) be a nonempty subset of \( [0,1) \) that is bounded below in
+	\( [0,1) \).
+	The fact that \( A \) has 0 as its lower bound implies
+	\( A \)
+	has an infimum, denoted by \( s \), in \( \mathbb{R} \)
+	since \( \mathbb{R} \) is assumed to have the greatest lower bound property.
+	
+	It is clear that \( r \in [0,1) \), and so \( r \) is a lower bound for \( A \) in \( [0,1) \).
+	It is straightforward to check that a largest element of the set of all lower bounds for
+	\( A \) in \( \mathbb{R} \) is equal to that in \( [0,1) \),
+	which implies
+	\( \inf{A}=s \).
+	Thus, \( [0,1) \) has the required property.
+	We can repeat the same argument if we replace \( [0,1) \) with \( [0,1] \).
+	
+	\fbox{(b)}
+	\( [0,1] \times [0,1) \)
+	fails to have the property.
+	Indeed, the set
+	\( \left\{ 0 \right\} \times [0,1) \)
+	is bounded above by
+	every element whose first coordinate is greater than \( 0 \),
+	but the set admits no supremum.
+	\qed\end{sol}
+
+\end{document}

@@ -1,0 +1,563 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{mystyle}
+\usepackage{commands}
+\mathtoolsset{showonlyrefs=true}
+\begin{document}
+\section{Well-Ordered Sets}
+\setcounter{exe}{0}
+
+\begin{exe}
+	Show that every well-ordered set has the least upper bound property.
+\end{exe}
+\begin{sol}
+	See \S3 Exercise 13,14, where we have established that
+	an ordered set has the least upper bound property if and only if
+	it has the greatest lower bound property.
+	
+	Let \( W \) be a well-ordered set,
+	and let \( W_0 \) be its nonempty subset bounded below.
+	Definition of well-ordered set gives a smallest element \( s \) of \( W_0 \).
+	Since \( s \) is also an infimum of \( W_0 \),
+	we conclude that \( W \) has the the greatest lower bound property.
+	\qed\end{sol}
+
+\begin{exe}\leavevmode
+	\begin{enumerate}
+		\item Show that in a well-ordered set,
+		      every element except the largest (if exists) has an immediate successor.
+		\item Find a set in which every element has an immediate successor that is not well-ordered.
+	\end{enumerate}
+\end{exe}
+\begin{sol}\leavevmode \par
+	\fbox{(a)}
+	Let \( W \) be a well-ordered set,
+	and let \( a \) be a non-largest element of \( W \).
+	Set
+	\( W_0:=\left\{ b\in W \pipe a<b \right\} \),
+	which is nonempty by the choice of \( a \).
+	Then \( W_0 \) admits a smallest element \( s \),
+	for which we have
+	\( (a,s)= \emptyset \).
+	Thus, \( s \) is the immediate successor of \( a \).
+	
+	\fbox{(b)}
+	\( \mathbb{Z} \).
+	\qed\end{sol}
+
+\begin{exe}
+	Both \( \left\{ 1,2 \right\} \times \mathbb{Z}_{+} \)
+	and
+	\( \mathbb{Z}_{+}\times \left\{ 1,2 \right\} \)
+	are well-ordered in the dictionary order.
+	Do they have the same order type?
+\end{exe}
+\begin{sol}
+	No, they have different order types.
+	Note that every element of
+	\( \left\{ 1,2 \right\} \times \mathbb{Z}_{+} \)
+	admits the immediate successor
+	while that of 
+	\( \mathbb{Z}_{+} \times \left\{ 1,2 \right\} \)
+	does not.
+	(consider \( (a,1)\in \mathbb{Z}_{+} \times \left\{ 1,2 \right\} \),
+	for instance.)
+	Our claim follows from this fact and \refer{Proposition}{prop:order_type}.
+	
+	See also \S3 Exercise 12, where we discussed a similar question. 
+	\qed\end{sol}
+
+\begin{exe}\leavevmode \par
+	\begin{enumerate}
+		\item
+		      Let \( \mathbb{Z}_{-} \) denote the set of negative integers in the usual order.
+		      Show that a simply ordered set \( A \) fails to be well-ordered
+		      if and only if it contains a subset having the same order type as \( \mathbb{Z}_{-} \).
+		\item
+		      Show that \( A \) is simply ordered and every countable subset of \( A \)
+		      is well-ordered, then \( A \) is well-ordered.
+	\end{enumerate}
+\end{exe}
+\begin{sol}\leavevmode \par
+	\fbox{(a)}
+	''if'' part is obvious since in that case that subset does not admits a smallest element,
+	and hence \( A \) is not well-ordered.
+	
+	Conversely, suppose that \( A \) is not well-ordered.
+	Let \( A_0 \) be a subset of \( A \) that does not admit a smallest element.
+	Also, let \( a\in A_0 \) and let \( c \) be a choice function for \( A_0 \).
+	Consider the following formula for \( f:\mathbb{Z}_{+} \to A_0 \):
+	\begin{eqnarray*}
+		f(-1)&:=&a,\\
+		f(-i)&:=&c \left( S_{f(-i+1)} \right)
+	\end{eqnarray*}
+	for all \( i \in \mathbb{Z}_{+} \),
+	where \( S_{\alpha} \) denotes the section of \( A_0 \) by \( \alpha \in A_0 \)
+	given by
+	\( S_{\alpha}:=\left\{ \alpha' \in A_0 \pipe \alpha' < \alpha \right\} \).
+	It is easy to check that principle of recursive definition works for this formula,
+	and that so derived \( f \) is injective and order-preserving.
+	Thus, \( f(\mathbb{Z}_{-}) \) is a subset of \( A_0 \) which has the same order type as \( \mathbb{Z}_{-} \).
+	
+	\fbox{(b)}
+	This is a direct consequence of contrapositive statement of (a).
+	\qed\end{sol}
+
+\begin{exe}
+	Show the well-ordering theorem implies the choice axiom.
+\end{exe}
+\begin{sol}
+	Let \( \mathcal{A} \) be a collection of nonempty sets.
+	It suffices to show that there exists a choice function for \( \mathcal{A} \).
+	Let \( A^{\ast}:=\bigcup_{A \in \mathcal{A}} \).
+	Apply to \( \mathcal{A} \) the well-ordering theorem so that
+	\( \mathcal{A} \) is well-ordered.
+	Then, a function
+	\( c:\mathcal{A} \to A^{\ast} \)
+	that assigns, to each \( A \in \mathcal{A} \),
+	a smallest element \( c(A) \) of \( A \) is a choice function for \( \mathcal{A} \).
+	\qed\end{sol}
+
+\begin{exe}
+	Let \( S_{\Omega} \) be the minimal uncountable well-ordered set.
+	\begin{enumerate}
+		\item
+		      Show that \( S_{\Omega} \) has no largest element.
+		      
+		\item
+		      Show that for every \( \alpha \in S_{\Omega} \),
+		      the set \( \left\{ x \pipe \alpha < x \right\} \)
+		      is uncountable.
+		      
+		\item
+		      Let \( X_0 \) be the subset of  \( S_{\Omega} \) consisting of all elements
+		      \( x \) such that \( x \) has no immediate predecessor.
+		      Show that \( X_0 \) is uncountable.
+	\end{enumerate}
+\end{exe}
+\begin{sol}\leavevmode \par
+	\fbox{(a)}
+	It suffices to show that
+	every elements of \( S_{\Omega} \) has the immediate successor in \( S_{\Omega} \).
+	It is obvious that \( S_{\Omega}\cup \Omega \) has a unique largest element \( \Omega \).
+	Let \( a\in S_{\Omega} \).
+	Exercise 2(a) implies \( a \) has its immediate successor \( b \) in \( S_{\Omega}\cup \Omega \).
+	Observe that 
+	\( S_{b} = S_{a}\cup \left\{ a \right\} \) is countable
+	while
+	\( S_{\Omega} \)
+	is uncountable,
+	and hence 
+	\( S_{b}\neq S_{\Omega} \).
+	Thus, \( b \neq \Omega \).
+	(Remember, in general, for a simply ordered set,
+	\( S_{\alpha} = S_{\beta}\) if and only if \( \alpha = \beta \).)
+	This means \( b \in S_{\Omega} \).
+	
+	We might argue as follows:
+	suppose, to the contrary, that \( m \) is a largest element of \( S_{\Omega} \).
+	Then we are led to \( S_{\Omega} = S_{m} \cup \left\{ m \right\}\).
+	But this is impossible since \( S_{\Omega} \) is uncountable while 
+	\( S_{m} \cup \left\{ m \right\}\) is countable.
+	Thus, \( S_{\Omega} \) has no largest element.
+	
+	\fbox{(b)}
+	Given \( \alpha \in S_{\Omega}\),
+	it follows from (a) that
+	the set \( \left\{ x \pipe \alpha < x \right\} \)
+	is unbounded above in \( S_{\Omega} \).
+	Thus, we deduce from Theorem 10.3 that
+	\( \left\{ x \pipe \alpha < x \right\} \)
+	is uncountable.
+	
+	\fbox{(c)}
+	By Theorem 10.3,
+	it suffices to show that \( X_0 \) is unbounded above.
+	Let \( s: S_{\Omega} \to S_{\Omega} \) be a function that
+	assigns, to each \( a\in S_{\Omega} \), the immediate successor of \( a \).
+	It is easy to verify that \( s \) preserves order.
+	Given \( \alpha \in S_{\Omega} \),
+	let
+	\( A:=\left\{ \alpha, s(\alpha), s^2(\alpha),\cdots \right\} \).
+	Since \( A \) is countable,
+	\( A \) admits a supremum \( \sup{A} \) in \( S_{\Omega} \)
+	by Theorem 10.3 and Exercise 1.
+	We claim \( \sup{A} \in X_0 \).
+	In fact, for any \(  x \in S_{\Omega} \) with \( x< \sup{A} \),
+	there exists \( y \in A \)
+	such that \( x<y<S_{\Omega} \), that is,
+	\( \left( x, \sup{A}\right) \neq \emptyset \).
+	Hence, \( \sup{A}\in X_0 \).
+	It follows from \( \alpha < \sup{A} \) that \( X_0 \) is unbounded above.
+	\qed\end{sol}
+
+\begin{exe}[The principle of transfinite induction]
+	Let \( J \) be a well-ordered set.
+	A subset \( J_0 \) of \( J \) is said to be \textbf{\textit{inductive}}
+	if for every \( \alpha \in J \),
+	\begin{equation*}
+		(S_{\alpha} \subset J_0) \Rightarrow \alpha \in J_0.
+	\end{equation*}
+	Theorem.\;
+	If \( J \) is a well-ordered set and \( J_0 \) is an inductive subset of \( J \),
+	then \( J_0=J \).
+\end{exe}
+\begin{sol}
+	Let \( J \) be a well-ordered set,
+	and let \( J_0 \) be a subset of \( J \).
+	Suppose \( J \setminus J_0  \neq \emptyset \).
+	Then, there exists a smallest element \( x \) of \( J \setminus J_0 \).
+	We see that
+	\( S_x \subset J_0 \)
+	and
+	\( x \notin J_0 \).
+	Thus, \( J_0 \) is not inductive.
+	\qed\end{sol}
+
+\begin{exe}\leavevmode
+	\begin{enumerate}
+		\item
+		      Let \( (A_1,<_{1}) \) and \( (A_2,<_2) \) be disjoint well-ordered sets.
+		      Define an order relation on \( A_1 \cup A_2 \) by letting
+		      \( a<b \)
+		      either if \( a,b \in A_1 \)
+		      and \( a<_1 b \),
+		      or if \( a,b \in A_2 \)
+		      and \( a<_2 b \),
+		      or if \( a \in A_1 \) and \( b \in A_2 \).
+		      Show that this is a well-ordering.
+		      
+		\item
+		      Generalize (a) to an arbitrary family of disjoint well-ordered sets, indexed by a well-ordered set.
+	\end{enumerate}
+	
+	
+\end{exe}
+\begin{sol}\leavevmode \par
+	\fbox{(a)}
+	We first verify that the given relation is actually an order relation.
+	Noting that \( A_1 \) and \( A_2 \) are disjoint,
+	comparability and nonreflexivity are obvious.
+	To show transitivity,
+	suppose \( a<b \) and \( b<c \).
+	If \( a,b,c \in A_i \) for some \( i \),
+	then we have \( a<_{A_i} c \), and so \( a<c \).
+	If \( a,b \in A_1 \) and \( c \in A_2 \),
+	then definition of \( < \) gives \( a<c \).
+	The same argument works for the remaining cases.
+	Hence, the given relation is an order relation.
+	
+	We establish \( (A_1\cup A_2, <) \) is a well-ordered set.
+	Let \( B \) is a nonempty subset of \( A_1\cup A_2 \).
+	If \( B \) is included in \( A_i \) for some \( i \),
+	then there exists a smallest element \( s \) of \( B \) in \( (A_i, <_i) \).
+	It is obvious that \( s \) is also a smallest element of \( B \)
+	in \( (A_1\cup A_2, <) \).
+	If, on the other hand, \( B \cap A_1 \neq \emptyset \) and \( B \cap A_2 \neq \emptyset \),
+	then a smallest element of \( B \cap A_1 \) in \( (A_i, <_i) \)
+	turns out to be that of \( B \cap A_1 \) in \( (A_1\cup A_2, <) \)
+	because every element of \( B \cap A_1 \) is smaller than that of \( B \cap A_2 \).
+	
+	\fbox{(b)}
+	Let \( (W_i, <_i) \) be a family of disjoint well-ordered sets, indexed by a well-ordered set \( I \).
+	Define \( W:=\bigcup_{i \in I}W_i \)
+	and an order relation on \( W \)
+	by setting 
+	\( a<b \)
+	either if
+	\( a,b \in W_i \)
+	and
+	\( a<_i b \)
+	for some \( i \),
+	or if
+	\( a \in W_i \)
+	and
+	\( b \in W_j \)
+	for \( i<j \).
+	
+	The same argument as (a) shows that \( < \) is an order relation on \( W \).
+	Let \( B \) be a subset of \( W \) and let \( i^{\ast} \) be a smallest element of the set \( \left\{ i \in I \pipe B \cap W_i \neq \emptyset \right\} \).
+	It is then easy to show that a smallest element of \( B \cap W_{ i^{\ast}} \)
+	is also that of \( (W,<) \) by the way \( < \) is introduced.
+	\qed\end{sol}
+
+\begin{rem}
+	In Exercise 8,
+	we require \( (A_1, <_1) \) and \( (A_2, <_2) \) to be disjoint.
+	But this is not an essential assumption:
+	
+	Given two (not necessarily disjoint) well-ordered sets
+	\( (B,<_B) \) and \( (C,<_C) \),
+	define new disjoint well-ordered sets
+	\( (\left\{ 1 \right\}\times B, <_{B'}) \)
+	and
+	\( (\left\{ 2 \right\}\times C, <_{C'}) \),
+	where \( <_{B'} \) is defined to be \( (1,b_1) <_{B'} (1,b_2) \)
+	if \( b_1 <_B b_2 \),
+	and similarly for \( <_{C'} \).
+	It is obvious that \( (B,<_B) \) and \( (C,<_C) \)
+	have the same order types as
+	\( (\left\{ 1 \right\}\times B, <_{B'}) \)
+	and
+	\( (\left\{ 2 \right\}\times C, <_{C'}) \),
+	respectively.
+	Thus, we may assume two well-ordered sets are disjoint if necessary.
+\end{rem}
+
+\begin{exe}
+	Consider the subset \( A \) of \( (\mathbb{Z}_{+})^{\omega} \)
+	consisting of all infinite sequence of positive integers
+	\( \bm{x}=(x_1,x_2,\cdots) \)
+	that end in an infinite string of 1's.
+	Give \( A \) the following order:
+	\( \bm{x} < \bm{y} \) if \( x_n < y_n \) and \( x_i=y_i \) for \( i>n \).
+	\begin{enumerate}
+		\item
+		      Show that for every \( n \),
+		      there is a section of \( A \) that has the same order type as
+		      \( (\mathbb{Z}_{+})^{n} \) in the dictionary order.
+		      
+		\item
+		      Show that \( A \) is well-ordered.
+	\end{enumerate}
+\end{exe}
+\begin{sol}
+	We first note that \( A \) is an ordered set with the given order.
+	Given \( n\in \mathbb{Z}_{+} \),
+	let
+	\( I^{(n)}:=\{ \underbrace{1,1,\cdots,1}_{n},2,1,1,\cdots \} \).
+	Let \( S(\bm{x}) \) denote the section of \( A \) by \( \bm{x} \).
+	
+	\fbox{(a)}
+	We claim that for every \( n \in \mathbb{Z}_{+} \)
+	there exists an order isomorphism from \( S \left( I^{(n)} \right) \)
+	to \( \mathbb{Z}_{+}^{n} \).
+	First observe
+	\begin{equation*}
+		S \left( I^{(n)} \right)
+		=
+		\left\{  \left\{ x_1,x_2,\cdots,x_n,1,1,\cdots \right\} \pipe x_i \in \mathbb{Z}_{+} \right\}
+	\end{equation*}
+	We prove our claim by induction on \( n \).
+	It is easy to check that a function given by
+	\begin{equation*}
+		S \left( I^{(1)} \right) \ni \left\{ x,1,1,\cdots \right\}
+		\mapsto x \in \mathbb{Z}_{+}
+	\end{equation*}
+	is an order isomorphism.
+	Assume the claim holds for \( n-1 \),
+	and let \( f \) be an order isomorphism from
+	\( S \left( I^{(n-1)} \right) \) to \( \mathbb{Z}_{+}^{n-1} \).
+	Define a function
+	\( h: S \left( I^{(n)} \right) \to \mathbb{Z}_{+}\times \mathbb{Z}_{+}^{n-1}\)
+	via
+	\begin{equation*}
+		h \left( \left\{ x_1,x_2,\cdots,x_{n-1},x_n,1,1,\cdots \right\} \right)
+		\to
+		\left( x_n, f(x_1,\cdots,x_{n-1},1,1,\cdots) \right)
+	\end{equation*}
+	It is clear that \( h \) is injective.
+	Also, It is straightforward to verify that \( h \) preserves order.
+	Since there exists an order isomorphism from
+	\( \mathbb{Z}_{+}\times \mathbb{Z}_{+}^{n-1} \)
+	to
+	\( \mathbb{Z}_{+}^{n} \),
+	there also exists an order isomorphism from
+	\( S \left( I^{(n)} \right) \)
+	to \( \mathbb{Z}_{+}^{n} \).
+	
+	\fbox{(b)}
+	Let \( A_0 \) be a nonempty subset of \( A \).
+	Let \(  \bm{x} \in A_0 \).
+	We can write \( \bm{x}=(x_1,x_2,\cdots,x_n,1,1,\cdots) \)
+	for some \( n \in \mathbb{Z}_{+} \).
+	Observe \( \bm{x} \in S \left( I^{(n)} \right) \)
+	and so \( A_0 \cap  S \left( I^{(n)} \right) \neq \emptyset\).
+	Then, \( f \left( A_0 \cap S \left( I^{(n)} \right) \right)\)
+	is a nonempty subset of \( \mathbb{Z}_{+}^{n} \),
+	where \( f \) is an order isomorphism from
+	\( S\left( I^{(n)} \right) \) to \( \mathbb{Z}_{+}^{n} \).
+	Since \( \mathbb{Z}_{+}^{n} \) is well-ordered,
+	\( f \left( A_0 \cap S \left( I^{(n)} \right) \right)\)
+	admits a smallest element \( m \).
+	So, \( f ^{-1}(m) \) is a smallest element of
+	\( A_0 \cap  S \left( I^{(n)} \right) \).
+	It is obvious that \( f ^{-1}(m) \) is also a smallest element of \( A_0 \).
+	Thus, \( A \) is a well-ordered set. 
+	\qed\end{sol}
+
+\begin{exe}[pre-general principle of recursive definition]\leavevmode \par
+	\noindent \text{Theorem.}\;\;
+	Let \( J \) and \( C \) be well-ordered sets;
+	assume that there is no surjective function from a section of \( J \) onto \( C \).
+	Then there exists a unique function
+	\( h: J \to C \)
+	satisfying the equation
+	\begin{equation}\label{eq:pre_recursive}
+		h(x)=\min{\left[ C \setminus h(S_x) \right]}
+	\end{equation}
+	for each \( x \in J \),
+	where \( S_x \) is the section of \( J \) by \( x \).
+	
+	\textit{Proof.}
+	\begin{enumerate}
+		\item
+		      If \( h \) and \( k \) map sections of \( J \), or all of \( J \), into \( C \)
+		      and satisfy (\refeq{eq:pre_recursive}) for all \( x \) in their respective domains,
+		      show that \( h(x)=k(x) \) for all \( x \) in both domains.
+		      
+		\item
+		      If there exists a function \( h:S_{\alpha}\to C\) satisfying (\ref{eq:pre_recursive}),
+		      show that there exists a function
+		      \( k :S_{\alpha}\cup \left\{ \alpha \right\}\to C \)
+		      satisfying (\refeq{eq:pre_recursive}).
+		      
+		\item
+		      If \( K \subset J \)
+		      and for all \( \alpha \in K \) there exists a function
+		      \( h_{\alpha}: S_{\alpha}\to C \)
+		      satisfying (\refeq{eq:pre_recursive}),
+		      show that there exists a function
+		      \begin{equation*}
+			      k: \bigcup_{\alpha \in K} S_{\alpha}\to C
+		      \end{equation*}
+		      satisfying (\refeq{eq:pre_recursive}).
+		      
+		\item
+		      Show by transfinite induction that every \( \beta \in J \),
+		      there exists a function
+		      \( h_{\beta}: S_{\beta}\to C\)
+		      satisfying (\refeq{eq:pre_recursive}).
+		      
+		\item
+		      Prove the theorem.
+	\end{enumerate}
+\end{exe}
+\begin{sol}\leavevmode \par
+	\fbox{(a)}
+	This is a simple consequence of the principle of transfinite induction.
+	
+	Let
+	\( D_{h} \)
+	and
+	\( D_k \)
+	be the domain of \( h \) and \( k \),
+	respectively.
+	Suppose \( h \) and \( k \) satisfy (\refeq{eq:pre_recursive}) for all \( x \)
+	in their respective domains.
+	Let \( D \) be a subset of \( D_h \cap D_k \) 
+	consisting of all \(  x \) for which we have
+	\begin{equation*}
+		h(x) = k(x).
+	\end{equation*}
+	Note that
+	\( h(S_{\min{J}}) = h(\emptyset) = \emptyset \)
+	and so
+	\( h(\min{J}) = \min{C} = k(\min{J}) \)
+	is well-defined.
+	We deduce from the fact
+	\( D \)
+	is inductive that
+	\( D= D_h \cap D_k\).
+	
+	\fbox{(b)}
+	Consider a function
+	\( k :S_{\alpha}\cup \left\{ \alpha \right\}\to C \)
+	given by
+	
+	\begin{equation*}
+		k(x):=	 \begin{cases}
+			h(x) & \;\mathrm{:}\; x \in S_{\alpha} \\
+			\min{\left[ C \setminus h(S_{\alpha}) \right] }
+			     & \;\mathrm{:}\;x=\alpha.
+		\end{cases}
+	\end{equation*}
+	
+	\fbox{(c)}
+	Let \(  x \in \bigcup_{\alpha \in K} S_{\alpha}\).
+	There exists \( \alpha \in K \) such that \(  x \in S_{\alpha} \).
+	(a) implies that the value \( h_{\alpha}(x) \) is uniquely determined independent of \( \alpha \).
+	Thus, a function	
+	\( k: \bigcup_{\alpha \in K} S_{\alpha}\to C \)
+	given by
+	\begin{equation*}
+		k(x):=h_{\alpha}(x)
+	\end{equation*}
+	is well-defined.
+	
+	Note that \( \bigcup_{\alpha \in K} S_{\alpha} \) is a subset of \( J \),
+	a well-ordered set, and hence it is also a well-ordered set.
+	Let \( X \) be a subset of \( \bigcup_{\alpha \in K} S_{\alpha} \)
+	consisting of all \( x \) for which 
+	\begin{equation*}
+		k(x) = \min{\left[ C \setminus k(S_{\alpha}) \right]}
+	\end{equation*}
+	holds.
+	Let \(  x \in \bigcup_{\alpha \in K} S_{\alpha} \)
+	and suppose \( S_x \subset X \).
+	Then, (b) gives \(  x \in X \),
+	which means \( X \) is inductive.
+	Thus, \( X = \bigcup_{\alpha \in K} S_{\alpha} \)
+	by the principle of transfinite induction.
+	
+	\fbox{(d)}
+	Let \( Y \) be a subset of \( J \)
+	consisting of all \( \beta \) for which there exists a function
+	\( h_{\beta}: S_{\beta}\to C\)
+	satisfying (\ref{eq:pre_recursive}).
+	We only have to show that \( Y \) is inductive so that
+	the principle of transfinite induction yields the result.
+	Let \( \beta \in J \) and suppose \( S_{\beta} \subset Y \).
+	If \( \beta \) has an immediate successor \( \alpha \),
+	then we have \( S_{\beta}=S_{\alpha} \cup \left\{ \alpha \right\} \)
+	and so (b) implies \( \beta \in Y \).
+	If not, 
+	\( S_{\beta}=\bigcup_{\alpha < \beta} S_{\alpha} \),
+	and hence (c) gives \( \beta \in Y \).
+	Thus, \( Y \) is inductive.
+	
+	\fbox{(e)}
+	Uniqueness of \( h \) (if exists) follows from (a).
+	
+	(d) and (c) imply that there exists a function
+	\begin{equation*}
+		k: \bigcup_{\alpha \in J} S_{\alpha}\to C
+	\end{equation*}
+	satisfying (\ref{eq:pre_recursive}).
+	If \( J \) has a largest element \( m \),
+	then we have
+	\begin{equation*}
+		\bigcup_{\alpha \in J} S_{\alpha}
+		=S_m
+		=J \setminus \left\{ m \right\}
+	\end{equation*}
+	and so, (b) yields a function \( h:J\to C \)
+	satisfying (\ref{eq:pre_recursive}).
+	If not, then \( J=\bigcup_{\alpha \in J} S_{\alpha} \)
+	and we are done.
+	\qed\end{sol}
+
+\begin{exe}
+	Let \( A \) and \( B \) be two sets.
+	Using the well-ordering theorem, prove that either they have the same cardinality,
+	or one has the greater cardinality greater than the other.
+\end{exe}
+\begin{sol}
+	Apply, to \( A \) and \( B \) if necessary, the well-ordering theorem
+	so that both \( A \) and \( B \) are well-ordered.
+	Remember that, under the choice axiom, a consequence of the well-ordering theorem,
+	\( \surj{A}{B} \neq \emptyset \) if and only if
+	\( \inj{B}{A} \neq \emptyset \)
+	by \S9 Exercise 5 and \S2 Exercise 5.
+	
+	So, if \( \inj{A}{B} = \emptyset \),
+	or equivalently if \( \surj{B}{A} = \emptyset \),
+	then Exercise 10 gives \( \inj{A}{B} \neq \emptyset \).
+	This means that there cannot hold
+	\( \inj{A}{B} = \emptyset \)
+	and
+	\( \inj{B}{A} = \emptyset \)
+	at the same time,
+	from which we conclude the result.
+	\qed\end{sol}
+
+\end{document}
