@@ -1,0 +1,72 @@
+{
+	"markdown.extension.print.theme": "dark",
+	"markdown.extension.math.enabled": true,
+	"latex-workshop.view.pdf.viewer": "tab",
+	// Specify HyperSnips file path to be applied ONLY IF YOU NEED IT. You are recommended to use the default one: /home/user/.config/Code/User/hsnips/latex.hsnips
+	// "hsnips.hsnipsPath": ".vscode/tex.hsnips",
+	"[tex]": {
+		"editor.suggest.snippetsPreventQuickSuggestions": false,
+		"editor.tabSize": 2,
+		"editor.formatOnSave": true,
+	},
+	"[latex]": {
+		"editor.suggest.snippetsPreventQuickSuggestions": false,
+		"editor.tabSize": 2,
+		"editor.formatOnSave": true,
+	},
+	"[bibtex]": {
+		"editor.tabSize": 2
+	},
+	// ---------- LaTeX Workshop ----------
+	"latex-workshop.latexindent.path": "/usr/bin/latexindent",
+	"latex-workshop.intellisense.package.enabled": true,
+	// clean up generated intermediate files 
+	"latex-workshop.latex.clean.fileTypes": [
+		"*.aux",
+		"*.bbl",
+		"*.blg",
+		"*.idx",
+		"*.ind",
+		"*.lof",
+		"*.lot",
+		"*.out",
+		"*.toc",
+		"*.acn",
+		"*.acr",
+		"*.alg",
+		"*.glg",
+		"*.glo",
+		"*.gls",
+		"*.ist",
+		"*.fls",
+		"*.log",
+		"*.fdb_latexmk",
+		"*.snm",
+		"*.nav",
+		"*.dvi",
+		"*.synctex.gz" // added to defaults
+	],
+	// Specify output directory 
+	"latex-workshop.latex.outDir": "../.pdf",
+	// recipe for build
+	"latex-workshop.latex.recipes": [
+		{
+			"name": "latexmk",
+			"tools": [
+				"latexmk"
+			]
+		},
+	],
+	// tools used for build
+	"latex-workshop.latex.tools": [
+		{
+			"name": "latexmk",
+			"command": "latexmk",
+			"args": [
+				"-silent",
+				"-outdir=%OUTDIR%",
+				"%DOC%"
+			],
+		},
+	],
+}
