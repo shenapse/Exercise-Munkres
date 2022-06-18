@@ -1,0 +1,13 @@
+# ignore intermediate files
+*.aux
+*.bbl
+*.blg
+*.dvi
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.gz
+*.toc
+# ignore .history directory that is created by vscode extension
+/.history/
