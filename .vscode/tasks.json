@@ -1,0 +1,15 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Remove Intermediate Tex Files",
+			"type": "shell",
+			"command": "fd -HI -e aux -e dvi -e fls -e out -e gz -e fdb_latexmk -e log -e toc -e blg -e bbl -t f | xargs rm -rf",
+			"presentation": {
+				"reveal": "silent",
+				"revealProblems": "onProblem",
+				"close": true
+			}
+		}
+	],
+}
